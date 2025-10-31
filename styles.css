@@ -206,7 +206,7 @@ blockquote + span {
 
 /* Unvisited links */
 a:link {
-  color: #fa0000;
+  color: #010101;
   padding: 5px;
 }
 
