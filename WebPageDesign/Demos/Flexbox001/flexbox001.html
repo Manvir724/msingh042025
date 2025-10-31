@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexBox001</title>
+    <style>
+        #container{width: 80%;
+        min-height: 200px;
+    background-color: aqua;
+margin: auto;}
+header{min-height: 200px;
+background-color: red;}
+nav{min-height: 200px;
+background-color: rgba(26, 189, 244, 0.872);
+flex: 1;
+}
+main{min-height: 200px;
+background-color: pink;
+flex: 2;}
+aside{min-height: 200px;
+background-color: rgb(255, 183, 0);
+flex: 1;}
+footer{min-height: 200px;
+background-color: skyblue;}
+#flexbox001{ border: 5px solid black;
+display: flex;}
+    </style>
+</head>
+<body>
+    <div id="container">
+<header>Header</header>
+                            <div id="flexbox001">
+                                <nav>Navigation</nav>
+                                <main>main</main>
+                                <aside>aside</aside>
+                            </div>
+<footer>footer</footer>
+    </div>
+</body>
+</html>

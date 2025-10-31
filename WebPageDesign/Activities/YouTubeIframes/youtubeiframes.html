@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Iframes</title>
+    <style>
+        /* Remove body margins */
+        body
+        {
+            margin:0;
+        }
+        /* Center header */
+        h1
+        {
+            text-align:center; background-color: aqua;
+        }
+        /* Center content of favorite divs */
+        #favorite001, #favorite002, #favorite003
+        {
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            min-height:300px;
+        }
+        /* Color each favorite div */
+        #favorite001{
+            background-color: lightblue;
+        }
+        #favorite002{
+
+            background-color: tomato;
+        }
+        #favorite003{
+
+            background-color: coral; border: crimson 15px ;
+        }
+        /* Add media box to each favorite div */
+        .media
+        {
+            max-width:1200px;
+            flex-basis:80%;
+            background-color: white;
+            min-height: 260px;
+            border-radius:35px;
+           padding: 1rem;
+        }
+        iframe{ width: 80%; aspect-ratio: 16 / 9 ; margin: auto;
+        display: block;}
+        
+        </style>
+</head>
+<body>
+    <h1>My Favorite YouTube Videos</h1>
+    <div id="favorite001">
+        <div class="media">
+            <iframe  src="https://www.youtube.com/embed/IAvw60x0Kn4?si=YcRptin5YfTgnLr5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div id="favorite002">
+        <div class="media">
+            
+            <iframe  src="https://www.youtube.com/embed/EWlQVvCX8y0?si=1dB8ToChoVyHiERj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+        </div>
+    </div>
+    <div id="favorite003">
+        <div class="media">
+            
+            <iframe src="https://www.youtube.com/embed/LjfY3qSTBQc?si=QuwWFoeVgStil1W_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            
+
+        </div>
+    </div>
+</body>
+</html>

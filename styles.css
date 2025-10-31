@@ -1,0 +1,226 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: black;
+}
+
+.container {
+  min-height: 10rem;
+  max-width: 75rem;
+  margin: auto;
+  background-color: white;
+  padding: 1rem;
+}
+
+#pageheader {
+  background: #ffe168;
+  background: linear-gradient(
+    90deg,
+    rgb(97, 193, 234) 0%,
+    rgb(135, 222, 238) 55%,
+    rgb(248, 170, 178) 100%
+  );
+  min-height: auto;
+  padding: 1rem;
+}
+#pageheader .container {
+  background: #ffe168;
+  background: linear-gradient(
+    90deg,
+    rgb(97, 193, 234) 0%,
+    rgb(135, 222, 238) 55%,
+    rgb(248, 170, 178) 100%
+  );
+  border: 1px solid gold;
+}
+
+#logo {
+  width: 6.5rem;
+  height: 6.5rem;
+  background-image: url(Photoshop/Logo/M.SLogo.png);
+  background-size: cover;
+}
+#pageheader .container {
+  background-color: none;
+  min-height: auto;
+  text-align: center;
+}
+#media {
+  background-color: #fcf2bd;
+  min-height: 10rem;
+  padding: 1rem;
+  background-image: url(Images/Heroimage.png);
+  background-size: cover;
+  aspect-ratio: 16/9;
+}
+#career {
+  background: #d9b3f5;
+  background: linear-gradient(
+    90deg,
+    rgb(119, 172, 233) 0%,
+    rgb(124, 229, 248) 55%,
+    rgb(244, 236, 194) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+}
+#career .container {
+  background: #d9b3f5;
+  background: linear-gradient(
+    90deg,
+    rgb(119, 172, 233) 0%,
+    rgb(124, 229, 248) 55%,
+    rgb(244, 236, 194) 100%
+  );
+  border: 1px solid gold;
+}
+#pagecontent {
+  background: #d9b3f5;
+  background: linear-gradient(
+    90deg,
+    rgba(217, 179, 245, 1) 0%,
+    rgba(242, 165, 165, 1) 55%,
+    rgba(242, 233, 216, 1) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+}
+#pagecontent .container {
+  background: #d9b3f5;
+  background: linear-gradient(
+    90deg,
+    rgba(217, 179, 245, 1) 0%,
+    rgba(242, 165, 165, 1) 55%,
+    rgba(242, 233, 216, 1) 100%
+  );
+  border: 1px solid gold;
+}
+#portofoliparagraph {
+  text-indent: 30px;
+}
+#semester1 {
+  background: #d9b3f5;
+  background: linear-gradient(
+    90deg,
+    rgb(174, 204, 238) 0%,
+    rgb(225, 170, 233) 55%,
+    rgb(246, 141, 106) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+}
+#semester1 .container {
+  background: #d9b3f5;
+  background: linear-gradient(
+    90deg,
+    rgb(174, 204, 238) 0%,
+    rgb(225, 170, 233) 55%,
+    rgb(246, 141, 106) 100%
+  );
+  border: 1px solid gold;
+}
+#semester2 {
+  background-color: #a9def9;
+  min-height: 10rem;
+  padding: 1rem;
+}
+#pagefooter {
+  background: #f47889;
+  background: linear-gradient(
+    90deg,
+    rgb(242, 103, 103) 0%,
+    rgb(246, 244, 129) 55%,
+    rgb(246, 141, 106) 100%
+  );
+  min-height: auto;
+  padding: 1rem;
+}
+#pagefooter .container {
+  background: #f47889;
+  background: linear-gradient(
+    90deg,
+    rgb(242, 103, 103) 0%,
+    rgb(246, 244, 129) 55%,
+    rgb(246, 141, 106) 100%
+  );
+  border: 1px solid gold;
+  min-height: auto;
+  text-align: center;
+}
+#subfooter {
+  background: #f486bf;
+  background: linear-gradient(
+    90deg,
+    rgb(235, 89, 99) 0%,
+    rgb(170, 203, 233) 55%,
+    rgb(57, 232, 214) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+  text-align: center;
+}
+#subfooter .container {
+  background: #f486bf;
+  background: linear-gradient(
+    90deg,
+    rgb(235, 89, 99) 0%,
+    rgb(170, 203, 233) 55%,
+    rgb(57, 232, 214) 100%
+  );
+  border: 1px solid gold;
+}
+audio {
+  display: block;
+  margin: auto;
+  background-color: red;
+  border: 5px solid red;
+}
+
+blockquote {
+  border-left: 5px solid black;
+  padding: 0.7rem;
+  margin: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+  border-right: 5px solid black;
+  text-align: center;
+  width: 50%;
+}
+
+blockquote + span {
+  display: block;
+  text-align: right;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: auto;
+  font-style: normal;
+  width: 50%;
+  padding: 0.7rem;
+}
+#semester1 .container {
+  background-color: aqua;
+}
+
+/* Unvisited links */
+a:link {
+  color: #000000;
+  padding:5px;
+}
+
+/* Visited links */
+a:visited {
+  color: #000000;
+}
+
+/* Hover state */
+a:hover {
+  color: #ff6600;
+}
+
+/* Active/clicked state */
+a:active {
+  color: #0300cc;
+}

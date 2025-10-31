@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexBox002</title>
+    <style>
+#parent1{width: 500px;
+height: 500px;
+background-color: blue;
+margin: auto;
+margin-bottom: 30px;
+display: flex;
+justify-content: center;
+align-items: center;}
+
+#parent2{width: 500px;
+height: 500px;
+background-color: green;
+margin: auto;
+margin-bottom: 30px;
+display: flex;
+justify-content: flex-end;
+align-items: flex-end;}
+
+
+#parent3{width: 500px;
+height: 500px;
+background-color:orange;
+margin: auto;
+margin-bottom: 30px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.child{width: 150px;
+height: 150px;
+border: 1px solid white;
+background-color: blueviolet;
+border-radius: 50%;
+}
+  </style>
+</head>
+<body>
+    <h1>Flexbox002</h1>
+    <h2>Justify content</h2>
+    <h2>Align-Item</h2>
+
+
+    <div id="parent1">
+
+<div class="child"></div>
+<div class="child"></div>
+<div class="child"></div>
+
+    </div>
+
+    <div id="parent2">
+
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+
+    </div>
+
+    <div id="parent3">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+
+    </div>
+</body>
+</html>

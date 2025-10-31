@@ -1,0 +1,14 @@
+body{
+    background-color: coral;
+}
+h1{background-color: aqua;
+padding: 1rem;
+text-align: center;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}
+a{
+    color: White;
+}
+
+a:hover{
+    color:blue;
+}

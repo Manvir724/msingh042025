@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexBox Media-Queries</title>
+    <style>
+    #container{background-color: aquamarine; width: 80%;
+        margin: auto;}
+    
+    
+    article{min-height: 100px; background-color: blue; border: 1px solid black; padding: 1rem; flex: 1;}
+    
+    section{min-height: 200px; background-color: red; border: 1px solid black; padding: 1rem; flex: 1;}
+    
+    #fb1{display: flex; flex-direction: row; }
+    
+    #fb2{display: flex;}
+    </style>
+</head>
+<body>
+    <h1>Flexbox Media-Queries</h1>
+
+    <div id="container">
+        <div id="fb1">
+            <article>A1</article>
+            <article>A2</article>
+            <article>A3</article>
+        </div>
+
+        <div id="fb2">
+            <section>S1</section>
+            <section>S2</section>
+            <section>S3</section>
+            <section>S4</section>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+
+        body{
+        background-color: black;
+        color: white;
+        margin: 0; 
+        padding: 0;
+        background-image: url(Images/Bodybackground2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1, h2, h3{
+            font-family: "Satisfy", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        header{
+        background-color:black;
+        min-height: 100px;
+        padding: 1rem;
+        text-align: center; 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        right: 0;
+        display: none;
+        
+        }
+
+
+        header h1
+        {
+        font-size: 3.5rem; 
+        /* text-transform: uppercase ; */
+        padding-left: 20%;
+        
+        }
+
+        #topnav{
+        background-color: black;
+        min-height: 150px; 
+        padding: 1rem;
+        position: relative;
+        }
+
+        #topnav ul{
+            padding:0 ;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+
+        #topnav li{
+            border: 1px solid #333;
+            padding: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        #topnav li:hover{ background-color: #333;}
+        
+        #wrapper{
+        margin: auto;   
+        margin-top: 50px;
+        background-color: aqua; 
+        width: 80%;
+        max-width: 1200px;
+        }
+       
+        #media{ 
+        background-color:blue;
+        min-height: 350px; 
+        padding: 1rem;
+        background-image: url(Images/mediaphoto.jpg);
+        background-size: cover;
+        background-position: center top;
+        }
+        
+        main{ 
+        background-color: plum;
+        min-height: 300px; 
+        padding: 1rem;
+        line-height: 1.7;
+        }
+        main h1{text-align: center;}
+
+        main video
+        {display: block;
+        margin: auto;
+        max-width: 100%;
+        aspect-ratio: 640/360;
+        display: none;
+        }
+        
+
+        #cards{ 
+        background-color:#5efefe;
+        min-height: 150px; 
+        padding: 1rem;
+        }
+        
+        article{ 
+        background-color: rgb(236, 42, 249);
+        min-height: 150px; 
+        padding: 1rem; 
+        border: 1px solid black;
+        width: 80%; 
+        border-radius: 25px; 
+        margin: auto; 
+        margin-bottom: 1rem;
+       }
+       
+
+
+        footer{ 
+        background-color: #fdda74;
+        min-height: 50px; 
+        padding: 1rem;
+        text-align: center;
+        color: #f84df3;
+        }
+
+            #medialogo{
+                background-color: black;
+            }
+            #medialogo img{
+                display: block;
+                margin: auto;
+
+            }
+
+            #desktoplogo{
+                display: none;
+            }
+            #cards{
+                display: flex;
+                flex-wrap: wrap;
+                align-content: space-between;
+            }
+            #cards article{
+                background-color: red;
+                background-position: center center;
+                background-size: cover;
+                max-width: 400px; 
+                aspect-ratio: 4/3;
+            }
+
+
+            h3 a{
+                color: black;
+            }
+
+            #bronx{background-image: url(Images/Bronxcard.jpg);
+            }
+
+            #brooklyn{background-image: url(Images/Brooklyncard.jpg);
+            }
+
+            #manhattan{background-image: url(Images/Manhattancard.jpg);
+            }
+
+            #queens{background-image: url(Images/Queenscard.jpg);
+            }
+
+            #statenisland{background-image: url(Images/Statenislandcard.jpg);
+            }
+
+            #cards article h3{
+                background-color: rgba(255, 255, 255, 0.7);
+                padding: .5rem;
+                text-align: center;
+                border: 2px solid black;
+                color: black;
+                border-radius: 10px;
+                margin-top: 67%;
+            }
+
+
+            a{ color: white;}
+        @media screen and (min-width:880px){
+             #topnav ul
+             {flex-direction: row;}
+
+
+
+             
+             #topnav{
+            min-height: 50px;
+            position: sticky;
+            top: 130px;
+            z-index: 2;
+            }
+
+             #topnav li{ border: none;
+            }
+
+            #topnav li:hover{ 
+                background-color: black;
+            }
+            #medialogo{
+                display: none;
+            }
+            header{display: block;}
+            #wrapper{margin-top: 220px;}
+            
+            #desktoplogo{
+            display: block; 
+            position: absolute;
+            top: -100px;
+            left: 0;}
+            main h1{text-align: left;}
+
+            main video{
+                display: block;
+            }
+        }
+    

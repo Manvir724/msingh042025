@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Complex</title>
+    <style>
+
+        body{background-color: tomato;
+        font-family:cursive;}
+        h1{text-align: center;}
+        table{ border: 1px solid black; margin: auto; background-color: white;}
+        caption{font-size: 2rem;}
+        th{border-bottom: 1px solid silver;
+        padding: 1rem; background-color: aqua;}
+        td{border-bottom: 1px solid silver; padding: 1rem;}
+        tfoot td{background-color: coral; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Table Complex</h1>
+    <table>
+        <caption>People That owe Me $$$</caption>
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>Alexis</td>
+            <td>$105</td>
+        </tr>
+        <tr>
+            <td>Alexis</td>
+            <td>$125</td>
+        </tr>
+        <tr>
+            <td>Alexis</td>
+            <td>$175</td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td>$405</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
