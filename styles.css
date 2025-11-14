@@ -51,7 +51,7 @@ body {
   background-color: #fcf2bd;
   min-height: 10rem;
   padding: 1rem;
-  /* background-image: url(Images/Heroimage.png); */
+  background-image: url(Images/Heroimage.png);
   background-size: cover;
   aspect-ratio: 16/9;
 }
