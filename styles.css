@@ -149,6 +149,31 @@ body {
   min-height: auto;
   text-align: center;
 }
+
+#aifooter {
+  background: #f47889;
+  background: linear-gradient(
+    90deg,
+    rgb(242, 103, 103) 0%,
+    rgb(246, 244, 129) 55%,
+    rgb(246, 141, 106) 100%
+  );
+  min-height: auto;
+  padding: 1rem;
+}
+#aifooter .container {
+  background: #f47889;
+  background: linear-gradient(
+    90deg,
+    rgb(246, 141, 106) 0%,
+    rgb(140, 237, 248) 55%,
+    rgb(242, 103, 106) 100%
+  );
+  border: 1px solid gold;
+  min-height: auto;
+  text-align: center;
+}
+
 #subfooter {
   background: #f486bf;
   background: linear-gradient(
