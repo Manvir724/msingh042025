@@ -1,9 +1,15 @@
+/* Original Structure with Enhanced Gradients */
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   background-color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 .container {
@@ -12,28 +18,55 @@ body {
   margin: auto;
   background-color: white;
   padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Enhanced Header Gradient - Smoother transition */
 #pageheader {
-  background: #ffe168;
   background: linear-gradient(
     90deg,
     rgb(97, 193, 234) 0%,
-    rgb(135, 222, 238) 55%,
+    rgb(116, 208, 236) 25%,
+    rgb(135, 222, 238) 50%,
+    rgb(192, 196, 220) 75%,
     rgb(248, 170, 178) 100%
   );
   min-height: auto;
   padding: 1rem;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Add subtle overlay for better blending */
+#pageheader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 20% 50%,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
 #pageheader .container {
-  background: #ffe168;
   background: linear-gradient(
     90deg,
     rgb(97, 193, 234) 0%,
-    rgb(135, 222, 238) 55%,
+    rgb(116, 208, 236) 25%,
+    rgb(135, 222, 238) 50%,
+    rgb(192, 196, 220) 75%,
     rgb(248, 170, 178) 100%
   );
-  border: 1px solid gold;
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(2px);
 }
 
 #logo {
@@ -41,178 +74,367 @@ body {
   height: 6.5rem;
   background-image: url(Photoshop/Logo/M.SLogo.png);
   background-size: cover;
+  background-position: center;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 #pageheader .container {
   background-color: none;
   min-height: auto;
   text-align: center;
 }
+
+/* Enhanced Navigation */
+#pageheader nav {
+  margin-top: 1rem;
+}
+
+#pageheader nav a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+/* Enhanced Media Section with better gradient */
 #media {
   background-color: #fcf2bd;
   min-height: 10rem;
   padding: 1rem;
-  background-image: url(Images/Heroimage.png);
+  background-image: linear-gradient(
+      rgba(255, 0, 0, 0.0),
+      rgba(0, 0, 255, 0.5)
+    ),
+    url(Images/Heroimage.png);
   background-size: cover;
   aspect-ratio: 16/9;
-}
-#career {
-  background: #d9b3f5;
-  background: linear-gradient(
-    90deg,
-    rgb(119, 172, 233) 0%,
-    rgb(124, 229, 248) 55%,
-    rgb(244, 236, 194) 100%
-  );
-  min-height: 10rem;
-  padding: 1rem;
-}
-#career .container {
-  background: #d9b3f5;
-  background: linear-gradient(
-    90deg,
-    rgb(119, 172, 233) 0%,
-    rgb(124, 229, 248) 55%,
-    rgb(244, 236, 194) 100%
-  );
-  border: 1px solid gold;
-}
-#pagecontent {
-  background: #d9b3f5;
-  background: linear-gradient(
-    90deg,
-    rgba(217, 179, 245, 1) 0%,
-    rgba(242, 165, 165, 1) 55%,
-    rgba(242, 233, 216, 1) 100%
-  );
-  min-height: 10rem;
-  padding: 1rem;
-}
-#pagecontent .container {
-  background: #d9b3f5;
-  background: linear-gradient(
-    90deg,
-    rgba(217, 179, 245, 1) 0%,
-    rgba(242, 165, 165, 1) 55%,
-    rgba(242, 233, 216, 1) 100%
-  );
-  border: 1px solid gold;
-}
-#portofoliparagraph {
-  text-indent: 30px;
-}
-#semester1 {
-  background: #d9b3f5;
-  background: linear-gradient(
-    90deg,
-    rgb(174, 204, 238) 0%,
-    rgb(225, 170, 233) 55%,
-    rgb(246, 141, 106) 100%
-  );
-  min-height: 10rem;
-  padding: 1rem;
-}
-#semester1 .container {
-  background: #d9b3f5;
-  background: linear-gradient(
-    90deg,
-    rgb(174, 204, 238) 0%,
-    rgb(225, 170, 233) 55%,
-    rgb(246, 141, 106) 100%
-  );
-  border: 1px solid gold;
-}
-#semester2 {
-  background-color: #a9def9;
-  min-height: 10rem;
-  padding: 1rem;
-}
-#pagefooter {
-  background: #f47889;
-  background: linear-gradient(
-    90deg,
-    rgb(242, 103, 103) 0%,
-    rgb(246, 244, 129) 55%,
-    rgb(246, 141, 106) 100%
-  );
-  min-height: auto;
-  padding: 1rem;
-}
-#pagefooter .container {
-  background: #f47889;
-  background: linear-gradient(
-    90deg,
-    rgb(242, 103, 103) 0%,
-    rgb(246, 244, 129) 55%,
-    rgb(246, 141, 106) 100%
-  );
-  border: 1px solid gold;
-  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-image: cover;
 }
 
-#aifooter {
-  background: #f47889;
+#media h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+#media h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0 0;
+  font-weight: normal;
+}
+
+/* Enhanced Career Gradient - Smoother transitions */
+#career {
+  background: linear-gradient(
+    90deg,
+    rgb(119, 172, 233) 0%,
+    rgb(122, 195, 241) 25%,
+    rgb(124, 229, 248) 50%,
+    rgb(184, 214, 221) 75%,
+    rgb(244, 236, 194) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+  position: relative;
+}
+
+#career::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+}
+
+#career .container {
+  background: linear-gradient(
+    90deg,
+    rgba(119, 172, 233, 0.95) 0%,
+    rgba(122, 195, 241, 0.95) 25%,
+    rgba(124, 229, 248, 0.95) 50%,
+    rgba(184, 214, 221, 0.95) 75%,
+    rgba(244, 236, 194, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Enhanced PageContent Gradient */
+#pagecontent {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 179, 245, 1) 0%,
+    rgba(229, 172, 205, 1) 25%,
+    rgba(242, 165, 165, 1) 50%,
+    rgba(242, 199, 191, 1) 75%,
+    rgba(242, 233, 216, 1) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+  position: relative;
+}
+
+#pagecontent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 20%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 50%
+  );
+}
+
+#pagecontent .container {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 179, 245, 0.95) 0%,
+    rgba(229, 172, 205, 0.95) 25%,
+    rgba(242, 165, 165, 0.95) 50%,
+    rgba(242, 199, 191, 0.95) 75%,
+    rgba(242, 233, 216, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+#portofoliparagraph {
+  text-indent: 30px;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid rgba(97, 193, 234, 0.8);
+}
+
+/* Enhanced Semester1 Gradient */
+#semester1 {
+  background: linear-gradient(
+    90deg,
+    rgb(174, 204, 238) 0%,
+    rgb(200, 187, 236) 25%,
+    rgb(225, 170, 233) 50%,
+    rgb(236, 156, 170) 75%,
+    rgb(246, 141, 106) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+  position: relative;
+}
+
+#semester1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+}
+
+#semester1 .container {
+  background: linear-gradient(
+    90deg,
+    rgba(174, 204, 238, 0.95) 0%,
+    rgba(200, 187, 236, 0.95) 25%,
+    rgba(225, 170, 233, 0.95) 50%,
+    rgba(236, 156, 170, 0.95) 75%,
+    rgba(246, 141, 106, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Enhanced PageFooter Gradient */
+#pagefooter {
   background: linear-gradient(
     90deg,
     rgb(242, 103, 103) 0%,
-    rgb(246, 244, 129) 55%,
+    rgb(244, 124, 116) 25%,
+    rgb(246, 244, 129) 50%,
+    rgb(246, 193, 118) 75%,
     rgb(246, 141, 106) 100%
   );
   min-height: auto;
   padding: 1rem;
+  position: relative;
 }
-#aifooter .container {
-  background: #f47889;
+
+#pagefooter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 80% 50%,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%
+  );
+}
+
+#pagefooter .container {
+  background: linear-gradient(
+    90deg,
+    rgba(242, 103, 103, 0.95) 0%,
+    rgba(244, 124, 116, 0.95) 25%,
+    rgba(246, 244, 129, 0.95) 50%,
+    rgba(246, 193, 118, 0.95) 75%,
+    rgba(246, 141, 106, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  min-height: auto;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+/* Enhanced AI Footer Gradient */
+#aifooter {
   background: linear-gradient(
     90deg,
     rgb(246, 141, 106) 0%,
-    rgb(140, 237, 248) 55%,
+    rgb(193, 191, 177) 25%,
+    rgb(140, 237, 248) 50%,
+    rgb(191, 173, 176) 75%,
     rgb(242, 103, 106) 100%
   );
-  border: 1px solid gold;
   min-height: auto;
-  text-align: center;
+  padding: 1rem;
+  position: relative;
 }
 
+#aifooter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+
+#aifooter .container {
+  background: linear-gradient(
+    90deg,
+    rgba(246, 141, 106, 0.95) 0%,
+    rgba(193, 191, 177, 0.95) 25%,
+    rgba(140, 237, 248, 0.95) 50%,
+    rgba(191, 173, 176, 0.95) 75%,
+    rgba(242, 103, 106, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  min-height: auto;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+/* Enhanced SubFooter Gradient */
 #subfooter {
-  background: #f486bf;
   background: linear-gradient(
     90deg,
     rgb(235, 89, 99) 0%,
-    rgb(170, 203, 233) 55%,
+    rgb(202, 146, 166) 25%,
+    rgb(170, 203, 233) 50%,
+    rgb(114, 217, 224) 75%,
     rgb(57, 232, 214) 100%
   );
   min-height: 10rem;
   padding: 1rem;
   text-align: center;
-}
-#subfooter .container {
-  background: #f486bf;
-  background: linear-gradient(
-    90deg,
-    rgb(235, 89, 99) 0%,
-    rgb(170, 203, 233) 55%,
-    rgb(57, 232, 214) 100%
-  );
-  border: 1px solid gold;
-}
-audio {
-  display: block;
-  margin: auto;
-  background-color: red;
-  border: 5px solid red;
+  position: relative;
 }
 
+#subfooter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 80%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 50%
+  );
+}
+
+#subfooter .container {
+  background: linear-gradient(
+    90deg,
+    rgba(235, 89, 99, 0.95) 0%,
+    rgba(202, 146, 166, 0.95) 25%,
+    rgba(170, 203, 233, 0.95) 50%,
+    rgba(114, 217, 224, 0.95) 75%,
+    rgba(57, 232, 214, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Enhanced Audio Player */
+audio {
+  display: block;
+  margin: 1rem auto;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 5px solid rgba(255, 0, 0, 0.3);
+  border-radius: 25px;
+  padding: 5px;
+  width: 80%;
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+audio:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+}
+
+/* Enhanced Quote Styling */
 blockquote {
-  border-left: 5px solid black;
+  border-left: 5px solid rgba(0, 0, 0, 0.8);
+  border-right: 5px solid rgba(0, 0, 0, 0.8);
   padding: 0.7rem;
-  margin: auto;
+  margin: 2rem auto;
   font-size: 1.5rem;
   font-weight: bold;
   font-style: italic;
-  border-right: 5px solid black;
   text-align: center;
   width: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 blockquote + span {
@@ -220,32 +442,142 @@ blockquote + span {
   text-align: right;
   font-size: 1.25rem;
   font-weight: bold;
-  margin: auto;
+  margin: 0 auto 2rem;
   font-style: normal;
   width: 50%;
   padding: 0.7rem;
-}
-#semester1 .container {
-  background-color: aqua;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
 }
 
-/* Unvisited links */
+/* Enhanced List Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  border-left: 4px solid rgba(97, 193, 234, 0.8);
+  transition: all 0.3s ease;
+}
+
+ul li:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Link Styling */
 a:link {
   color: #010101;
   padding: 5px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
-/* Visited links */
 a:visited {
   color: #000000;
 }
 
-/* Hover state */
 a:hover {
   color: #ff6600;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Active/clicked state */
 a:active {
   color: #0300cc;
+}
+
+/* Navigation styling */
+nav {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+nav a {
+  margin: 0 0.25rem;
+}
+
+/* Headings */
+h1 {
+  color: #1e3a8a;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 2.5rem;
+}
+
+h2 {
+  color: #3b82f6;
+  text-align: center;
+  margin: 0.5rem 0 1.5rem;
+  font-size: 2rem;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .container {
+    margin: 0 1rem;
+    padding: 0.75rem;
+  }
+
+  blockquote {
+    width: 90%;
+    font-size: 1.2rem;
+  }
+
+  blockquote + span {
+    width: 90%;
+  }
+
+  #pageheader nav a {
+    display: block;
+    margin: 0.25rem 0;
+    text-align: center;
+  }
+
+  #pageheader nav {
+    text-align: center;
+  }
+
+  audio {
+    width: 95%;
+  }
+}
+@media (min-width: 1000px) {
+  .container {
+    margin: auto; /* Original was "margin: auto" not "margin: 0" */
+    padding: 1rem; /* Original was "padding: 1rem" not "padding: 0" */
+  }
+
+  blockquote {
+    width: 50%; /* Original was "width: 50%" not "auto" */
+    font-size: 1.5rem; /* Original was "font-size: 1.5rem" not "1rem" */
+  }
+
+  blockquote + span {
+    width: 50%; /* Original was "width: 50%" not "auto" */
+  }
+
+  #pageheader nav a {
+    display: inline-block; /* Original was "display: inline-block" */
+    margin: 0 0.25rem; /* Original was "margin: 0 0.25rem" */
+    text-align: left; /* Assuming original text-align */
+  }
+
+  #pageheader nav {
+    text-align: center; /* Your original nav has text-align: center above */
+  }
+
+  audio {
+    width: 80%; /* Original was "width: 80%" not "auto" */
+  }
 }
