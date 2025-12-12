@@ -523,7 +523,7 @@ h2 {
 }
 
 /* Responsive adjustments */
-@media (min-width: 600px) {
+@media (max-width: 600px) {
   .container {
     margin: 0 1rem;
     padding: 0.75rem;
