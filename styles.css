@@ -105,10 +105,7 @@ body {
   background-color: #fcf2bd;
   min-height: 10rem;
   padding: 1rem;
-  background-image: linear-gradient(
-      rgba(255, 0, 0, 0.0),
-      rgba(0, 0, 255, 0.5)
-    ),
+  background-image: linear-gradient(rgba(255, 0, 0, 0), rgba(0, 0, 255, 0.5)),
     url(Images/Heroimage.png);
   background-size: cover;
   aspect-ratio: 16/9;
@@ -119,6 +116,38 @@ body {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   background-image: cover;
+}
+.hero-content .btn {
+  display: none;
+}
+
+.hero-content h1 {
+  font-size: 2.2rem;
+}
+
+.hero-content h2 {
+  font-size: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 #media h1 {
@@ -269,6 +298,50 @@ body {
   border: 1px solid rgba(255, 215, 0, 0.5);
   backdrop-filter: blur(2px);
 }
+
+/* Semester 2 CSS */
+#semester2 {
+  background: linear-gradient(
+    90deg,
+    rgb(174, 204, 238) 0%,
+    rgb(200, 187, 236) 25%,
+    rgb(225, 170, 233) 50%,
+    rgb(236, 156, 170) 75%,
+    rgb(246, 141, 106) 100%
+  );
+  min-height: 10rem;
+  padding: 1rem;
+  position: relative;
+}
+
+#semester1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+}
+
+#semester2 .container {
+  background: linear-gradient(
+    90deg,
+    rgba(174, 204, 238, 0.95) 0%,
+    rgba(200, 187, 236, 0.95) 25%,
+    rgba(225, 170, 233, 0.95) 50%,
+    rgba(236, 156, 170, 0.95) 75%,
+    rgba(246, 141, 106, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+/* End Semester 2 CSS */
 
 /* Enhanced PageFooter Gradient */
 #pagefooter {
@@ -523,7 +596,7 @@ h2 {
 }
 
 /* Responsive adjustments */
-@media (max-width: 600px) {
+@media (min-width: 600px) {
   .container {
     margin: 0 1rem;
     padding: 0.75rem;
@@ -542,6 +615,7 @@ h2 {
     display: block;
     margin: 0.25rem 0;
     text-align: center;
+    font-size: 1.25rem; /* Assuming original font size */
   }
 
   #pageheader nav {
@@ -551,8 +625,13 @@ h2 {
   audio {
     width: 95%;
   }
+#pipes{
+  display: none;
+}
+
 }
 @media (min-width: 1000px) {
+ 
   .container {
     margin: auto; /* Original was "margin: auto" not "margin: 0" */
     padding: 1rem; /* Original was "padding: 1rem" not "padding: 0" */
@@ -571,6 +650,7 @@ h2 {
     display: inline-block; /* Original was "display: inline-block" */
     margin: 0 0.25rem; /* Original was "margin: 0 0.25rem" */
     text-align: left; /* Assuming original text-align */
+    font-size: 1.25rem; /* Assuming original font size */
   }
 
   #pageheader nav {
@@ -580,4 +660,9 @@ h2 {
   audio {
     width: 80%; /* Original was "width: 80%" not "auto" */
   }
+  
+  #pipes {
+    display: inline;
+  }
+ 
 }
