@@ -588,6 +588,7 @@ h1 {
   font-size: 2.5rem;
 }
 
+
 h2 {
   color: #3b82f6;
   text-align: center;
@@ -628,7 +629,13 @@ h2 {
 #pipes{
   display: none;
 }
+#mediah1 {
+  display: none;
 
+}
+#mediabtn {
+  display: none;
+}
 }
 @media (min-width: 1000px) {
  
