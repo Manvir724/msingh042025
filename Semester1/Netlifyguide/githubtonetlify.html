@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify Deployment Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #000000;
+            padding: 1.5rem;
+            text-align: center;
+            background-color: rgb(0, 146, 204);
+            margin: 0;
+        }
+        h2 {
+            color: #ffffff;
+            padding: 1rem;
+            background-color: #333;
+            margin: 2rem 0 0 0;
+        }   
+        p {
+            color: #000000;
+            padding: 1rem;
+            background-color: #f4f4f4;
+            font-size: large;
+            margin: 0 0 1rem 0;
+        }
+        #intro {
+            padding: 2rem;
+            font-size: 1.5rem;
+            color: black;
+            background-color: rgba(181, 164, 164, 0.913);
+            margin: 0 0 2rem 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .step-box {
+            background-color: #f9f9f9;
+            border: 2px solid #00a8ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid #00a8ff;
+        }
+        .terminal {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .important {
+            background-color: #fffacd;
+            border-left: 4px solid #ffa500;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Netlify Deployment Guide: GitHub to Live Website</h1>
+        <p id="intro">Complete guide to deploy your website from GitHub to Netlify in 8 steps. No images, just clear instructions and code.</p>
+        
+        <h2>Prerequisite: GitHub Repository Setup</h2>
+        <div class="step-box">
+            <p><strong>Your code must already be on GitHub:</strong></p>
+            <div class="terminal">
+# If not already done, run these commands in VS Code terminal:<br>
+git init<br>
+git add .<br>
+git commit -m "Initial commit"<br>
+git branch -M main<br>
+git remote add origin [your-github-repo-url]<br>
+git push -u origin main
+            </div>
+            <p>Make sure your main HTML file is named <strong>index.html</strong> in the root folder.</p>
+        </div>
+        
+        <h2>Step 1: Create Netlify Account</h2>
+        <div class="step-box">
+            <p>Go to <strong>netlify.com</strong> → Click "Sign up" → Choose "GitHub" authentication</p>
+            <div class="important">
+                <strong>Tip:</strong> Using GitHub authentication allows seamless connection to your repositories.
+            </div>
+        </div>
+        
+        <h2>Step 2: Start New Deployment</h2>
+        <div class="step-box">
+            <p>From Netlify dashboard → Click <strong>"Add new site"</strong> → Select <strong>"Import an existing project"</strong></p>
+        </div>
+        
+        <h2>Step 3: Connect GitHub Account</h2>
+        <div class="step-box">
+            <p>Click <strong>"GitHub"</strong> button → Authorize Netlify access → Grant requested permissions</p>
+        </div>
+        
+        <h2>Step 4: Select Your Repository</h2>
+        <div class="step-box">
+            <p>Choose your repository from the list → Select the branch (usually <strong>"main"</strong>)</p>
+        </div>
+        
+        <h2>Step 5: Configure Build Settings</h2>
+        <div class="step-box">
+            <p>For basic HTML/CSS/JS websites:</p>
+            <div class="code-block">
+Build command: [LEAVE EMPTY]<br>
+Publish directory: /
+            </div>
+            <p>For React/Vue/Angular projects:</p>
+            <div class="code-block">
+React: Build command: npm run build | Publish directory: build/<br>
+Vue: Build command: npm run build | Publish directory: dist/<br>
+Angular: Build command: ng build | Publish directory: dist/[project-name]/
+            </div>
+        </div>
+        
+        <h2>Step 6: Deploy Your Site</h2>
+        <div class="step-box">
+            <p>Click <strong>"Deploy site"</strong> → Wait 1-2 minutes for deployment to complete</p>
+            <div class="terminal">
+Deploy log will show:<br>
+✅ Building site<br>
+✅ Post processing<br>
+✅ Deploy site succeeded
+            </div>
+        </div>
+        
+        <h2>Step 7: Get Your Live URL</h2>
+        <div class="step-box">
+            <p>After deployment, Netlify provides:</p>
+            <div class="code-block">
+Your live site: https://[random-name].netlify.app
+            </div>
+            <p>Click the URL to verify your site is live.</p>
+        </div>
+        
+        <h2>Step 8: Automatic Updates Setup</h2>
+        <div class="step-box">
+            <p>Netlify automatically redeploys when you push to GitHub:</p>
+            <div class="terminal">
+# After making code changes:<br>
+git add .<br>
+git commit -m "Update website"<br>
+git push origin main<br>
+# Netlify will auto-deploy in ~1 minute
+            </div>
+            <div class="success">
+                <strong>✅ Success!</strong> Your website is now live and will automatically update when you push changes to GitHub.
+            </div>
+        </div>
+</body>
+</html>
