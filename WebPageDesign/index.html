@@ -1,207 +1,456 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">∫
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manvir Singh - Portfolio</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
 
-    <Style>
-        html{scroll-behavior: smooth;}
-        body{background-color:#9B5FD5;
-        padding-top: 150px;background-image: url(Images/Bodybackgroundcity.png); background-size: cover;
-    background-attachment: fixed;
-    background-position: center center;}
-        
-        div#container{background-color:rgba(255,255,255,.3);
-        width:80%;
-    margin:auto;
-padding:2rem;border-radius: 35px;}
-       
-div#wrapper{background-color: aqua;
-        width:80;
-    margin:auto;}
-      
-    header{ background-color: #002B68;
-        height:150px;
-    padding:1rem;
-    display: flex;
-justify-content: space-between;
-background-image: url(Images/Headerbackgroundtrueimage.jpg);
-background-size: cover;
-background-position: center center;
-text-shadow: 2px 2px 2px black;
-color: white;}
+      body {
+        background-color: #6a4c93;
+        background-image: url(Images/Bodybackgroundcity.png);
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center center;
+        padding-top: 120px;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
 
-    div#logo{background-color:Blue;
-    height:100px;
-min-width:100px;
-border-radius: 50%;
-padding: 1rem;background-image: url(Images/LOGO\ M.png);background-size: cover;
-border: 4px solid white;
-margin: auto;}
-  
-        blockquote{flex:3;
-        font-size: 20px;
-        display: none;}
+      div#container {
+        background-color: rgba(255, 255, 255, 0.85);
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 1.5rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
 
-        nav{background-color: #4C4EB2; 
-        padding:2rem; color: white;
-        text-align: center;}
+      div#wrapper {
+        background-color: transparent;
+        width: 100%;
+        margin: auto;
+      }
 
-        nav a{color: white;}
+      header {
+        background: linear-gradient(135deg, #002b68 0%, #4c4eb2 100%);
+        height: 120px;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-image: url(Images/Headerbackgroundtrueimage.jpg);
+        background-size: cover;
+        background-position: center center;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        color: white;
+        border-radius: 15px 15px 0 0;
+        border-bottom: 5px solid #ff459a;
+      }
 
-        #media{background-color:#D971C8;
-         padding:1rem; display: none;} 
+      div#logo {
+        background-color: #4c4eb2;
+        height: 100px;
+        width: 100px;
+        min-width: 100px;
+        border-radius: 50%;
+        background-image: url(Images/LOGO\ M.png);
+        background-size: cover;
+        background-position: center;
+        border: 4px solid white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
 
-        iframe{ width: 80%; aspect-ratio: 16 / 9 ; margin: auto;
-        display: block;}
+      div#logo:hover {
+        transform: scale(1.05);
+      }
 
-        main{background-color: #A156A5;
-        min-height:500px; padding:1rem;
-    && img{max-width:80%;
-    display:block;
-margin: auto; line-height: 1.7;
-}}
+      blockquote {
+        flex: 3;
+        font-size: 1.1rem;
+        font-style: italic;
+        margin-left: 2rem;
+        padding: 0.5rem 1rem;
+        border-left: 4px solid #ff459a;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 0 10px 10px 0;
+        display: none;
+      }
 
-        footer{background-color: #7F3480 ;
-        height:80px;padding:1rem; text-align: center;
-     && a{color:red;}}
-        
-        footer#subfooter{background-color: #FF459A;
-        height:150px;padding:1rem; && a{color: blue;}}
+      nav {
+        background-color: #4c4eb2;
+        padding: 1rem;
+        color: white;
+        text-align: center;
+        border-bottom: 3px solid #ff459a;
+      }
 
-        #career{min-height: 200px;
-        background-color: aquamarine;
-    color: black; padding: 1rem;}
-    
-    .semester{background-color: orange;
-    color: black; padding: 1rem;
-min-height: 200px;
-border-top: 3px solid black;}
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-weight: bold;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
 
-#flexbox001{ border: 5px solid none;
-display: flex; flex-direction: column;}
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #ffe4f2;
+        transform: translateY(-2px);
+      }
 
-#semester1{flex: 1;
-border: 1px solid black;}
+      #media {
+        background-color: #d971c8;
+        padding: 2rem;
+        display: none;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+      }
 
-#semester2{ flex: 1;
-border: 1px solid black;}
+      iframe {
+        width: 90%;
+        max-width: 800px;
+        aspect-ratio: 16 / 9;
+        margin: auto;
+        display: block;
+        border-radius: 10px;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
 
-@media screen and (min-width:700px) { #media{display: block;}
-#flexbox001{flex-direction: row;}
+      main {
+        background: linear-gradient(to bottom, #a156a5, #8a4a9c);
+        min-height: 400px;
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
 
-blockquote{display: block;}
-nav{text-align: left;}}
-    </Style>
-</head>
-<body>
+      main img {
+        max-width: 90%;
+        display: block;
+        margin: 1.5rem auto;
+        border-radius: 10px;
+        border: 5px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      main p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 1.5rem auto;
+        text-align: center;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: white;
+        margin-top: 0;
+      }
+
+      h1 {
+        color: white;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 0.8rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        border-left: 5px solid #ff459a;
+      }
+
+      footer {
+        background-color: #7f3480;
+        padding: 1.5rem;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        margin-top: 1.5rem;
+      }
+
+      footer a {
+        color: #ffe4f2;
+        text-decoration: none;
+        margin: 0 0.8rem;
+        transition: color 0.3s ease;
+      }
+
+      footer a:hover {
+        color: #ff459a;
+        text-decoration: underline;
+      }
+
+      footer#subfooter {
+        background: linear-gradient(to bottom, #ff459a, #d971c8);
+        padding: 1.5rem;
+        text-align: center;
+        border-radius: 0 0 10px 10px;
+      }
+
+      footer#subfooter a {
+        color: #002b68;
+        font-weight: bold;
+      }
+
+      footer#subfooter p {
+        margin-top: 1.5rem;
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      #career {
+        min-height: 200px;
+       background-color: #0995BC;
+        color: #002b68;
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .semester {
+        background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+        color: #333;
+        padding: 2rem;
+        min-height: 200px;
+        border-top: 3px solid #e65100;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      #flexbox001 {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      ul li {
+        margin-bottom: 0.8rem;
+        padding: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      ul li:hover {
+        transform: translateX(5px);
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      ul li a {
+        color: #002b68;
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+        padding: 0.3rem;
+      }
+
+      #career ul li a {
+        color: #004d40;
+      }
+
+      .semester ul li a {
+        color: #333;
+      }
+
+      @media screen and (min-width: 700px) {
+        #media {
+          display: block;
+        }
+
+        #flexbox001 {
+          flex-direction: row;
+        }
+
+        #semester1,
+        #semester2 {
+          flex: 1;
+        }
+
+        blockquote {
+          display: block;
+        }
+
+        nav {
+          text-align: center;
+        }
+
+        body {
+          padding-top: 100px;
+        }
+
+        div#container {
+          padding: 2rem;
+        }
+      }
+
+      @media screen and (min-width: 900px) {
+        h1 {
+          font-size: 3rem;
+        }
+
+        main p {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div id="container">
-<div id="wrapper">
-
-    <header> 
-        <div id="logo"></div>
-        <blockquote id="randomquote">My fake plants died because I did not pretend to water them. 
-            <br>
-            <br>
+      <div id="wrapper">
+        <header>
+          <div id="logo"></div>
+          <blockquote id="randomquote">
+            My fake plants died because I did not pretend to water them.
+            <br /><br />
             -Mitch Hedberg
-        </blockquote>
-    </header>
-    <nav><a href="#career">Career</a> |
-         <a href="#semester1">Semester 1</a> |
-          <a href="#semester2">Semester 2</a> 
+          </blockquote>
+        </header>
+
+        <nav>
+          <a href="#career">Career</a> | <a href="#semester1">Semester 1</a> |
+          <a href="#semester2">Semester 2</a>
         </nav>
-<div id="media">
-    <h2></h2>
-    <iframe width="901" height="507" src="https://www.youtube.com/embed/8ujbJuEn1y4?list=RD8ujbJuEn1y4" title="STOB - (FULL SONG) SIDHU MOOSE WALA AI VOICE | NEW PUNJABI SONG 2024 | SIDHU MELODIES" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<Main> <h1>Manvir Singh - Portfolio</h1>
-    <img src="Images/maincar.jpeg" alt="Car Racing">
 
-    <p>Hello! My name is Manvir Singh. I live in huron. I am a freshman. I like to use technology. I have taken a Dual- Enrollment class. My favorite class is webpage design.   </p>
-</Main>
+        <div id="media">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/doVZWonpAF0?si=Fn5JTq9VN7gtLrUq"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
 
-<section id="career"> 
-    <a name="career"></a>
-    <h2>Career</h2>
+        <main>
+          <h1>Manvir Singh - Portfolio</h1>
+          <img src="Images/maincar.jpeg" alt="Car Racing" />
+          <p>Hello! My name is Manvir Singh and I'm currently a freshman at Coalinga High School in Huron, California. As someone who has always been fascinated by technology, I find myself constantly exploring the digital world and learning new ways to create and innovate. This year, I'm challenging myself by taking a Dual-Enrollment class, which allows me to earn both high school and college credits simultaneously. Among all my classes, Webpage Design has quickly become my absolute favorite - I love the creative process of designing user interfaces, the logical challenge of writing clean code, and the rewarding feeling of seeing my projects come to life in a browser.</p>
+        </main>
 
-    <ul>
-        <li><a href="Career/Manvir Singh - Career Action Plan Worksheet.pdf">Career Action Plan</a></li>
-    </ul>
-</section>
+        <section id="career">
+          <a name="career"></a>
+          <h2>Career</h2>
+          <ul>
+            <li>
+              <a href="Career/Manvir Singh - Career Action Plan Worksheet.pdf"
+                >Career Action Plan</a
+              >
+            </li>
+          </ul>
+        </section>
 
-<div id="flexbox001">
-    <Section id="semester1" class="semester">
-        <a name="semester1"></a>
-       <h2> Semester 1</h2>
-        <ul>
-        <li> <a href="Semester1/A004B/Images/A004B.jpg">A004B-Shapes </li></a>
-        <li><a href="Semester1/A004C/Images/A004C.jpg">A004C</a></li>
-        <li><a href="Semester1/A004DEX/Images/A004DEX.jpg">A004DEX</a></li>
-    </ul>
-       
-    </Section>
-    
-    <Section id="semester2" class="semester">
-        <a name="semester2"></a>
-       <h2> Semester 2</h2>
-       <ul>
-    <li><a href="Demos/AnnabellLee/annabellee.html\">Annabel Lee</a></li>
-    <li> <a href="Semester2/Colorwheelcode002/colorwheelcode002.html">Colorwheelcode002</a></li>
-    <li><a href="Semester2/A004DEX2/Images/Screenshot 2024-03-14 at 2.32.38 PM.png">A004DEX2</a></li>
-    <li> <a href="Projects/NewYorkCity/index.html">New York City Project</a></li>
-</ul>
-    </Section>
-</div>
+        <div id="flexbox001">
+          <section id="semester1" class="semester">
+            <a name="semester1"></a>
+            <h2>Semester 1</h2>
+            <ul>
+              <li>
+                <a href="Semester1/A004B/Images/A004B.jpg">A004B-Shapes</a>
+              </li>
+              <li><a href="Semester1/A004C/Images/A004C.jpg">A004C</a></li>
+              <li>
+                <a href="Semester1/A004DEX/Images/A004DEX.jpg">A004DEX</a>
+              </li>
+            </ul>
+          </section>
 
-<footer> 
-    <a href="http://Chagoyan.com">Chagoyan</a> |
-    <a href="https://coalingahuron.aeries.net/student/LoginParent.aspx">Aeries</a> |
-    <a href="https://chs.chusd.org">CHS</a> |
-    <a href="https://classroom.google.com/">Google Classroom</a> |
-    <a href="https://app.minga.io/">Minga</a> |
-    <a href="https://www.google.com/?safe=active&ssui=on">Google</a> 
- </footer>
-<footer id="subfooter"> 
-    <a href="https://www.youtube.com/">Youtube</a> |
-    <a href="https://www.instagram.com/">Instragram</a> |
-    <a href="https://www.tiktok.com/">Tiktok</a> 
+          <section id="semester2" class="semester">
+            <a name="semester2"></a>
+            <h2>Semester 2</h2>
+            <ul>
+              <li>
+                <a href="Demos/AnnabellLee/annabellee.html">Annabel Lee</a>
+              </li>
+              <li>
+                <a href="Semester2/Colorwheelcode002/colorwheelcode002.html"
+                  >Colorwheelcode002</a
+                >
+              </li>
+              <li>
+                <a
+                  href="Semester2/A004DEX2/Images/Screenshot 2024-03-14 at 2.32.38 PM.png"
+                  >A004DEX2</a
+                >
+              </li>
+              <li>
+                <a href="Projects/NewYorkCity/index.html"
+                  >New York City Project</a
+                >
+              </li>
+            </ul>
+          </section>
+        </div>
 
+        <footer>
+          <a href="http://Chagoyan.com">Chagoyan</a> |
+          <a href="https://coalingahuron.aeries.net/student/LoginParent.aspx"
+            >Aeries</a
+          >
+          | <a href="https://chs.chusd.org">CHS</a> |
+          <a href="https://classroom.google.com/">Google Classroom</a> |
+          <a href="https://app.minga.io/">Minga</a> |
+          <a href="https://www.google.com/?safe=active&ssui=on">Google</a>
+        </footer>
 
-
-    <p> &copy; Manvir Singh 2023 - 2024</p>
-</footer>
-</div>
-    <!-- this ends the wrapper -->    
+        <footer id="subfooter">
+          <a href="https://www.youtube.com/">YouTube</a> |
+          <a href="https://www.instagram.com/">Instagram</a> |
+          <a href="https://www.tiktok.com/">TikTok</a>
+          <p>&copy; Manvir Singh 2023 - 2024</p>
+        </footer>
+      </div>
     </div>
-   <!-- this ends the container-->
 
-   <script>
-    //This is a comment
-    // create a random number
-    // create a random quote
+    <script>
+      let randomNumber = Math.floor(Math.random() * 4);
 
-    let randomNumber = Math.floor(Math.random() * 4);
+      let quote = [
+        "<p>Success is the sum of small efforts - repeated day in and day out.</p><strong>Robert Collier</strong>",
+        "<p>I am what I am.</p><strong>Manvir Singh</strong>",
+        "<p>Whatever.</p><strong>Manvir Singh</strong>",
+        "<p>The only way to do great work is to love what you do.</p><strong>Steve Jobs</strong>",
+      ];
 
-    //window.alert(randomNumber);
+      let randomQuote = window.document.querySelector("#randomquote");
+      randomQuote.innerHTML = quote[randomNumber];
 
-    let quote = [
-    "<p>Success is the sum of small efforts - repeated day in and day out.</p> Robert Collier",
-    "<p>I am what I am.</p> - Manvir Singh", 
-    "<p>Whatever.</p> - Manvir Singh",
-    "<p>Something</p> - Manvir Singh",
-];
+      // Add subtle animation to header on load
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("header").style.opacity = "0";
+        document.querySelector("header").style.transform = "translateY(-20px)";
 
-    //window.alert(quote[randomNumber]);
-
-    let randomQuote;
-
-    randomQuote = window.document.querySelector("#randomquote")
-
-    //randomQuote.style.backgroundColor = "blue";
-    //randomQuote.style.border = " 5px solid white";
-    //randomQuote.textContent = "My Name is Manvir Singh.";
-    randomQuote.innerHTML = quote[randomNumber]
-   </script>
-</body>
+        setTimeout(function () {
+          document.querySelector("header").style.transition =
+            "opacity 0.8s ease, transform 0.8s ease";
+          document.querySelector("header").style.opacity = "1";
+          document.querySelector("header").style.transform = "translateY(0)";
+        }, 300);
+      });
+    </script>
+  </body>
 </html>
