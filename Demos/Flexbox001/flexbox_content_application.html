@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Justify Content Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: lavender;
+        }
+
+        .sections {
+            background-color: wheat;
+            padding: 1.5rem;
+            border-style: groove;
+            margin-bottom: 2rem;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        #lists {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            list-style-type: square;
+            align-items: center;
+        }
+
+        #lists li {
+
+            padding-top: 10px;
+        }
+
+        #buttons {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        button {
+            background-color: lightcoral;
+            font-size: 1rem;
+            margin: center;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+
+        #cards {
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+
+
+
+        }
+
+        .card {
+            border: 1px solid #000000;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            width: 70%;
+            background-color: aqua;
+
+
+        }
+
+        #link-lists {
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            list-style-type: upper-roman;
+            width: 100%;
+            margin: center;
+            padding: 0.3rem;
+        }
+
+            a {
+                text-decoration: none;
+                color: red;
+                font-weight: bold;
+                padding: 0.3rem;
+                align-items: center;
+                justify-content: center;
+            }
+
+            button:hover {
+                background-color: darkorange;
+                cursor: pointer;
+            }
+
+            a:hover {
+                color: blue;
+                cursor: pointer;
+            }
+
+
+        @media (min-width: 800px) {
+
+            #cards {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                min-width: none;
+            }
+
+            .card {
+                width: 27%;
+            }
+
+            #buttons {
+                font-size: 1.2rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                padding: 1rem;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Flexbox Justify Content Application</h1>
+    <div class="sections">
+
+        <h2>Lists</h2>
+        <div id="lists">
+            <ul id="list">
+                <li>Inline</li>
+                <li>Block</li>
+                <li>Flexbox</li>
+                <li>Grid</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="sections">
+        <h2>Buttons</h2>
+        <div id="buttons">
+            <button type="button">Button 1</button>
+            <button type="button">Button 2</button>
+            <button type="button">Button 3</button>
+            <button type="button">Button 4</button>
+            <button type="button">Button 5</button>
+        </div>
+    </div>
+
+
+    <div class="sections">
+        <h2>Cards</h2>
+        <div id="cards">
+            <div class="card">
+                <h3>Card Title 1</h3>
+                <p>This is a description for card 1.</p>
+            </div>
+            <div class="card">
+                <h3>Card Title 2</h3>
+                <p>This is a description for card 1.</p>
+            </div>
+            <div class="card">
+                <h3>Card Title 3</h3>
+                <p>This is a description for card 1.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sections">
+
+        <h2>Link Lists</h2>
+        <div id="link-lists">
+            <a href="https://google.com/">Google</a> |
+            <a href="https://google.com/">Google</a> |
+            <a href="https://google.com/">Google</a> |
+            <a href="https://google.com/">Google</a> |
+            <a href="https://google.com/">Google</a> |
+        </div>
+    </div>
+</body>
+
+</html>
