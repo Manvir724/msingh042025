@@ -105,7 +105,8 @@ body {
   background-color: #fcf2bd;
   min-height: 10rem;
   padding: 1rem;
-  background-image: linear-gradient(rgba(255, 0, 0, 0), rgba(0, 0, 255, 0.5)),
+  background-image:
+    linear-gradient(rgba(255, 0, 0, 0), rgba(0, 0, 255, 0.5)),
     url(Images/Heroimage.png);
   background-size: cover;
   aspect-ratio: 16/9;
@@ -588,7 +589,6 @@ h1 {
   font-size: 2.5rem;
 }
 
-
 h2 {
   color: #3b82f6;
   text-align: center;
@@ -626,19 +626,17 @@ h2 {
   audio {
     width: 95%;
   }
-#pipes{
-  display: none;
-}
-#mediah1 {
-  display: none;
-
-}
-#mediabtn {
-  display: none;
-}
+  #pipes {
+    display: none;
+  }
+  #mediah1 {
+    display: none;
+  }
+  #mediabtn {
+    display: none;
+  }
 }
 @media (min-width: 1000px) {
- 
   .container {
     margin: auto; /* Original was "margin: auto" not "margin: 0" */
     padding: 1rem; /* Original was "padding: 1rem" not "padding: 0" */
@@ -667,9 +665,16 @@ h2 {
   audio {
     width: 80%; /* Original was "width: 80%" not "auto" */
   }
-  
+
   #pipes {
     display: inline;
   }
- 
+}
+
+#logo {
+  transition: transform 0.5s ease-in-out;
+}
+
+#logo:hover {
+  transform: rotate(360deg);
 }
