@@ -678,3 +678,49 @@ h2 {
 #logo:hover {
   transform: rotate(360deg);
 }
+
+
+
+/* Container & Bubble */
+#ai-bubble {
+    position: fixed; bottom: 20px; right: 20px;
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: white; cursor: pointer; z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#ai-window {
+    position: fixed; bottom: 90px; right: 20px;
+    width: 350px; max-width: 85vw; height: 500px;
+    background: #fff; border-radius: 20px; overflow: hidden;
+    display: flex; flex-direction: column; z-index: 1000;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+
+/* Visibility Toggle */
+.hidden { opacity: 0; transform: translateY(30px) scale(0.9); pointer-events: none; }
+
+/* Messages & Animations */
+.ai-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9; }
+
+.msg { 
+    padding: 10px 14px; border-radius: 15px; max-width: 80%; font-size: 14px;
+    animation: slideUp 0.4s ease-out forwards; 
+}
+
+.user-msg { align-self: flex-end; background: #6e8efb; color: white; border-bottom-right-radius: 2px; }
+.bot-msg { align-self: flex-start; background: #e4e6eb; color: #333; border-bottom-left-radius: 2px; }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header & Input */
+.ai-header { background: #6e8efb; color: white; padding: 15px; display: flex; justify-content: space-between; }
+.ai-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px; }
+.ai-input-area input { flex: 1; border: none; padding: 8px; background: #f0f2f5; border-radius: 20px; outline: none; }

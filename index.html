@@ -177,8 +177,159 @@
 
       <audio src="Audio/TakeNotes.mp3" controls loop></audio>
     </div>
-  </section>
-  <!-- End SubFooter -->
-</body>
 
+    <!-- Ai Section -->
+    <div id="ai-bubble" onclick="toggleChat()">💬</div>
+
+    <div id="ai-window" class="hidden">
+      <div class="ai-header">
+        <span>Portfolio Assistant</span>
+        <button onclick="toggleChat()" class="close-btn">&times;</button>
+      </div>
+
+      <div id="ai-context" style="display:none;">
+        [WHO IS MANVIR]: Manvir Singh is a Junior at Huron High School. He is a technology enthusiast and a web developer.
+        [THE BEGINNING]: Manvir's journey started with a fascination for how things work. Before web design, he dove into the
+        world of hardware by learning C++ to program Arduinos. He loves the "hands-on" feel of coding.
+        [FAVORITE CLASS]: His favorite class is Webpage Design, which he first discovered as a freshman. He loves the creative
+        freedom of building things from scratch.
+        [THE QUOTE]: Manvir lives by Nelson Mandela's words: "It always seems impossible until it's done." It reminds him to
+        keep pushing when a line of code isn't working!
+        [LIFESTYLE]: When he's not coding, Manvir is a family-oriented guy. He loves hanging out with friends and believes that
+        balance is the key to happiness.
+        [THE DESIGN]: The portfolio has a warm and friendly theme. Manvir chose this specifically because he wants his digital
+        space to feel like a cozy workshop or a personal scrapbook rather than a cold, corporate site.
+        [FUN FACT]: Manvir views this website as a "digital workshop" where he experiments with new skills he picks up in class.
+
+      </div>
+
+      <div class="ai-messages" id="output">
+        <div class="msg bot-msg">Hello! I'm loading my brain...</div>
+      </div>
+
+      <div class="ai-input-area">
+        <input type="text" id="user-input" placeholder="Type and press enter...">
+        <button id="send-btn">➔</button>
+      </div>
+    </div>
+    <!-- end ai -->
+    <!-- End SubFooter -->
+
+
+
+    <script type="module">
+      import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers';
+
+      // --- 1. CONFIGURATION ---
+      let qa;
+      const FORMSPREE_URL = "https://formspree.io/f/mbdageeb"; // <--- PASTE YOUR ID HERE
+      const output = document.getElementById('output');
+      const context = document.getElementById('ai-context').innerText;
+      const userInput = document.getElementById('user-input');
+      const sendBtn = document.getElementById('send-btn');
+
+      // --- 2. UI TOGGLE ---
+      window.toggleChat = () => {
+        document.getElementById('ai-window').classList.toggle('hidden');
+      };
+
+      // --- 3. INITIALIZE AI ---
+      (async () => {
+        try {
+          // Loading the Question-Answering model
+          qa = await pipeline('question-answering', 'Xenova/distilbert-base-cased-distilled-squad');
+          output.innerHTML = `
+                    <div class="msg bot-msg">
+                        <b>Assistant:</b> Hello! I'm Manvir's AI assistant. I've studied his bio and I'm ready to chat. What would you like to know?
+                    </div>`;
+        } catch (err) {
+          output.innerHTML = `<div class="msg bot-msg">Brain loading failed. Please check your connection.</div>`;
+        }
+      })();
+
+      // --- 4. FORMSPREE ALERT FUNCTION ---
+      async function sendAlertToManvir(question) {
+        try {
+          await fetch(FORMSPREE_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+              subject: "AI Needs Learning!",
+              missed_question: question,
+              message: "The AI couldn't find a confident answer in the current bio."
+            })
+          });
+          console.log("Formspree alert sent.");
+        } catch (error) {
+          console.error("Alert failed to send:", error);
+        }
+      }
+
+      // --- 5. CORE CHAT LOGIC ---
+      async function handleSend() {
+        const text = userInput.value.trim();
+        if (!text || !qa) return;
+
+        // Show User Message
+        output.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        userInput.value = "";
+        scrollToBottom();
+
+        // Show Typing Dots
+        const tempId = "loader-" + Date.now();
+        output.innerHTML += `
+                <div id="${tempId}" class="msg bot-msg">
+                    <div class="typing-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                </div>`;
+        scrollToBottom();
+
+        // Get AI Answer
+        const result = await qa(text, context);
+        document.getElementById(tempId).remove();
+
+        let finalResponse = "";
+
+        // --- LOGIC: LEARN & IMPROVE ---
+        // If score is too low (usually below 0.001), the AI is "guessing"
+        if (!result.answer || result.score < 0.001) {
+
+          // Send email via Formspree
+          sendAlertToManvir(text);
+
+          finalResponse = `<b>Assistant:</b> That's a great question! I don't have that specific detail in my workshop notes yet, so I've sent an alert to Manvir to teach me! Is there anything else you'd like to ask?`;
+        } else {
+          // Conversational wrappers for "Real AI" feel
+          const intros = [
+            "Based on the bio, ",
+            "I found this for you: ",
+            "Manvir says that ",
+            "Great question! "
+          ];
+          const intro = intros[Math.floor(Math.random() * intros.length)];
+          finalResponse = `<b>Assistant:</b> ${intro}${result.answer}.`;
+        }
+
+        // Add Bot Message
+        output.innerHTML += `<div class="msg bot-msg">${finalResponse}</div>`;
+
+        // Add suggestion hint
+        output.innerHTML += `<div style="font-size:10px; color:#aaa; margin-left:15px; margin-top:-5px; font-style:italic;">Try asking: "What is Huron?" or "Why this theme?"</div>`;
+
+        scrollToBottom();
+      }
+
+      // --- 6. HELPERS & LISTENERS ---
+      function scrollToBottom() {
+        output.scrollTop = output.scrollHeight;
+      }
+
+      window.askAI = (question) => {
+        userInput.value = question;
+        handleSend();
+      };
+
+      sendBtn.onclick = handleSend;
+      userInput.onkeypress = (e) => { if (e.key === 'Enter') handleSend(); };
+    </script>
+</body>
 </html>
