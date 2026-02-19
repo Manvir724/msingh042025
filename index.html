@@ -42,7 +42,7 @@
         <h1 id="mediah1">Manvir Singh</h1>
         <h2> Web App Development Portfolio</h2>
         <p>Junior at Coalinga High School | Passionate about Technology & Web Design</p>
-        <a href="worksamples.html" id="mediabtn" class="btn">Explore My Work</a>
+        <a href="index.html" id="mediabtn" class="btn">Explore My Work</a>
       </div>
     </div>
   </section>
@@ -161,7 +161,7 @@
         <a href="https://gemini.google.com/">Gemini</a> |
         <a href="https://copilot.microsoft.com/">Copilot</a> |
         <a href="https://claude.ai/">Claude</a> |
-        <a href="https://www.perplexity.ai/">Preplexity</a> |
+        <a href="https://www.perplexity.ai/">Perplexity</a> |
         <a href="https://notebooklm.google.com/">NotebookLM</a> |
         <a href="https://grok.com">Grok</a>
       </nav>
@@ -188,23 +188,36 @@
       </div>
 
       <div id="ai-context" style="display:none;">
-        [WHO IS MANVIR]: Manvir Singh is a Junior at Huron High School. He is a technology enthusiast and a web developer.
-        [THE BEGINNING]: Manvir's journey started with a fascination for how things work. Before web design, he dove into the
+        [WHO IS MANVIR]: Manvir Singh is a Junior at Huron High School. He is a technology enthusiast and a web
+        developer.
+        [THE BEGINNING]: Manvir's journey started with a fascination for how things work. Before web design, he dove
+        into the
         world of hardware by learning C++ to program Arduinos. He loves the "hands-on" feel of coding.
-        [FAVORITE CLASS]: His favorite class is Webpage Design, which he first discovered as a freshman. He loves the creative
+        [FAVORITE CLASS]: His favorite class is Webpage Design, which he first discovered as a freshman. He loves the
+        creative
         freedom of building things from scratch.
-        [THE QUOTE]: Manvir lives by Nelson Mandela's words: "It always seems impossible until it's done." It reminds him to
+        [THE QUOTE]: Manvir lives by Nelson Mandela's words: "It always seems impossible until it's done." It reminds
+        him to
         keep pushing when a line of code isn't working!
-        [LIFESTYLE]: When he's not coding, Manvir is a family-oriented guy. He loves hanging out with friends and believes that
+        [LIFESTYLE]: When he's not coding, Manvir is a family-oriented guy. He loves hanging out with friends and
+        believes that
         balance is the key to happiness.
-        [THE DESIGN]: The portfolio has a warm and friendly theme. Manvir chose this specifically because he wants his digital
+        [THE DESIGN]: The portfolio has a warm and friendly theme. Manvir chose this specifically because he wants his
+        digital
         space to feel like a cozy workshop or a personal scrapbook rather than a cold, corporate site.
-        [FUN FACT]: Manvir views this website as a "digital workshop" where he experiments with new skills he picks up in class.
-
+        [FUN FACT]: Manvir views this website as a "digital workshop" where he experiments with new skills he picks up
+        in class.
       </div>
 
       <div class="ai-messages" id="output">
-        <div class="msg bot-msg">Hello! I'm loading my brain...</div>
+        <div class="msg bot-msg">Hello! I'm Manvir's assistant. Ask me anything about him!</div>
+      </div>
+
+      <!-- Dynamic Blue Try Asking Section -->
+      <div id="try-section"
+        style="padding: 6px 12px; background-color: #e6f3ff; border-top: 1px solid #b8d9ff; border-bottom: 1px solid #b8d9ff; font-size: 12px; color: #0066cc; text-align: left;">
+        <span style="font-weight: 500;">💡 Try asking:</span> <span id="try-suggestions">"Who is Manvir?" or "What's his
+          favorite class?"</span>
       </div>
 
       <div class="ai-input-area">
@@ -215,121 +228,226 @@
     <!-- end ai -->
     <!-- End SubFooter -->
 
+    <script>
+      // --- CONFIGURATION ---
+      const FORMSPREE_URL = "https://formspree.io/f/mbdageeb";
 
+      // Parse context data from the hidden div
+      function parseContextData() {
+        const contextText = document.getElementById('ai-context').innerText;
+        const knowledge = {};
 
-    <script type="module">
-      import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers';
+        const sections = contextText.match(/\[(.*?)\]: (.*?)(?=\n\[|$)/gs);
 
-      // --- 1. CONFIGURATION ---
-      let qa;
-      const FORMSPREE_URL = "https://formspree.io/f/mbdageeb"; // <--- PASTE YOUR ID HERE
-      const output = document.getElementById('output');
-      const context = document.getElementById('ai-context').innerText;
-      const userInput = document.getElementById('user-input');
-      const sendBtn = document.getElementById('send-btn');
+        if (sections) {
+          sections.forEach(section => {
+            const match = section.match(/\[(.*?)\]: (.*)/s);
+            if (match) {
+              const key = match[1].toLowerCase().replace(/ /g, '');
+              const value = match[2].trim();
+              knowledge[key] = value;
+            }
+          });
+        }
+        return knowledge;
+      }
 
-      // --- 2. UI TOGGLE ---
+      const knowledge = parseContextData();
+      let askedQuestions = new Set();
+
+      // All possible suggestion questions
+      const allSuggestions = [
+        "Who is Manvir?",
+        "What's his favorite class?",
+        "Tell me a fun fact",
+        "Why this theme?",
+        "What's his quote?",
+        "How did he start?",
+        "What are his hobbies?",
+        "What's his lifestyle?",
+        "What coding does he know?",
+        "Tell me about his journey",
+        "What's his background?",
+        "What projects has he done?"
+      ];
+
+      // Get fresh suggestions (ones not asked yet)
+      function getFreshSuggestions(count = 2) {
+        const available = allSuggestions.filter(s => !askedQuestions.has(s.toLowerCase()));
+
+        if (available.length < count) {
+          askedQuestions.clear();
+          return allSuggestions.sort(() => 0.5 - Math.random()).slice(0, count);
+        }
+
+        return available.sort(() => 0.5 - Math.random()).slice(0, count);
+      }
+
+      // Update the blue try section with new suggestions
+      function updateTrySection() {
+        const suggestions = getFreshSuggestions(2);
+        const tryElement = document.getElementById('try-suggestions');
+
+        if (tryElement) {
+          tryElement.innerHTML = `"${suggestions[0]}" or "${suggestions[1]}"`;
+        }
+      }
+
+      // Find answer in knowledge base with better matching
+      function findAnswer(question) {
+        const q = question.toLowerCase().trim();
+        askedQuestions.add(q);
+
+        // Direct matches with keywords
+        if (q.includes("who is manvir") || q.includes("who are you") || q.includes("tell me about manvir")) {
+          return knowledge["whoismanvir"] || "Manvir Singh is a Junior at Huron High School. He's a technology enthusiast and web developer.";
+        }
+        if (q.includes("favorite class") || q.includes("favourite class") || q.includes("what class does he like")) {
+          return knowledge["favoriteclass"] || "His favorite class is Webpage Design, which he discovered as a freshman. He loves building things from scratch.";
+        }
+        if (q.includes("quote") || q.includes("philosophy") || q.includes("mandela") || q.includes("impossible")) {
+          return knowledge["thequote"] || "He lives by Nelson Mandela's words: 'It always seems impossible until it's done.' It reminds him to keep pushing when code isn't working.";
+        }
+        if (q.includes("fun fact") || q.includes("interesting")) {
+          return knowledge["funfact"] || "Fun fact: Manvir views this website as his 'digital workshop' where he experiments with new skills he learns in class!";
+        }
+        if (q.includes("theme") || q.includes("design") || q.includes("website look") || q.includes("why this")) {
+          return knowledge["thedesign"] || "The portfolio has a warm and friendly theme because Manvir wants his digital space to feel like a cozy workshop or personal scrapbook, not a cold corporate site.";
+        }
+        if (q.includes("begin") || q.includes("start") || q.includes("journey") || q.includes("how did he")) {
+          return knowledge["thebeginning"] || "Manvir's journey started with a fascination for how things work. Before web design, he learned C++ to program Arduinos. He loves the hands-on feel of coding.";
+        }
+        if (q.includes("hobby") || q.includes("free time") || q.includes("lifestyle") || q.includes("outside")) {
+          return knowledge["lifestyle"] || "When he's not coding, Manvir is family-oriented and loves hanging out with friends. He believes balance is the key to happiness.";
+        }
+        if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("greetings")) {
+          return "Hello! 👋 I'm Manvir's assistant. Feel free to ask me anything about his journey, favorite class, or fun facts!";
+        }
+        if (q.includes("coding") || q.includes("programming") || q.includes("what does he know")) {
+          return "Manvir knows web development (HTML, CSS, JavaScript) and also has experience with C++ for Arduino programming.";
+        }
+        if (q.includes("project") || q.includes("work") || q.includes("portfolio")) {
+          return "Manvir has worked on various web projects including Flexbox demos, GitHub guides, and created this portfolio website as his digital workshop.";
+        }
+
+        return null;
+      }
+
+      // UI Functions
       window.toggleChat = () => {
-        document.getElementById('ai-window').classList.toggle('hidden');
+        const chatWindow = document.getElementById('ai-window');
+        chatWindow.classList.toggle('hidden');
+        if (!chatWindow.classList.contains('hidden')) {
+          document.getElementById('user-input').focus();
+          updateTrySection();
+        }
       };
 
-      // --- 3. INITIALIZE AI ---
-      (async () => {
-        try {
-          // Loading the Question-Answering model
-          qa = await pipeline('question-answering', 'Xenova/distilbert-base-cased-distilled-squad');
-          output.innerHTML = `
-                    <div class="msg bot-msg">
-                        <b>Assistant:</b> Hello! I'm Manvir's AI assistant. I've studied his bio and I'm ready to chat. What would you like to know?
-                    </div>`;
-        } catch (err) {
-          output.innerHTML = `<div class="msg bot-msg">Brain loading failed. Please check your connection.</div>`;
-        }
-      })();
-
-      // --- 4. FORMSPREE ALERT FUNCTION ---
-      async function sendAlertToManvir(question) {
-        try {
-          await fetch(FORMSPREE_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify({
-              subject: "AI Needs Learning!",
-              missed_question: question,
-              message: "The AI couldn't find a confident answer in the current bio."
-            })
-          });
-          console.log("Formspree alert sent.");
-        } catch (error) {
-          console.error("Alert failed to send:", error);
-        }
-      }
-
-      // --- 5. CORE CHAT LOGIC ---
-      async function handleSend() {
-        const text = userInput.value.trim();
-        if (!text || !qa) return;
-
-        // Show User Message
-        output.innerHTML += `<div class="msg user-msg">${text}</div>`;
-        userInput.value = "";
-        scrollToBottom();
-
-        // Show Typing Dots
-        const tempId = "loader-" + Date.now();
-        output.innerHTML += `
-                <div id="${tempId}" class="msg bot-msg">
-                    <div class="typing-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                </div>`;
-        scrollToBottom();
-
-        // Get AI Answer
-        const result = await qa(text, context);
-        document.getElementById(tempId).remove();
-
-        let finalResponse = "";
-
-        // --- LOGIC: LEARN & IMPROVE ---
-        // If score is too low (usually below 0.001), the AI is "guessing"
-        if (!result.answer || result.score < 0.001) {
-
-          // Send email via Formspree
-          sendAlertToManvir(text);
-
-          finalResponse = `<b>Assistant:</b> That's a great question! I don't have that specific detail in my workshop notes yet, so I've sent an alert to Manvir to teach me! Is there anything else you'd like to ask?`;
-        } else {
-          // Conversational wrappers for "Real AI" feel
-          const intros = [
-            "Based on the bio, ",
-            "I found this for you: ",
-            "Manvir says that ",
-            "Great question! "
-          ];
-          const intro = intros[Math.floor(Math.random() * intros.length)];
-          finalResponse = `<b>Assistant:</b> ${intro}${result.answer}.`;
-        }
-
-        // Add Bot Message
-        output.innerHTML += `<div class="msg bot-msg">${finalResponse}</div>`;
-
-        // Add suggestion hint
-        output.innerHTML += `<div style="font-size:10px; color:#aaa; margin-left:15px; margin-top:-5px; font-style:italic;">Try asking: "What is Huron?" or "Why this theme?"</div>`;
-
-        scrollToBottom();
-      }
-
-      // --- 6. HELPERS & LISTENERS ---
       function scrollToBottom() {
+        const output = document.getElementById('output');
         output.scrollTop = output.scrollHeight;
       }
 
-      window.askAI = (question) => {
-        userInput.value = question;
+      function addMessage(text, isUser = false) {
+        const output = document.getElementById('output');
+        output.innerHTML += `<div class="msg ${isUser ? 'user-msg' : 'bot-msg'}">${text}</div>`;
+        scrollToBottom();
+      }
+
+      function showTypingIndicator() {
+        const output = document.getElementById('output');
+        const id = 'typing-' + Date.now();
+        output.innerHTML += `
+          <div id="${id}" class="msg bot-msg">
+            <div class="typing-dots">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>`;
+        scrollToBottom();
+        return id;
+      }
+
+      function removeTypingIndicator(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+      }
+
+      // Send alert for unknown questions
+      async function sendUnknownQuestionAlert(question) {
+        try {
+          await fetch(FORMSPREE_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              subject: "New Question for Manvir's AI",
+              question: question,
+              message: "Someone asked a question the AI couldn't answer."
+            })
+          });
+          console.log("Alert sent");
+        } catch (error) {
+          console.error("Alert failed:", error);
+        }
+      }
+
+      // Main chat handler
+      async function handleSend() {
+        const input = document.getElementById('user-input');
+        const question = input.value.trim();
+
+        if (!question) return;
+
+        addMessage(question, true);
+        input.value = '';
+
+        const typingId = showTypingIndicator();
+        await new Promise(resolve => setTimeout(resolve, 600));
+
+        const answer = findAnswer(question);
+        removeTypingIndicator(typingId);
+
+        let response;
+        if (answer) {
+          response = answer;
+        } else {
+          await sendUnknownQuestionAlert(question);
+          response = "🤔 That's a great question! I don't have that info in my workshop notes yet, but I've sent a note to Manvir to teach me! Try asking about his favorite class, his journey, or a fun fact!";
+        }
+
+        addMessage(response);
+        updateTrySection(); // Update suggestions after each question
+      }
+
+      // Event Listeners
+      document.addEventListener('DOMContentLoaded', () => {
+        const sendBtn = document.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+
+        sendBtn.addEventListener('click', handleSend);
+        userInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') handleSend();
+        });
+
+        // Initial welcome message
+        setTimeout(() => {
+          const output = document.getElementById('output');
+          if (output.children.length === 1) {
+            output.innerHTML = `
+              <div class="msg bot-msg">👋 Hi! I'm Manvir's assistant. Ask me anything about his journey, favorite class, or fun facts!</div>
+            `;
+          }
+          updateTrySection();
+        }, 500);
+      });
+
+      // Make functions globally available
+      window.askManvir = (question) => {
+        document.getElementById('user-input').value = question;
         handleSend();
       };
-
-      sendBtn.onclick = handleSend;
-      userInput.onkeypress = (e) => { if (e.key === 'Enter') handleSend(); };
     </script>
 </body>
+
 </html>

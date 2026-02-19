@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manvir Singh - Work Samples</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Additional styles specific to work samples page */
+        .work-header {
+            text-align: center;
+            padding: 3rem 0 1rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .work-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .work-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 3rem 0;
+            padding: 0 1rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            background: #f0f0f0;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .filter-btn:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #4a90e2;
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0 4rem 0;
+        }
+
+        .work-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(45deg, #f3f3f3, #e9e9e9);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .placeholder-badge {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card-category {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: #f5f5f5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #555;
+            font-weight: 500;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .view-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid #4a90e2;
+        }
+
+        .view-btn:hover {
+            background: transparent;
+            color: #4a90e2;
+        }
+
+        .date {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .featured-badge {
+            background: #ffd700;
+            color: #333;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        /* Category colors */
+        .cat-web {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .cat-design {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .cat-interactive {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .cat-project {
+            background: #e1f5fe;
+            color: #0288d1;
+        }
+
+        @media (max-width: 768px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+
+            .filter-container {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .work-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Begin Header (same as your main page) -->
+    <header id="pageheader">
+        <div class="container">
+            <div id="logo"></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <span id="pipes">|</span>
+                <a href="index.html#career">Career</a>
+                <span id="pipes">|</span>
+                <a href="index.html#semester1">Semester1</a>
+                <span id="pipes">|</span>
+                <a href="index.html#semester2">Semester2</a>
+                <span id="pipes">|</span>
+                <a href="index.html#aifooter">AI Tools</a>
+                <span id="pipes">|</span>
+                <a href="worksamples.html" style="font-weight: bold; color: #4a90e2;">Work Samples</a>
+                <span id="pipes">|</span>
+                <a href="certificates.html">Certificates</a>
+                <span id="pipes">|</span>
+                <a href="contactus.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Work Samples Header -->
+    <section class="work-header">
+        <div class="container">
+            <h1>My Work Samples</h1>
+            <p>A collection of my web design projects, experiments, and creative work</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="design">Graphic Design</button>
+                <button class="filter-btn" data-filter="interactive">Interactive</button>
+                <button class="filter-btn" data-filter="project">Class Projects</button>
+            </div>
+
+            <!-- Work Samples Grid -->
+            <div class="work-grid" id="work-grid">
+
+                <!-- Web Design Projects -->
+                <div class="work-card" data-category="web">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Screenshot Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-web">Web Design</span>
+                        <h3>Flexbox Layout Gallery</h3>
+                        <p>A collection of flexible layouts demonstrating mastery of CSS Flexbox including
+                            justify-content, align-items, and responsive design patterns.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Flexbox</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Semester2/FlexboxAI1/flexboxAI1.html" class="view-btn">View Demo</a>
+                            <span class="date">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="web">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Preview</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-web">Web Design</span>
+                        <h3>Responsive Navigation Demo</h3>
+                        <p>Created a mobile-friendly navigation system that transforms from horizontal menu to hamburger
+                            menu on smaller screens.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Media Queries</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Demos/Flexbox001/flexbox_justify_content.html" class="view-btn">View Demo</a>
+                            <span class="date">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Design Projects -->
+                <div class="work-card" data-category="design">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Poster Design</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-design">Graphic Design</span>
+                        <h3>Social Contact Poster</h3>
+                        <p>Designed a professional contact poster using Adobe Photoshop with attention to typography,
+                            color theory, and composition.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Photoshop</span>
+                            <span class="tech-tag">Typography</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Photoshop/Poster/Poster.pdf" class="view-btn" target="_blank">View PDF</a>
+                            <span class="date">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="design">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Logo Design</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-design">Graphic Design</span>
+                        <h3>Portfolio Logo Design</h3>
+                        <p>Created a personal logo using Adobe Illustrator that represents my identity as a web
+                            developer.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Illustrator</span>
+                            <span class="tech-tag">Branding</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Photoshop/Logo/M.SLogo.png" class="view-btn" target="_blank">View Logo</a>
+                            <span class="date">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Projects -->
+                <div class="work-card" data-category="interactive">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Interactive Demo</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-interactive">Interactive</span>
+                        <h3>Flexbox Interactive Demo</h3>
+                        <p>Built an interactive demonstration showing different flexbox properties and their effects in
+                            real-time.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Semester2/FlexboxJC3A/flexboxjc3a.html" class="view-btn">Try Demo</a>
+                            <span class="date">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="interactive">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Coming Soon</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-interactive">Interactive</span>
+                        <h3>JavaScript Quiz App</h3>
+                        <p>Interactive quiz application testing knowledge of web development concepts with score
+                            tracking.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="view-btn" style="opacity: 0.5; cursor: not-allowed;">In Progress</span>
+                            <span class="date">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Projects -->
+                <div class="work-card" data-category="project">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Guide</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-project">Class Project</span>
+                        <h3>GitHub Setup Guide</h3>
+                        <p>Created a comprehensive guide helping classmates set up GitHub and understand version control
+                            basics.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">GitHub</span>
+                            <span class="tech-tag">Documentation</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Semester1/GitHubGuide/githubguide.html" class="view-btn">Read Guide</a>
+                            <span class="date">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="project">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Guide</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-project">Class Project</span>
+                        <h3>Netlify Deployment Guide</h3>
+                        <p>Tutorial showing how to deploy websites from GitHub to Netlify for free hosting.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Netlify</span>
+                            <span class="tech-tag">GitHub</span>
+                            <span class="tech-tag">Hosting</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Semester1/Netlifyguide/githubtonetlify.html" class="view-btn">Read Guide</a>
+                            <span class="date">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="project">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Reference</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-project">Class Project</span>
+                        <h3>Vim Commands Reference</h3>
+                        <p>Created a quick reference guide for essential Vim commands to help classmates navigate the
+                            terminal editor.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Vim</span>
+                            <span class="tech-tag">Terminal</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Semester1/VimOnYourOwn/index.html" class="view-btn">View Guide</a>
+                            <span class="date">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Project -->
+                <div class="work-card" data-category="web project">
+                    <div class="card-image">
+                        <div class="placeholder-badge">Main Project</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category cat-web">Featured Project</span>
+                        <h3>Personal Portfolio Website</h3>
+                        <p>This very website! A fully responsive portfolio built from scratch showcasing my journey in
+                            web development.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">AI Integration</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="index.html" class="view-btn">Live Site</a>
+                            <span class="date">2025</span>
+                            <span class="featured-badge">✨ New</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Begin PageFooter (same as main page) -->
+    <section id="pagefooter">
+        <div class="container">
+            <nav>
+                <a href="https://chs.chusd.org/">CHS</a> |
+                <a href="https://color.adobe.com/create/color-wheel">Adobe Color</a> |
+                <a href="https://coalingahuron.aeries.net/student/LoginParent.aspx">Aeries</a> |
+                <a href="https://classroom.google.com/u/0/h?pli=1">Classroom</a> |
+                <a href="https://app.minga.io/tools">Minga</a> |
+                <a href="Demos/TerminalNotes/Manvir Singh - The Terminal Notes.pdf">Terminal</a> |
+                <a href="GitAndGithub/git.html">Git</a> |
+                <a href="https://github.com/">GitHub</a>
+            </nav>
+        </div>
+    </section>
+    <!-- End PageFooter -->
+
+    <!-- Begin AI Footer (same as main page) -->
+    <section id="aifooter">
+        <div class="container">
+            <nav>
+                <a href="https://firefly.adobe.com/">Firefly</a> |
+                <a href="https://suno.com/">Suno</a> |
+                <a href="https://chatgpt.com/">ChatGPT</a> |
+                <a href="https://gemini.google.com/">Gemini</a> |
+                <a href="https://copilot.microsoft.com/">Copilot</a> |
+                <a href="https://claude.ai/">Claude</a> |
+                <a href="https://www.perplexity.ai/">Perplexity</a> |
+                <a href="https://notebooklm.google.com/">NotebookLM</a> |
+                <a href="https://grok.com">Grok</a>
+            </nav>
+        </div>
+    </section>
+    <!-- End AI Footer -->
+
+    <!-- Begin SubFooter -->
+    <section id="subfooter">
+        <div class="container">
+            <p>&copy; Manvir Singh 2025</p>
+            <audio src="Audio/TakeNotes.mp3" controls loop></audio>
+        </div>
+    </section>
+    <!-- End SubFooter -->
+
+    <!-- Filtering JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const workCards = document.querySelectorAll('.work-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Filter cards
+                    workCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+
+                        if (filterValue === 'all' || cardCategory.includes(filterValue)) {
+                            card.style.display = 'block';
+                            // Add fade in animation
+                            card.style.animation = 'none';
+                            card.offsetHeight; // Trigger reflow
+                            card.style.animation = 'fadeIn 0.5s ease';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- AI Chat Bubble (copy from your index.html if you want it here too) -->
+    <div id="ai-bubble" onclick="toggleChat()">💬</div>
+
+    <div id="ai-window" class="hidden">
+        <div class="ai-header">
+            <span>Portfolio Assistant</span>
+            <button onclick="toggleChat()" class="close-btn">&times;</button>
+        </div>
+
+        <div id="ai-context" style="display:none;">
+            [WHO IS MANVIR]: Manvir Singh is a Junior at Huron High School. He is a technology enthusiast and a web
+            developer.
+            [WORK SAMPLES]: Manvir has created numerous web projects including Flexbox demos, GitHub guides, graphic
+            designs, and this portfolio website.
+        </div>
+
+        <div class="ai-messages" id="output">
+            <div class="msg bot-msg">👋 Ask me about Manvir's work samples!</div>
+        </div>
+
+        <div id="try-section"
+            style="padding: 6px 12px; background-color: #e6f3ff; border-top: 1px solid #b8d9ff; border-bottom: 1px solid #b8d9ff; font-size: 12px; color: #0066cc; text-align: left;">
+            <span style="font-weight: 500;">💡 Try asking:</span> <span id="try-suggestions">"Show me web projects" or
+                "What has he built?"</span>
+        </div>
+
+        <div class="ai-input-area">
+            <input type="text" id="user-input" placeholder="Type and press enter...">
+            <button id="send-btn">➔</button>
+        </div>
+    </div>
+
+    <!-- Copy the AI JavaScript from your index.html here if you want the chat functionality -->
+    <script>
+        // Copy the same AI chat JavaScript from your index.html here
+        // For brevity, I'm not including the full AI code again, but you can copy it from your main page
+    </script>
+
+</body>
+
+</html>
