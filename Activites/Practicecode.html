@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>code · climb · bounce practice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0b1c2b, #1b2f3e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Fira Code', monospace;
+            padding: 1rem;
+        }
+
+        .game-wrapper {
+            max-width: 950px;
+            width: 100%;
+            background: rgba(18, 30, 38, 0.9);
+            backdrop-filter: blur(6px);
+            border-radius: 3rem 3rem 2rem 2rem;
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid #3f7f9e;
+            box-shadow: 0 30px 35px -15px black, inset 0 1px 3px #6ab0d6;
+        }
+
+        .score-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0f262f;
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            border: 1px solid #30758b;
+        }
+
+        .bounce-meter {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.2rem;
+        }
+
+        .bounce-badge {
+            background: #f5c542;
+            color: #1e2e3a;
+            font-weight: bold;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            box-shadow: 0 0 0 2px #fee3a2;
+        }
+
+        .streak-counter {
+            color: #b5dff5;
+        }
+
+        .speed-indicator {
+            background: #204c5c;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            color: #c6eaff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speed-light {
+            width: 16px;
+            height: 16px;
+            border-radius: 16px;
+            background: #70db70;
+            box-shadow: 0 0 8px #8eff8e;
+        }
+
+        .bounce-stage {
+            background: #16323f;
+            border-radius: 50px;
+            padding: 2rem 1rem 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid #398eab;
+            box-shadow: inset 0 -8px 0 #0e1f28;
+        }
+
+        .floor-line {
+            width: 90%;
+            height: 6px;
+            background: #ccb38a;
+            border-radius: 6px;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 0 #6b4f32;
+        }
+
+        .ball-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 200px;
+            transition: all 0.2s ease;
+        }
+
+        .game-ball {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ffc164, #c5711e);
+            border-radius: 50%;
+            box-shadow: 0 12px 0 #885d24, 0 0 30px #ffb86b;
+            transform: translateY(0);
+        }
+
+        /* Animation Keyframes */
+        @keyframes bounceAnim {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(var(--bounce-height, -90px));
+            }
+        }
+
+        .bounce-fast {
+            animation: bounceAnim 0.6s infinite alternate ease-in;
+        }
+
+        .bounce-medium {
+            animation: bounceAnim 1s infinite alternate ease-in;
+        }
+
+        .bounce-slow {
+            animation: bounceAnim 1.8s infinite alternate ease-out;
+        }
+
+        .bounce-very-slow {
+            animation: bounceAnim 2.5s infinite alternate ease-out;
+        }
+
+        .question-card {
+            background: #122d39;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            border: 2px solid #3590aa;
+            box-shadow: 0 10px 0 #12506b;
+            margin-bottom: 25px;
+        }
+
+        .question-label {
+            color: #bbe4f0;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .description-box {
+            background: #1b4050;
+            padding: 1.3rem 2rem;
+            border-radius: 3rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #faeec3;
+            border-left: 6px solid #ffbc6e;
+            word-break: break-word;
+            line-height: 1.3;
+            font-family: 'Segoe UI', sans-serif;
+            box-shadow: inset 0 2px 8px #0f2c36;
+        }
+
+        .typing-row {
+            display: flex;
+            align-items: center;
+            background: #102934;
+            border-radius: 80px;
+            border: 3px solid #2d819d;
+            transition: 0.1s;
+            margin: 1rem 0 1.2rem;
+        }
+
+        .typing-row:focus-within {
+            border-color: #fdc487;
+            box-shadow: 0 0 0 3px #fdbf6b80;
+        }
+
+        .prompt-sign {
+            font-size: 2rem;
+            padding: 0 1rem;
+            color: #ffae70;
+        }
+
+        #codeInput {
+            background: transparent;
+            border: none;
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 0;
+            font-size: 1.5rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            color: #e9f2f5;
+            outline: none;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .message-badge {
+            background: #154353;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem;
+            font-size: 1.1rem;
+            border-left: 6px solid #538f9c;
+        }
+
+        .next-trigger {
+            background: #ffb05a;
+            border: none;
+            color: #1a303b;
+            font-weight: bold;
+            font-size: 1.3rem;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #9f5f2c, 0 5px 20px #ffb05a;
+            transition: 0.07s;
+            border: 1px solid #ffe2b3;
+        }
+
+        .next-trigger:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #9f5f2c;
+        }
+
+        .wrong-highlight {
+            border-color: #f09090 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-wrapper">
+        <div class="score-panel">
+            <div class="bounce-meter">
+                <span class="bounce-badge" id="bounceHeightDisplay">🏀 height: 90px</span>
+                <span class="streak-counter" id="streakText">✨ streak 0</span>
+            </div>
+            <div class="speed-indicator" id="speedBox">
+                <span class="speed-light" id="speedLed"></span>
+                <span id="speedText">normal speed</span>
+            </div>
+        </div>
+
+        <div class="bounce-stage">
+            <div class="floor-line"></div>
+            <div class="ball-wrapper" id="ballWrapper">
+                <div class="game-ball" id="gameBall"></div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-label">📋 code challenge <span style="color:#f8c15c;">(type the exact syntax)</span>
+            </div>
+            <div class="description-box" id="descriptionText">...loading...</div>
+        </div>
+
+        <div class="typing-row" id="typingRow">
+            <span class="prompt-sign">⟩</span>
+            <input type="text" id="codeInput" placeholder="type code here..." autofocus autocomplete="off"
+                spellcheck="false">
+        </div>
+
+        <div class="action-bar">
+            <div class="message-badge" id="feedbackMsg">⚡ solve to jump higher</div>
+            <button class="next-trigger" id="nextBtn">⏩ next</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const challenges = [
+                {
+                    description: 'What code makes the text into a main title?',
+                    correctLine: '<h1></h1>',
+                    speed: 'medium',
+                    baseHeight: 90
+                },
+                {
+                    description: 'How do you change the text color to red in CSS?',
+                    correctLine: 'color: red;',
+                    speed: 'fast',
+                    baseHeight: 90
+                },
+                {
+                    description: 'What HTML tag is used for a clickable link?',
+                    correctLine: '<a></a>',
+                    speed: 'medium',
+                    baseHeight: 90
+                },
+                {
+                    description: 'CSS: Center text inside an element',
+                    correctLine: 'text-align: center;',
+                    speed: 'slow',
+                    baseHeight: 95
+                },
+                {
+                    description: 'CSS: Add a 1px solid white border',
+                    correctLine: 'border: 1px solid white;',
+                    speed: 'medium',
+                    baseHeight: 100
+                },
+                {
+                    description: 'CSS: Make the font bold',
+                    correctLine: 'font-weight: bold;',
+                    speed: 'fast',
+                    baseHeight: 90
+                },
+                {
+                    description: 'HTML: Create a line break',
+                    correctLine: '<br>',
+                    speed: 'very-slow',
+                    baseHeight: 110
+                },
+
+                // --- HTML Structure & Elements ---
+    { description: 'HTML: Create the largest heading', correctLine: '<h1></h1>', speed: 'medium', baseHeight: 90 },
+    { description: 'HTML: Create a standard paragraph', correctLine: '<p></p>', speed: 'medium', baseHeight: 90 },
+    { description: 'HTML: Create a clickable link', correctLine: '<a></a>', speed: 'medium', baseHeight: 90 },
+    { description: 'HTML: Add an image tag', correctLine: '<img>', speed: 'fast', baseHeight: 90 },
+    { description: 'HTML: Create a division container', correctLine: '<div></div>', speed: 'medium', baseHeight: 80 },
+    { description: 'HTML: Make text bold (semantic)', correctLine: '<strong></strong>', speed: 'slow', baseHeight: 90 },
+    { description: 'HTML: Make text italic (semantic)', correctLine: '<em></em>', speed: 'slow', baseHeight: 90 },
+    { description: 'HTML: Create an unordered list', correctLine: '<ul></ul>', speed: 'medium', baseHeight: 100 },
+    { description: 'HTML: Create a list item', correctLine: '<li></li>', speed: 'fast', baseHeight: 90 },
+    { description: 'HTML: Create a text input field', correctLine: '<input type="text">', speed: 'medium', baseHeight: 90 },
+    { description: 'HTML: Create a clickable button', correctLine: '<button></button>', speed: 'medium', baseHeight: 90 },
+    { description: 'HTML: Define the document body', correctLine: '<body></body>', speed: 'slow', baseHeight: 80 },
+    { description: 'HTML: Add a line break', correctLine: '<br>', speed: 'very-slow', baseHeight: 120 },
+    { description: 'HTML: Add a horizontal rule', correctLine: '<hr>', speed: 'very-slow', baseHeight: 110 },
+    { description: 'HTML: Create a spanning inline container', correctLine: '<span></span>', speed: 'medium', baseHeight: 90 },
+
+    // --- CSS Styling & Colors ---
+    { description: 'CSS: Change text color to blue', correctLine: 'color: blue;', speed: 'fast', baseHeight: 90 },
+    { description: 'CSS: Set background color to black', correctLine: 'background-color: black;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Set font size to 20 pixels', correctLine: 'font-size: 20px;', speed: 'medium', baseHeight: 95 },
+    { description: 'CSS: Center text', correctLine: 'text-align: center;', speed: 'slow', baseHeight: 100 },
+    { description: 'CSS: Make font bold', correctLine: 'font-weight: bold;', speed: 'fast', baseHeight: 90 },
+    { description: 'CSS: Underline the text', correctLine: 'text-decoration: underline;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Change font family to Arial', correctLine: 'font-family: Arial;', speed: 'slow', baseHeight: 90 },
+    { description: 'CSS: Set opacity to 50%', correctLine: 'opacity: 0.5;', speed: 'fast', baseHeight: 105 },
+    { description: 'CSS: Hide an element', correctLine: 'display: none;', speed: 'very-slow', baseHeight: 130 },
+    { description: 'CSS: Make an element invisible but keep space', correctLine: 'visibility: hidden;', speed: 'slow', baseHeight: 90 },
+
+    // --- CSS Box Model (Margin, Padding, Border) ---
+    { description: 'CSS: Add 10px margin on all sides', correctLine: 'margin: 10px;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Add 20px padding inside', correctLine: 'padding: 20px;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Add a solid red border', correctLine: 'border: 1px solid red;', speed: 'medium', baseHeight: 100 },
+    { description: 'CSS: Round the corners by 50%', correctLine: 'border-radius: 50%;', speed: 'fast', baseHeight: 110 },
+    { description: 'CSS: Set width to 100 pixels', correctLine: 'width: 100px;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Set height to 200 pixels', correctLine: 'height: 200px;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Add a shadow to the box', correctLine: 'box-shadow: 2px 2px 5px grey;', speed: 'slow', baseHeight: 115 },
+    { description: 'CSS: Set box-sizing to border-box', correctLine: 'box-sizing: border-box;', speed: 'slow', baseHeight: 90 },
+
+    // --- CSS Layout (Flexbox & Grid) ---
+    { description: 'CSS: Enable Flexbox layout', correctLine: 'display: flex;', speed: 'fast', baseHeight: 100 },
+    { description: 'CSS: Align flex items to the center', correctLine: 'align-items: center;', speed: 'medium', baseHeight: 95 },
+    { description: 'CSS: Distribute flex items evenly', correctLine: 'justify-content: space-between;', speed: 'slow', baseHeight: 105 },
+    { description: 'CSS: Change flex direction to column', correctLine: 'flex-direction: column;', speed: 'medium', baseHeight: 90 },
+    { description: 'CSS: Enable Grid layout', correctLine: 'display: grid;', speed: 'fast', baseHeight: 100 },
+    { description: 'CSS: Set position to absolute', correctLine: 'position: absolute;', speed: 'medium', baseHeight: 110 },
+    { description: 'CSS: Set position to fixed', correctLine: 'position: fixed;', speed: 'medium', baseHeight: 110 },
+    { description: 'CSS: Place element at the top', correctLine: 'top: 0;', speed: 'very-slow', baseHeight: 120 },
+    { description: 'CSS: Set z-index to 10', correctLine: 'z-index: 10;', speed: 'fast', baseHeight: 90 },
+
+    // --- Programming & Logic (Basic JS) ---
+    { description: 'JS: Print "Hello" to the console', correctLine: 'console.log("Hello");', speed: 'medium', baseHeight: 95 },
+    { description: 'JS: Create an alert popup', correctLine: 'alert("Hi");', speed: 'medium', baseHeight: 90 },
+    { description: 'JS: Declare a variable named x', correctLine: 'let x = 10;', speed: 'fast', baseHeight: 90 },
+    { description: 'JS: Create a constant named pi', correctLine: 'const pi = 3.14;', speed: 'fast', baseHeight: 90 },
+    { description: 'JS: Define a basic function', correctLine: 'function start() {}', speed: 'slow', baseHeight: 110 },
+    { description: 'JS: Check if x equals 5', correctLine: 'if (x === 5) {}', speed: 'medium', baseHeight: 100 },
+    { description: 'JS: Select element with id "app"', correctLine: 'document.getElementById("app");', speed: 'slow', baseHeight: 120 },
+    { description: 'JS: Add a click event listener', correctLine: 'element.addEventListener("click", () => {});', speed: 'very-slow', baseHeight: 140 }
+            ];
+
+            const ball = document.getElementById('gameBall');
+            const descriptionEl = document.getElementById('descriptionText');
+            const codeInput = document.getElementById('codeInput');
+            const feedbackMsg = document.getElementById('feedbackMsg');
+            const nextBtn = document.getElementById('nextBtn');
+            const typingRow = document.getElementById('typingRow');
+            const bounceHeightSpan = document.getElementById('bounceHeightDisplay');
+            const streakSpan = document.getElementById('streakText');
+            const speedText = document.getElementById('speedText');
+            const speedLed = document.getElementById('speedLed');
+
+            let currentIndex = 0;
+            let correctStreak = 0;
+            let wrongStreak = 0;
+            let completed = false;
+            let currentBaseHeight = 90;
+            const HEIGHT_PER_CORRECT = 15;
+
+            function setBounceHeight(heightPx) {
+                const clamped = Math.min(220, Math.max(40, heightPx));
+                document.documentElement.style.setProperty('--bounce-height', `-${clamped}px`);
+                bounceHeightSpan.innerText = `🏀 height: ${clamped}px`;
+            }
+
+            function applySpeedClass(speedType) {
+                ball.classList.remove('bounce-fast', 'bounce-medium', 'bounce-slow', 'bounce-very-slow');
+                ball.classList.add(`bounce-${speedType}`);
+            }
+
+            function updateSpeedIndicator(baseSpeed) {
+                let effectiveSpeed = baseSpeed;
+                if (wrongStreak >= 2) {
+                    if (effectiveSpeed === 'fast') effectiveSpeed = 'medium';
+                    else if (effectiveSpeed === 'medium') effectiveSpeed = 'slow';
+                    else if (effectiveSpeed === 'slow') effectiveSpeed = 'very-slow';
+                }
+
+                applySpeedClass(effectiveSpeed);
+                speedText.innerText = effectiveSpeed + ' speed';
+
+                const colors = { 'fast': '#6bef6b', 'medium': '#efef6b', 'slow': '#f9a05c', 'very-slow': '#f77' };
+                speedLed.style.background = colors[effectiveSpeed];
+                speedLed.style.boxShadow = `0 0 12px ${colors[effectiveSpeed]}`;
+            }
+
+            function loadChallenge(index) {
+                const challenge = challenges[index % challenges.length];
+                descriptionEl.innerText = challenge.description;
+                codeInput.value = '';
+                completed = false;
+                feedbackMsg.innerHTML = '⚡ type the code snippet';
+                feedbackMsg.style.borderColor = '#538f9c';
+                typingRow.classList.remove('wrong-highlight');
+
+                currentBaseHeight = challenge.baseHeight + (correctStreak * HEIGHT_PER_CORRECT);
+                setBounceHeight(currentBaseHeight);
+                updateSpeedIndicator(challenge.speed);
+                streakSpan.innerText = `✨ streak ${correctStreak}`;
+            }
+
+            function handleInput() {
+                if (completed) return;
+
+                const challenge = challenges[currentIndex % challenges.length];
+                const userLine = codeInput.value.trim();
+
+                // Normalize: ignore case and extra spaces
+                const normalize = (str) => str.replace(/\s+/g, ' ').toLowerCase();
+
+                if (normalize(userLine) === normalize(challenge.correctLine)) {
+                    completed = true;
+                    correctStreak++;
+                    wrongStreak = 0;
+                    feedbackMsg.innerHTML = '🎉 CORRECT! Press Enter ⏩';
+                    feedbackMsg.style.borderColor = '#8fda4e';
+                    typingRow.classList.remove('wrong-highlight');
+
+                    currentBaseHeight += HEIGHT_PER_CORRECT;
+                    setBounceHeight(currentBaseHeight);
+                    streakSpan.innerText = `✨ streak ${correctStreak}`;
+                }
+            }
+
+            codeInput.addEventListener('input', handleInput);
+            codeInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    if (completed) {
+                        currentIndex++;
+                        loadChallenge(currentIndex);
+                    } else {
+                        wrongStreak++;
+                        typingRow.classList.add('wrong-highlight');
+                        feedbackMsg.innerHTML = '❌ Try again!';
+                        updateSpeedIndicator(challenges[currentIndex % challenges.length].speed);
+                    }
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex++;
+                loadChallenge(currentIndex);
+            });
+
+            loadChallenge(0);
+        })();
+    </script>
+
+</body>
+
+</html>
