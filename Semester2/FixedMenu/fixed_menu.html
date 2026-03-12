@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Menu</title>
+    <style>
+        /* MObile First CSS */
+        html{
+            /* Temporary - Delete */
+            height: 200%;
+        }
+        
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: Black;
+            margin: 0;
+
+        }
+
+        #pageheader{
+            background-color: Black;
+            padding: 1rem;
+            /* Default */
+            position: static;
+        }
+
+        #pageheader nav {
+            background-color: gray;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        #pageheader nav ul{
+            padding: .5rem;
+            list-style: none;
+                /* flexbox component */
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+        }
+        #pageheader li {
+            text-align: center;
+            border: 1px solid black;
+            padding: .5rem;
+            background-color: white;
+        }
+
+        #pageheader li:hover {
+            background-color: lightgray;
+            color: white;
+        }
+
+        #logo {
+            width: 120px;
+            height: 120px;
+            margin: auto;
+            display: block;
+        }
+
+        #fblogoheader{
+            background-color: rgb(0, 0, 0);
+        }
+
+        #pageheader h1 {
+            text-align: center;
+            color: white;
+        }
+
+        #pageheader a{
+            color: black;
+            text-decoration: none;
+        }
+
+        /* None header elements */
+
+        main{
+            padding: 1rem;
+            background-color: white;
+        }
+
+        main h2{
+            color: #333;
+            background-color: white;
+            padding: 10px;
+        }
+
+         main
+
+        p{
+            line-height: 1.5;
+            color: #333;
+        }
+
+        h2{
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #morecontent{
+            background-color: white;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+      
+        
+        @media screen and (min-width:650px){
+            body{
+                background-color: none;
+            }
+
+            #pageheader{
+                position: fixed;
+                top: 0;
+                left:0;
+                right:0;
+                /* flexbox component */
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+            }
+
+            #fblogoheader{
+                /* flexbox component */
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            #pageheader nav ul{
+                /* flexbox component */
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            #logo{
+                width: 80px;
+                height: 80px;
+                
+            }
+            #pageheader nav{min-width: 400px;}
+
+            main{ 
+                padding-top:150px;
+            }
+
+        }
+
+         
+    </style>
+</head>
+<body>
+    <header id="pageheader">
+        <!-- Start logo and h1 -->
+         <div id="fblogoheader">
+            <img src="Images/paws_logo.png" alt="Paws and Whiskers Logo" id="logo">
+            <h1>Paws and Whiskers</h1>
+         </div>
+         <!-- End logo and h1 -->
+
+         <!-- Start navigation -->
+         <nav>
+             <ul>
+                 <li><a href="#">Home</a></li>
+                 <li><a href="#">Our Pets</a></li>
+                 <li><a href="#">Testimonials</a></li>
+                 <li><a href="#">About Us</a></li>
+             </ul>
+         </nav>
+         <!-- End navigation -->
+    </header>
+
+    <main>
+        <h2>Fixed Menu</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est hic ullam eum fugiat officia quaerat rem quos. Magnam quae deserunt cum cupiditate dolore quisquam ducimus. Quas voluptatibus at sit labore! Quisquam dignissimos hic accusamus autem amet eveniet deserunt veritatis voluptatibus, voluptas ratione doloribus recusandae quia adipisci deleniti delectus sequi laudantium quasi facere laborum debitis minus suscipit blanditiis? Pariatur fugiat voluptates deleniti hic possimus deserunt odio accusantium facere? Quas nihil necessitatibus quasi dolorum, excepturi tempora voluptate id recusandae ducimus velit, quam facere blanditiis possimus quae illo, vero nostrum eum consequatur ipsum?</p>
+    </main>
+
+    <section id="morecontent">
+        <h2>More Content</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est hic ullam eum fugiat officia quaerat rem quos. Magnam quae deserunt cum cupiditate dolore quisquam ducimus. Quas voluptatibus at sit labore! Quisquam dignissimos hic accusamus autem amet eveniet deserunt veritatis voluptatibus, voluptas ratione doloribus recusandae quia adipisci deleniti delectus sequi laudantium quasi facere laborum debitis minus suscipit blanditiis? Pariatur fugiat voluptates deleniti hic possimus deserunt odio accusantium facere? Quas nihil necessitatibus quasi dolorum, excepturi tempora voluptate id recusandae ducimus velit, quam facere blanditiis possimus quae illo, vero nostrum eum consequatur ipsum?</p>
+    </section>
+
+</body>
+</html>
