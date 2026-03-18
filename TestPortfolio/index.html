@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manvir Singh - Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="Photoshop/Logo/M.SLogo.png" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manvir Singh · portfolio (dark monochrome)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="Photoshop/Logo/M.SLogo.png" type="image/x-icon" />
+  <!-- Professional dark grayscale theme – fully preserves structure & integrity -->
 </head>
 
 <body>
@@ -14,26 +15,38 @@
   <header id="pageheader">
     <div class="container">
       <div id="logo"></div>
-      
-
       <nav>
-       <ul>
-          <li><a href="index.html">Home</a> </li>
-          <li><a href="#career">Career</a> </li>
-          <li><a href="#semester1">Semester 1</a> </li>
-          <li><a href="#semester2">Semester 2</a> </li>
-          <li><a href="worksamples.html">Work Samples</a> </li>
-          <li><a href="certificates.html">Certificates</a> </li>
-          <li><a href="#aifooter">AI Tools</a> </li>
-          <li><a href="contactus.html">Contact Us</a></li>
-       </ul>
+        <a href="index.html">Home</a>
+        <span class="pipes">|</span>
+        <a href="#career">Career</a>
+        <span class="pipes">|</span>
+        <a href="#semester1">Semester1</a>
+        <span class="pipes">|</span>
+        <a href="#semester2">Semester2</a>
+        <span class="pipes">|</span>
+        <a href="#aifooter">AI Tools</a>
+        <span class="pipes">|</span>
+        <a href="worksamples.html">Work Samples</a>
+        <span class="pipes">|</span>
+        <a href="certificates.html">Certificates</a>
+        <span class="pipes">|</span>
+        <a href="contactus.html">Contact Us</a>
       </nav>
     </div>
   </header>
   <!-- End Header -->
 
   <!-- Begin Media -->
-  <section id="media"></section>
+  <section id="media">
+    <div class="container">
+      <div id="hero-content">
+        <h1 id="mediah1">Manvir Singh</h1>
+        <h2>Web App Development Portfolio</h2>
+        <p>Junior at Coalinga High School | Passionate about Technology & Web Design</p>
+        <a href="index.html" id="mediabtn" class="btn">Explore My Work</a>
+      </div>
+    </div>
+  </section>
   <!-- End Media -->
 
   <!-- Begin PageContent -->
@@ -41,8 +54,13 @@
     <div class="container">
       <h1>Manvir Singh</h1>
       <h2>Portfolio</h2>
-      <blockquote>&quot;Don;t Quit Before you try&quot; - Manvir Singh</blockquote>
-      <p id="portofoliparagraph">
+
+      <blockquote>
+        &quot; It always seems impossible until it's done.&quot;
+      </blockquote>
+      <span>- Nelson Mandela</span>
+
+      <p class="portfolio-paragraph">
         Hey there! Welcome to my portfolio. I'm Manvir Singh, a Junior from
         Huron who has always been fascinated by how technology works. That
         curiosity led me straight to my favorite class: Webpage Design, which
@@ -55,8 +73,8 @@
         learning even more in this class and seeing where my interest in
         technology takes me in the future.
       </p>
-      
-      <p id="portofoliparagraph">
+
+      <p class="portfolio-paragraph">
         Away from the keyboard, I’m just a regular guy who values time with my
         family and hanging out with my friends. I wanted my portfolio website
         to feel personal and inviting, which is why I chose a warm and
@@ -74,12 +92,12 @@
     <div class="container">
       <h2>Career</h2>
       <ul>
-        <li><a href="#">📋 Career Action Plan</a></li>
-        <li><a href="#">🤝 Job Application</a></li>
-        <li><a href="#">✉️ Letter of Introduction</a></li>
-        <li><a href="#">💯 References</a></li>
-        <li><a href="#">📄 Resume</a></li>
-        <li><a href="#">⭐ Letter of Recommendation</a></li>
+        <li><a href="Career/career_action_plan.pdf">📋 Career Action Plan</a></li>
+        <li><a href="Career/job_application.pdf">🤝 Job Application</a></li>
+        <li><a href="Career/letter_of_introduction.pdf">✉️ Letter of Introduction</a></li>
+        <li><a href="Career/references.pdf">💯 References</a></li>
+        <li><a href="Career/resume.pdf">📄 Resume</a></li>
+        <li><a href="Career/letter_of_recommendation.pdf">⭐ Letter of Recommendation</a></li>
       </ul>
     </div>
   </section>
@@ -90,37 +108,56 @@
     <div class="container">
       <h2>Semester 1</h2>
       <ul>
-        <li><a href="../Photoshop/Poster/Poster.pdf">📌 Social Contract Poster</a></li>
-        <li><a href="../Semester1/GitHubGuide/githubguide.html">📌 GitHub Guide</a></li>
-        <li><a href="../Semester1/Netlifyguide/githubtonetlify.html">📌 Netlify Guide</a></li>
-        <li><a href="../Semester1/VimOnYourOwn/index.html">📌 Vim Commands</a></li>
-        <li><a href="../Photoshop/Logo/M.SLogo.png">📌 AI Portfolio Logo</a></li>
-        <li><a href="../Demos/TerminalNotes/Manvir%20Singh%20-%20The%20Terminal%20Notes.pdf">📌 Terminal Notes</a></li>
+        <li><a href="Photoshop/Poster/Poster.pdf">Social Contact Poster</a></li>
+        <li><a href="Semester1/GitHubGuide/githubguide.html">GitHub Guide</a></li>
+        <li><a href="Semester1/Netlifyguide/githubtonetlify.html">Netlify Guide</a></li>
+        <li><a href="Semester1/VimOnYourOwn/index.html">Vim Commands</a></li>
+        <li><a href="Photoshop/Logo/M.SLogo.png">Ai Portfolio Logo</a></li>
+        <!-- <li><a href="Demos/TerminalNotes/Manvir Singh - The Terminal Notes.pdf">Terminal Notes</a></li> -->
       </ul>
     </div>
   </section>
   <!-- End Semester1 -->
 
   <!-- Begin Semester2 -->
-  <!-- TODO: Uncomment when we hit semester 2 -->
-  <section id="semester2" style="display: block;">
+  <section id="semester2">
     <div class="container">
       <h2>Semester 2</h2>
       <ul>
-        <li><a href="../Demos/Flexbox001/flexbox_justify_content.html">📌 FlexboxJC1</a></li>
-        <li><a href="../Demos/Flexbox001/flexbox_content_application.html">📌 FlexboxJC2</a></li>
-        <li><a href="../Semester2/FlexboxJC3A/flexboxjc3a.html">📌 FlexboxJC3A</a></li>
-        <li><a href="../Semester2/FlexboxJC3B/flexboxjc3b.html">📌 FlexboxJC3B</a></li>
-        <li><a href="../Semester2/FlexboxAI1/flexboxAI1.html">📌 FlexboxAI1</a></li>
-        <li><a href="../Demos/Flexbox005/flexbox_align_self_order.html">📌 FlexboxASO</a></li>
-        <li><a href="../Demos/Flexbox006/flexbox_wrap_align_content.html">📌 FlexboxWAC</a></li>
-        <li><a href="../Demos/Flexbox004/FlexboxJCAI/flexboxJCAI.html">📌 FlexboxJCAI</a></li>
+        <li><a href="Demos/Flexbox001/flexbox_justify_content.html">FlexboxJC1</a></li>
+        <li><a href="Demos/Flexbox001/flexbox_content_application.html">FlexboxJC2</a></li>
+        <li><a href="Semester2/FlexboxJC3A/flexboxjc3a.html">FlexboxJC3A</a></li>
+        <li><a href="Semester2/FlexboxJC3B/flexboxjc3b.html">FlexboxJC3B</a></li>
+        <li><a href="Semester2/FlexboxAI1/flexboxAI1.html">FlexboxAI1</a></li>
+        <li><a href="Demos/Flexbox005/flexbox_align_self_order.html">FlexboxASO</a></li>
+        <li><a href="Demos/Flexbox006/flexbox_wrap_align_content.html">FlexboxWAC</a></li>
+        <li><a href="Demos/Flexbox004/FlexboxJCAI/flexboxJCAI.html">FlexboxJCAI</a></li>
+        <li><a href="Semester2/PhotoGallery/photogallery.html">Flexbox Photo Gallery</a></li>
+        <li><a href="Semester2/FixedMenu/fixed_menu.html">Fixed Menu</a></li>
+        <li><a href="Activites/Practicecode.html">Practice Code Game</a></li>
       </ul>
     </div>
   </section>
   <!-- End Semester2 -->
-        
-  <!-- Begin AI Footer Section (separate from pagefooter) -->
+
+  <!-- Begin PageFooter -->
+  <section id="pagefooter">
+    <div class="container">
+      <nav>
+        <a href="https://chs.chusd.org/">CHS</a> |
+        <a href="https://color.adobe.com/create/color-wheel">Adobe Color</a> |
+        <a href="https://coalingahuron.aeries.net/student/LoginParent.aspx">Aeries</a> |
+        <a href="https://classroom.google.com/u/0/h?pli=1">Classroom</a> |
+        <a href="https://app.minga.io/tools">Minga</a> |
+        <a href="Demos/TerminalNotes/Manvir%20Singh%20-%20The%20Terminal%20Notes.pdf">Terminal</a> |
+        <a href="GitAndGithub/git.html">Git</a> |
+        <a href="https://github.com/">GitHub</a>
+      </nav>
+    </div>
+  </section>
+  <!-- End PageFooter -->
+
+  <!-- Begin AI Footer -->
   <section id="aifooter">
     <div class="container">
       <nav>
@@ -132,41 +169,266 @@
         <a href="https://claude.ai/">Claude</a> |
         <a href="https://www.perplexity.ai/">Perplexity</a> |
         <a href="https://notebooklm.google.com/">NotebookLM</a> |
-        <a href="https://grok.com/">Grok</a>
+        <a href="https://grok.com">Grok</a>
       </nav>
     </div>
   </section>
   <!-- End AI Footer -->
 
-  <!-- Begin PageFooter -->
-  <section id="pagefooter">
-    <div class="container">
-      <nav>
-        <ul>
-          <li><a href="https://chs.chusd.org/">CHS</a> |</li>
-          <li><a href="https://color.adobe.com/create/color-wheel">Adobe Color</a> |</li>
-          <li><a href="https://coalingahuron.aeries.net/student/LoginParent.aspx">Aeries</a> |</li>
-          <li><a href="https://classroom.google.com/u/0/h?pli=1">Classroom</a> |</li>
-          <li><a href="https://app.minga.io/tools">Minga</a> |</li>
-          <li><a href="Demos/TerminalNotes/Manvir%20Singh%20-%20The%20Terminal%20Notes.pdf">Terminal</a> |</li>
-          <li><a href="GitAndGithub/git.html">Git</a> |</li>
-          <li><a href="https://github.com/">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </section>
-  <!-- End PageFooter -->
-
   <!-- Begin SubFooter -->
   <section id="subfooter">
     <div class="container">
-      <p id="fa-copyright">&copy; Manvir Singh 2025</p>
-      <audio src="../Audio/Take Notes 2.0.mp3" controls loop></audio>
+      <p>&copy; Manvir Singh 2025</p>
+      <div class="audio-container"></div>
+      <audio src="Audio/TakeNotes.mp3" controls loop></audio>
     </div>
+
+    <!-- AI Section -->
+    <div id="ai-bubble" onclick="toggleChat()">💬</div>
+    <div id="ai-window" class="hidden">
+      <div class="ai-header">
+        <span>Portfolio Assistant</span>
+        <button onclick="toggleChat()" class="close-btn">&times;</button>
+      </div>
+      <div id="ai-context" style="display:none;">
+        [WHO IS MANVIR]: Manvir Singh is a Junior at Huron High School. He is a technology enthusiast and a web
+        developer.
+        [THE BEGINNING]: Manvir's journey started with a fascination for how things work. Before web design, he dove
+        into the
+        world of hardware by learning C++ to program Arduinos. He loves the "hands-on" feel of coding.
+        [FAVORITE CLASS]: His favorite class is Webpage Design, which he first discovered as a freshman. He loves the
+        creative
+        freedom of building things from scratch.
+        [THE QUOTE]: Manvir lives by Nelson Mandela's words: "It always seems impossible until it's done." It reminds
+        him to
+        keep pushing when a line of code isn't working!
+        [LIFESTYLE]: When he's not coding, Manvir is a family-oriented guy. He loves hanging out with friends and
+        believes that
+        balance is the key to happiness.
+        [THE DESIGN]: The portfolio has a warm and friendly theme. Manvir chose this specifically because he wants his
+        digital
+        space to feel like a cozy workshop or a personal scrapbook rather than a cold, corporate site.
+        [FUN FACT]: Manvir views this website as a "digital workshop" where he experiments with new skills he picks up
+        in class.
+      </div>
+      <div class="ai-messages" id="output">
+        <div class="msg bot-msg">Hello! I'm Manvir's assistant. Ask me anything about him!</div>
+      </div>
+      <!-- Dynamic Try Asking Section -->
+      <div id="try-section">
+        <span style="font-weight: 500;">💡 Try asking:</span> <span id="try-suggestions">"Who is Manvir?" or "What's his
+          favorite class?"</span>
+      </div>
+      <div class="ai-input-area">
+        <input type="text" id="user-input" placeholder="Type and press enter...">
+        <button id="send-btn">➔</button>
+      </div>
+    </div>
+    <!-- end ai -->
   </section>
   <!-- End SubFooter -->
 
-  
+  <script>
+    // --- identical original AI script, fully preserved ---
+    const FORMSPREE_URL = "https://formspree.io/f/mbdageeb";
+
+    function parseContextData() {
+      const contextText = document.getElementById('ai-context').innerText;
+      const knowledge = {};
+      const sections = contextText.match(/\[(.*?)\]: (.*?)(?=\n\[|$)/gs);
+      if (sections) {
+        sections.forEach(section => {
+          const match = section.match(/\[(.*?)\]: (.*)/s);
+          if (match) {
+            const key = match[1].toLowerCase().replace(/ /g, '');
+            const value = match[2].trim();
+            knowledge[key] = value;
+          }
+        });
+      }
+      return knowledge;
+    }
+
+    const knowledge = parseContextData();
+    let askedQuestions = new Set();
+
+    const allSuggestions = [
+      "Who is Manvir?",
+      "What's his favorite class?",
+      "Tell me a fun fact",
+      "Why this theme?",
+      "What's his quote?",
+      "How did he start?",
+      "What are his hobbies?",
+      "What's his lifestyle?",
+      "What coding does he know?",
+      "Tell me about his journey",
+      "What's his background?",
+      "What projects has he done?"
+    ];
+
+    function getFreshSuggestions(count = 2) {
+      const available = allSuggestions.filter(s => !askedQuestions.has(s.toLowerCase()));
+      if (available.length < count) {
+        askedQuestions.clear();
+        return allSuggestions.sort(() => 0.5 - Math.random()).slice(0, count);
+      }
+      return available.sort(() => 0.5 - Math.random()).slice(0, count);
+    }
+
+    function updateTrySection() {
+      const suggestions = getFreshSuggestions(2);
+      const tryElement = document.getElementById('try-suggestions');
+      if (tryElement) {
+        tryElement.innerHTML = `"${suggestions[0]}" or "${suggestions[1]}"`;
+      }
+    }
+
+    function findAnswer(question) {
+      const q = question.toLowerCase().trim();
+      askedQuestions.add(q);
+
+      if (q.includes("who is manvir") || q.includes("who are you") || q.includes("tell me about manvir")) {
+        return knowledge["whoismanvir"] || "Manvir Singh is a Junior at Huron High School. He's a technology enthusiast and web developer.";
+      }
+      if (q.includes("favorite class") || q.includes("favourite class") || q.includes("what class does he like")) {
+        return knowledge["favoriteclass"] || "His favorite class is Webpage Design, which he discovered as a freshman. He loves building things from scratch.";
+      }
+      if (q.includes("quote") || q.includes("philosophy") || q.includes("mandela") || q.includes("impossible")) {
+        return knowledge["thequote"] || "He lives by Nelson Mandela's words: 'It always seems impossible until it's done.' It reminds him to keep pushing when code isn't working.";
+      }
+      if (q.includes("fun fact") || q.includes("interesting")) {
+        return knowledge["funfact"] || "Fun fact: Manvir views this website as his 'digital workshop' where he experiments with new skills he learns in class!";
+      }
+      if (q.includes("theme") || q.includes("design") || q.includes("website look") || q.includes("why this")) {
+        return knowledge["thedesign"] || "The portfolio has a warm and friendly theme because Manvir wants his digital space to feel like a cozy workshop or personal scrapbook, not a cold corporate site.";
+      }
+      if (q.includes("begin") || q.includes("start") || q.includes("journey") || q.includes("how did he")) {
+        return knowledge["thebeginning"] || "Manvir's journey started with a fascination for how things work. Before web design, he learned C++ to program Arduinos. He loves the hands-on feel of coding.";
+      }
+      if (q.includes("hobby") || q.includes("free time") || q.includes("lifestyle") || q.includes("outside")) {
+        return knowledge["lifestyle"] || "When he's not coding, Manvir is family-oriented and loves hanging out with friends. He believes balance is the key to happiness.";
+      }
+      if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("greetings")) {
+        return "Hello! 👋 I'm Manvir's assistant. Feel free to ask me anything about his journey, favorite class, or fun facts!";
+      }
+      if (q.includes("coding") || q.includes("programming") || q.includes("what does he know")) {
+        return "Manvir knows web development (HTML, CSS, JavaScript) and also has experience with C++ for Arduino programming.";
+      }
+      if (q.includes("project") || q.includes("work") || q.includes("portfolio")) {
+        return "Manvir has worked on various web projects including Flexbox demos, GitHub guides, and created this portfolio website as his digital workshop.";
+      }
+      return null;
+    }
+
+    window.toggleChat = () => {
+      const chatWindow = document.getElementById('ai-window');
+      chatWindow.classList.toggle('hidden');
+      if (!chatWindow.classList.contains('hidden')) {
+        document.getElementById('user-input').focus();
+        updateTrySection();
+      }
+    };
+
+    function scrollToBottom() {
+      const output = document.getElementById('output');
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function addMessage(text, isUser = false) {
+      const output = document.getElementById('output');
+      output.innerHTML += `<div class="msg ${isUser ? 'user-msg' : 'bot-msg'}">${text}</div>`;
+      scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+      const output = document.getElementById('output');
+      const id = 'typing-' + Date.now();
+      output.innerHTML += `
+        <div id="${id}" class="msg bot-msg">
+          <div class="typing-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>`;
+      scrollToBottom();
+      return id;
+    }
+
+    function removeTypingIndicator(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    async function sendUnknownQuestionAlert(question) {
+      try {
+        await fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            subject: "New Question for Manvir's AI",
+            question: question,
+            message: "Someone asked a question the AI couldn't answer."
+          })
+        });
+        console.log("Alert sent");
+      } catch (error) {
+        console.error("Alert failed:", error);
+      }
+    }
+
+    async function handleSend() {
+      const input = document.getElementById('user-input');
+      const question = input.value.trim();
+      if (!question) return;
+
+      addMessage(question, true);
+      input.value = '';
+
+      const typingId = showTypingIndicator();
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      const answer = findAnswer(question);
+      removeTypingIndicator(typingId);
+
+      let response;
+      if (answer) {
+        response = answer;
+      } else {
+        await sendUnknownQuestionAlert(question);
+        response = "🤔 That's a great question! I don't have that info in my workshop notes yet, but I've sent a note to Manvir to teach me! Try asking about his favorite class, his journey, or a fun fact!";
+      }
+
+      addMessage(response);
+      updateTrySection();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sendBtn = document.getElementById('send-btn');
+      const userInput = document.getElementById('user-input');
+
+      sendBtn.addEventListener('click', handleSend);
+      userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+      });
+
+      setTimeout(() => {
+        const output = document.getElementById('output');
+        if (output.children.length === 1) {
+          output.innerHTML = `
+            <div class="msg bot-msg">👋 Hi! I'm Manvir's assistant. Ask me anything about his journey, favorite class, or fun facts!</div>
+          `;
+        }
+        updateTrySection();
+      }, 500);
+    });
+
+    window.askManvir = (question) => {
+      document.getElementById('user-input').value = question;
+      handleSend();
+    };
+  </script>
 </body>
 
 </html>
