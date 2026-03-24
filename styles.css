@@ -93,10 +93,10 @@ body {
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 40px;
   transition: all 0.15s ease;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 #pageheader nav a:hover {
