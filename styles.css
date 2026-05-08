@@ -8,12 +8,57 @@
   box-sizing: border-box;
 }
 
+/* Font Classes */
+.merriweather-400 {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.oswald-400 {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.oswald-600 {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.montserrat-400 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat-500 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.montserrat-600 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.montserrat-700 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #1a2c3e;  /* Darker navy background */
+  background-color: #1a2c3e; /* Darker navy background */
   font-family:
     "Inter",
     -apple-system,
@@ -23,7 +68,7 @@ body {
     Helvetica,
     Arial,
     sans-serif;
-  color: #e8f0f8;  /* Lighter text for dark backgrounds */
+  color: #e8f0f8; /* Lighter text for dark backgrounds */
   line-height: 1.6;
 }
 
@@ -32,7 +77,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.8rem;
-  background: rgba(30, 45, 60, 0.85);  /* Darker semi-transparent background */
+  background: rgba(30, 45, 60, 0.85); /* Darker semi-transparent background */
   backdrop-filter: blur(4px);
   border-radius: 28px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -72,7 +117,7 @@ body {
 
 #logo:hover {
   transform: scale(1.02);
-  transform: rotate(360deg) ;
+  transform: rotate(360deg);
 }
 
 #pageheader nav {
@@ -125,13 +170,13 @@ body {
 }
 
 #media::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 20, 30, 0.4);  /* Dark overlay for better text contrast */
+  background: rgba(10, 20, 30, 0.4); /* Dark overlay for better text contrast */
 }
 
 #media .container {
@@ -201,6 +246,7 @@ body {
   border: none;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: "Oswald", sans-serif;
 }
 
 .btn:hover {
@@ -266,7 +312,8 @@ blockquote + span {
   font-size: 1.2rem;
 }
 
-.portfolio-paragraph, #portofoliparagraph {
+.portfolio-paragraph,
+#portofoliparagraph {
   background: #1f3548;
   padding: 1.5rem 2rem;
   border-radius: 24px;
@@ -512,6 +559,7 @@ blockquote + span {
   line-height: 1.4;
   animation: slideUp 0.3s ease-out forwards;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: "Merriweather", serif;
 }
 
 .user-msg {
@@ -567,6 +615,7 @@ blockquote + span {
   outline: none;
   font-size: 0.95rem;
   color: #ffffff;
+  font-family: "Oswald", sans-serif;
 }
 
 .ai-input-area input:focus {
