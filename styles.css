@@ -157,7 +157,8 @@ body {
 /* ---------- MEDIA / HERO ---------- */
 #media {
   background: linear-gradient(115deg, #0f1e2b, #1a3443);
-  min-height: 650px;
+  /* min-height: 650px; */
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
