@@ -352,8 +352,12 @@ blockquote + span {
 
 #career h2,
 #semester1 h2,
-#semester2 h2 {
+#semester2 h2,
+#personal-projects h2,
+#worksamples h2,
+#certificates h2 {
   color: #ffffff;
+  font-family: "Oswald", sans-serif;
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -535,12 +539,46 @@ blockquote + span {
   border-radius: 18px;
 }
 
-#worksamples h2 {
-  text-align: left;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #eaf4ff;
+/* Personal Projects Section - match Semester styles */
+#personal-projects {
+  background: #1c3144;
+  padding: 2.5rem 0;
 }
+
+#personal-projects .container {
+  background: rgba(25, 40, 55, 0.95);
+  padding: 1.25rem;
+  border-radius: 18px;
+}
+
+#personal-projects .container ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0 0.5rem;
+}
+
+#personal-projects .container ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #1f3549;
+  padding: 0.7rem 1.8rem;
+  border-radius: 60px;
+  font-weight: 450;
+  border: 1px solid rgba(70, 130, 180, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease;
+  color: #e0ecfa;
+  margin-bottom: 0.5rem;
+}
+
+#personal-projects .container ul li:hover {
+  border-color: #3e7eb0;
+  background: #254e6e;
+  transform: translateX(3px);
+}
+
+
 
 /* Ensure classic bullet lists inside worksamples match other sections */
 #worksamples .container ul {
@@ -567,6 +605,18 @@ blockquote + span {
   transform: translateX(3px);
 }
 
+/* Personal Projects: remove default bullets and match icon color */
+#personal-projects .container ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+#personal-projects .container ul li i {
+  color: #f6d166;
+  font-size: 1rem;
+}
+
 /* Certificates Section */
 #certificates {
   background: #142531;
@@ -579,12 +629,7 @@ blockquote + span {
   border-radius: 18px;
 }
 
-#certificates h2 {
-  text-align: left;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #dff3ff;
-}
+
 
 .cert-grid {
   display: grid;
