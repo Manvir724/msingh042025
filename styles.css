@@ -178,6 +178,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(10, 20, 30, 0.4); /* Dark overlay for better text contrast */
+  pointer-events: none;
 }
 
 #media .container {
@@ -578,8 +579,6 @@ blockquote + span {
   transform: translateX(3px);
 }
 
-
-
 /* Ensure classic bullet lists inside worksamples match other sections */
 #worksamples .container ul {
   list-style: disc inside;
@@ -628,8 +627,6 @@ blockquote + span {
   padding: 1.25rem;
   border-radius: 18px;
 }
-
-
 
 .cert-grid {
   display: grid;
