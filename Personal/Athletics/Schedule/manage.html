@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CHS Athletics | Manage Schedule</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #172033;
+        }
+
+        /* =========================
+       HEADER
+    ========================= */
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 22px 20px;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: white;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, .14);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            color: #cbd5e1;
+        }
+
+        /* =========================
+       MAIN
+    ========================= */
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px 60px;
+        }
+
+        /* =========================
+       MESSAGE
+    ========================= */
+
+        #message {
+            display: none;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        #message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* =========================
+       CARD
+    ========================= */
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+       FORM
+    ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            padding: 12px;
+            font-size: 15px;
+            background: white;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        /* =========================
+       BUTTONS
+    ========================= */
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        button {
+            border: none;
+            border-radius: 9px;
+            padding: 11px 17px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #172033;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        /* =========================
+       SEARCH
+    ========================= */
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-row input {
+            flex: 1;
+        }
+
+        /* =========================
+       GAME LIST
+    ========================= */
+
+        .game-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .game-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 13px;
+            padding: 18px;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .game-date {
+            margin-top: 5px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .status-scheduled {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-live {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-completed {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .game-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 25px;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #64748b;
+        }
+
+        .game-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        /* =========================
+       LOADING / EMPTY
+    ========================= */
+
+        .loading,
+        .empty {
+            text-align: center;
+            padding: 35px;
+            color: #64748b;
+        }
+
+        /* =========================
+       MOBILE
+    ========================= */
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .game-info {
+                grid-template-columns: 1fr;
+            }
+
+            .game-header {
+                flex-direction: column;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div>
+                <h1>CHS Athletics</h1>
+                <p>Schedule Management</p>
+            </div>
+
+            <div class="header-actions">
+                <a class="nav-link" href="index.html">View Schedule</a>
+                <a class="nav-link" href="calender-export.html">Calendar Export</a>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+        <!-- =========================
+       ADD / EDIT GAME
+  ========================== -->
+
+        <section class="card">
+
+            <h2 id="formTitle">
+                Add New Game
+            </h2>
+
+            <form id="gameForm">
+
+                <input type="hidden" id="gameId">
+
+                <div class="form-grid">
+
+                    <!-- DATE -->
+
+                    <div class="form-group">
+
+                        <label for="scheduleDate">
+                            Date *
+                        </label>
+
+                        <input type="date" id="scheduleDate" required>
+
+                    </div>
+
+
+                    <!-- SPORT -->
+
+                    <div class="form-group">
+
+                        <label for="sport">
+                            Sport *
+                        </label>
+
+                        <select id="sport" required>
+
+                            <option value="">
+                                Select Sport
+                            </option>
+
+                            <option>Football</option>
+                            <option>Volleyball</option>
+                            <option>Cross Country</option>
+                            <option>Girls Soccer</option>
+                            <option>Boys Soccer</option>
+                            <option>Girls Basketball</option>
+                            <option>Boys Basketball</option>
+                            <option>Wrestling</option>
+                            <option>Tennis</option>
+                            <option>Track & Field</option>
+                            <option>Baseball</option>
+                            <option>Softball</option>
+                            <option>Golf</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TEAM -->
+
+                    <div class="form-group">
+
+                        <label for="team">
+                            Team *
+                        </label>
+
+                        <input type="text" id="team" placeholder="CHS Girls Basketball" required>
+
+                    </div>
+
+
+                    <!-- LEVEL -->
+
+                    <div class="form-group">
+
+                        <label for="level">
+                            Level *
+                        </label>
+
+                        <select id="level" required>
+
+                            <option value="">
+                                Select Level
+                            </option>
+
+                            <option>Varsity</option>
+                            <option>JV</option>
+                            <option>Freshman</option>
+                            <option>Junior Varsity</option>
+                            <option>All Levels</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- OPPONENT -->
+
+                    <div class="form-group">
+
+                        <label for="opponent">
+                            Opponent *
+                        </label>
+
+                        <input type="text" id="opponent" placeholder="Hanford West High School" required>
+
+                    </div>
+
+
+                    <!-- TIME -->
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Time *
+                        </label>
+
+                        <input type="time" id="time" required>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location *
+                        </label>
+
+                        <input type="text" id="location" placeholder="CHS Gymnasium, Coalinga, CA" required>
+
+                    </div>
+
+
+                    <!-- HOME / AWAY -->
+
+                    <div class="form-group">
+
+                        <label for="homeAway">
+                            Home / Away *
+                        </label>
+
+                        <select id="homeAway" required>
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>Home</option>
+                            <option>Away</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status *
+                        </label>
+
+                        <select id="status" required>
+
+                            <option>Scheduled</option>
+                            <option>Live</option>
+                            <option>Completed</option>
+                            <option>Cancelled</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SCORE -->
+
+                    <div class="form-group">
+
+                        <label for="score">
+                            Score
+                        </label>
+
+                        <input type="text" id="score" placeholder="28-14">
+
+                    </div>
+
+
+                    <!-- NOTES -->
+
+                    <div class="form-group full">
+
+                        <label for="notes">
+                            Notes
+                        </label>
+
+                        <textarea id="notes" placeholder="League Game, Homecoming, Invitational, etc."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button type="submit" class="btn-primary" id="submitButton">
+                        ➕ Add Game
+                    </button>
+
+                    <button type="button" class="btn-secondary" id="cancelButton" onclick="resetForm()"
+                        style="display:none;">
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- =========================
+       EXISTING GAMES
+  ========================== -->
+
+        <section class="card">
+
+            <h2>
+                Existing Games
+            </h2>
+
+
+            <div class="search-row">
+
+                <input type="search" id="search" placeholder="Search by sport, team, opponent, date...">
+
+                <button type="button" class="btn-secondary" onclick="loadGames()">
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div id="gameList" class="game-list">
+
+                <div class="loading">
+                    Loading schedule...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =====================================================
+           CONFIGURATION
+           ===================================================== */
+
+        /*
+         * IMPORTANT:
+         *
+         * Replace this with your Google Apps Script
+         * Web App /exec URL.
+         *
+         * Example:
+         *
+         * https://script.google.com/macros/s/XXXXXXXX/exec
+         */
+
+        const API_URL =
+            'https://script.google.com/macros/s/AKfycbzsI20u7yvWqhkP4pBqB7G5TKFKlt8-SjymChoMDei5bszbbCVvee4OWs-n1Jj1Vr2j/exec';
+
+
+        /* =====================================================
+           VARIABLES
+           ===================================================== */
+
+        let games = [];
+
+        let editingGameId = null;
+
+
+        /* =====================================================
+           START
+           ===================================================== */
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                document
+                    .getElementById('gameForm')
+                    .addEventListener(
+                        'submit',
+                        handleSubmit
+                    );
+
+
+                document
+                    .getElementById('search')
+                    .addEventListener(
+                        'input',
+                        renderGames
+                    );
+
+
+                loadGames();
+
+            }
+        );
+
+
+        /* =====================================================
+           LOAD GAMES
+           ===================================================== */
+
+        function loadGames() {
+
+            if (
+                API_URL.includes(
+                    'PASTE_YOUR'
+                )
+            ) {
+
+                showMessage(
+                    'Please add your Apps Script /exec URL to API_URL.',
+                    'error'
+                );
+
+                document
+                    .getElementById('gameList')
+                    .innerHTML =
+                    '<div class="empty">Apps Script URL has not been added yet.</div>';
+
+                return;
+            }
+
+
+            document
+                .getElementById('gameList')
+                .innerHTML =
+                '<div class="loading">Loading schedule...</div>';
+
+
+            const callbackName =
+                'scheduleCallback_' +
+                Date.now();
+
+
+            window[callbackName] =
+                function (response) {
+
+                    try {
+
+                        if (
+                            !response ||
+                            response.success === false
+                        ) {
+
+                            throw new Error(
+                                response?.message ||
+                                response?.error ||
+                                'Unable to load schedule.'
+                            );
+
+                        }
+
+
+                        /*
+                         * Matches your Apps Script:
+                         *
+                         * response.data
+                         */
+
+                        games =
+                            Array.isArray(
+                                response.data
+                            )
+                                ? response.data
+                                : [];
+
+
+                        renderGames();
+
+
+                    } catch (error) {
+
+                        document
+                            .getElementById('gameList')
+                            .innerHTML =
+                            '<div class="empty">Unable to load schedule.</div>';
+
+
+                        showMessage(
+                            error.message,
+                            'error'
+                        );
+
+                    }
+
+
+                    cleanupCallback(
+                        callbackName
+                    );
+
+                };
+
+
+            const script =
+                document.createElement(
+                    'script'
+                );
+
+
+            script.id =
+                callbackName;
+
+
+            script.src =
+                API_URL +
+                '?callback=' +
+                encodeURIComponent(
+                    callbackName
+                ) +
+                '&t=' +
+                Date.now();
+
+
+            script.onerror =
+                function () {
+
+                    document
+                        .getElementById('gameList')
+                        .innerHTML =
+                        '<div class="empty">Could not connect to Google Apps Script.</div>';
+
+
+                    showMessage(
+                        'Could not connect to Google Apps Script.',
+                        'error'
+                    );
+
+
+                    cleanupCallback(
+                        callbackName
+                    );
+
+                };
+
+
+            document.body.appendChild(
+                script
+            );
+
+        }
+
+
+        /* =====================================================
+           CLEANUP CALLBACK
+           ===================================================== */
+
+        function cleanupCallback(
+            callbackName
+        ) {
+
+            delete window[
+                callbackName
+            ];
+
+
+            const script =
+                document.getElementById(
+                    callbackName
+                );
+
+
+            if (script) {
+                script.remove();
+            }
+
+        }
+
+
+        /* =====================================================
+           RENDER GAMES
+           ===================================================== */
+
+        function renderGames() {
+
+            const list =
+                document.getElementById(
+                    'gameList'
+                );
+
+
+            const search =
+                document
+                    .getElementById('search')
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            let filteredGames =
+                games.filter(
+                    function (game) {
+
+                        if (!search) {
+                            return true;
+                        }
+
+
+                        return [
+
+                            game.scheduleDate,
+                            game.sport,
+                            game.team,
+                            game.level,
+                            game.opponent,
+                            game.time,
+                            game.location,
+                            game.homeAway,
+                            game.status,
+                            game.score,
+                            game.notes
+
+                        ]
+                            .join(' ')
+                            .toLowerCase()
+                            .includes(search);
+
+                    }
+                );
+
+
+            /*
+             * Sort oldest → newest
+             */
+
+            filteredGames.sort(
+                function (a, b) {
+
+                    return (
+                        parseSheetDate(
+                            a.scheduleDate
+                        ) -
+                        parseSheetDate(
+                            b.scheduleDate
+                        )
+                    );
+
+                }
+            );
+
+
+            if (
+                filteredGames.length === 0
+            ) {
+
+                list.innerHTML =
+                    '<div class="empty">No games found.</div>';
+
+                return;
+            }
+
+
+            list.innerHTML =
+                filteredGames
+                    .map(
+                        createGameCard
+                    )
+                    .join('');
+
+        }
+
+
+        /* =====================================================
+           CREATE GAME CARD
+           ===================================================== */
+
+        function createGameCard(
+            game
+        ) {
+
+            const statusClass =
+                getStatusClass(
+                    game.status
+                );
+
+
+            return `
+
+    <div class="game-card">
+
+      <div class="game-header">
+
+        <div>
+
+          <div class="game-title">
+
+            ${escapeHTML(
+                game.sport
+            )}
+
+            —
+
+            ${escapeHTML(
+                game.team
+            )}
+
+          </div>
+
+
+          <div class="game-date">
+
+            ${escapeHTML(
+                formatDate(
+                    game.scheduleDate
+                )
+            )}
+
+            •
+
+            ${escapeHTML(
+                game.level
+            )}
+
+          </div>
+
+        </div>
+
+
+        <span
+          class="status ${statusClass}"
+        >
+
+          ${escapeHTML(
+                game.status ||
+                'Scheduled'
+            )}
+
+        </span>
+
+      </div>
+
+
+      <div class="game-info">
+
+        <div>
+
+          <span class="info-label">
+            Opponent:
+          </span>
+
+          ${escapeHTML(
+                game.opponent
+            )}
+
+        </div>
+
+
+        <div>
+
+          <span class="info-label">
+            Time:
+          </span>
+
+          ${escapeHTML(
+                game.time
+            )}
+
+        </div>
+
+
+        <div>
+
+          <span class="info-label">
+            Location:
+          </span>
+
+          ${escapeHTML(
+                game.location
+            )}
+
+        </div>
+
+
+        <div>
+
+          <span class="info-label">
+            Home/Away:
+          </span>
+
+          ${escapeHTML(
+                game.homeAway
+            )}
+
+        </div>
+
+
+        <div>
+
+          <span class="info-label">
+            Score:
+          </span>
+
+          ${escapeHTML(
+                game.score || '—'
+            )}
+
+        </div>
+
+
+        <div>
+
+          <span class="info-label">
+            Notes:
+          </span>
+
+          ${escapeHTML(
+                game.notes || '—'
+            )}
+
+        </div>
+
+      </div>
+
+
+      <div class="game-actions">
+
+        <button
+          type="button"
+          class="btn-primary"
+          onclick="editGame('${escapeAttribute(game.id)}')"
+        >
+          ✏️ Edit
+        </button>
+
+
+        <button
+          type="button"
+          class="btn-danger"
+          onclick="deleteGame('${escapeAttribute(game.id)}')"
+        >
+          🗑️ Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+        }
+
+
+        /* =====================================================
+           ADD / UPDATE
+           ===================================================== */
+
+        async function handleSubmit(
+            event
+        ) {
+
+            event.preventDefault();
+
+
+            const game = {
+
+                scheduleDate:
+                    document
+                        .getElementById('scheduleDate')
+                        .value,
+
+
+                sport:
+                    document
+                        .getElementById('sport')
+                        .value,
+
+
+                team:
+                    document
+                        .getElementById('team')
+                        .value
+                        .trim(),
+
+
+                level:
+                    document
+                        .getElementById('level')
+                        .value,
+
+
+                opponent:
+                    document
+                        .getElementById('opponent')
+                        .value
+                        .trim(),
+
+
+                time:
+                    convertTimeToDisplay(
+                        document
+                            .getElementById('time')
+                            .value
+                    ),
+
+
+                location:
+                    document
+                        .getElementById('location')
+                        .value
+                        .trim(),
+
+
+                homeAway:
+                    document
+                        .getElementById('homeAway')
+                        .value,
+
+
+                status:
+                    document
+                        .getElementById('status')
+                        .value,
+
+
+                score:
+                    document
+                        .getElementById('score')
+                        .value
+                        .trim(),
+
+
+                notes:
+                    document
+                        .getElementById('notes')
+                        .value
+                        .trim()
+
+            };
+
+
+            if (
+                editingGameId
+            ) {
+
+                game.id =
+                    editingGameId;
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    'submitButton'
+                );
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                editingGameId
+                    ? 'Saving...'
+                    : 'Adding...';
+
+
+            try {
+
+                const action =
+                    editingGameId
+                        ? 'update'
+                        : 'add';
+
+
+                const result =
+                    await sendAction(
+                        action,
+                        game
+                    );
+
+
+                if (
+                    !result ||
+                    result.success === false
+                ) {
+
+                    throw new Error(
+                        result?.message ||
+                        result?.error ||
+                        'Operation failed.'
+                    );
+
+                }
+
+
+                showMessage(
+                    editingGameId
+                        ? 'Game updated successfully!'
+                        : 'Game added successfully!',
+                    'success'
+                );
+
+
+                resetForm();
+
+
+                loadGames();
+
+
+            } catch (error) {
+
+                showMessage(
+                    error.message,
+                    'error'
+                );
+
+            }
+
+
+            button.disabled =
+                false;
+
+        }
+
+
+        /* =====================================================
+           SEND ADD / UPDATE
+           ===================================================== */
+
+        function sendAction(
+            action,
+            game
+        ) {
+
+            return new Promise(
+                function (resolve, reject) {
+
+                    const callbackName =
+                        'actionCallback_' +
+                        Date.now();
+
+
+                    window[callbackName] =
+                        function (response) {
+
+                            resolve(
+                                response
+                            );
+
+
+                            cleanupCallback(
+                                callbackName
+                            );
+
+                        };
+
+
+                    const script =
+                        document.createElement(
+                            'script'
+                        );
+
+
+                    script.id =
+                        callbackName;
+
+
+                    script.src =
+                        API_URL +
+                        '?action=' +
+                        encodeURIComponent(
+                            action
+                        ) +
+                        '&data=' +
+                        encodeURIComponent(
+                            JSON.stringify(
+                                game
+                            )
+                        ) +
+                        '&callback=' +
+                        encodeURIComponent(
+                            callbackName
+                        ) +
+                        '&t=' +
+                        Date.now();
+
+
+                    script.onerror =
+                        function () {
+
+                            reject(
+                                new Error(
+                                    'Could not connect to Google Apps Script.'
+                                )
+                            );
+
+
+                            cleanupCallback(
+                                callbackName
+                            );
+
+                        };
+
+
+                    document.body.appendChild(
+                        script
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           EDIT
+           ===================================================== */
+
+        function editGame(
+            id
+        ) {
+
+            const game =
+                games.find(
+                    function (item) {
+
+                        return String(
+                            item.id
+                        ) === String(
+                            id
+                        );
+
+                    }
+                );
+
+
+            if (!game) {
+
+                showMessage(
+                    'Game could not be found.',
+                    'error'
+                );
+
+                return;
+            }
+
+
+            editingGameId =
+                String(
+                    game.id
+                );
+
+
+            document
+                .getElementById('gameId')
+                .value =
+                game.id;
+
+
+            document
+                .getElementById('scheduleDate')
+                .value =
+                convertDateForInput(
+                    game.scheduleDate
+                );
+
+
+            document
+                .getElementById('sport')
+                .value =
+                game.sport;
+
+
+            document
+                .getElementById('team')
+                .value =
+                game.team;
+
+
+            document
+                .getElementById('level')
+                .value =
+                game.level;
+
+
+            document
+                .getElementById('opponent')
+                .value =
+                game.opponent;
+
+
+            document
+                .getElementById('time')
+                .value =
+                convertTimeForInput(
+                    game.time
+                );
+
+
+            document
+                .getElementById('location')
+                .value =
+                game.location;
+
+
+            document
+                .getElementById('homeAway')
+                .value =
+                game.homeAway;
+
+
+            document
+                .getElementById('status')
+                .value =
+                game.status;
+
+
+            document
+                .getElementById('score')
+                .value =
+                game.score || '';
+
+
+            document
+                .getElementById('notes')
+                .value =
+                game.notes || '';
+
+
+            document
+                .getElementById('formTitle')
+                .textContent =
+                'Edit Game';
+
+
+            document
+                .getElementById('submitButton')
+                .textContent =
+                '💾 Save Changes';
+
+
+            document
+                .getElementById('cancelButton')
+                .style.display =
+                'inline-block';
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }
+
+
+        /* =====================================================
+           DELETE
+           ===================================================== */
+
+        async function deleteGame(
+            id
+        ) {
+
+            const game =
+                games.find(
+                    function (item) {
+
+                        return String(
+                            item.id
+                        ) === String(
+                            id
+                        );
+
+                    }
+                );
+
+
+            if (!game) {
+                return;
+            }
+
+
+            const confirmed =
+                confirm(
+                    'Are you sure you want to delete this game?\n\n' +
+
+                    game.sport +
+                    ' — ' +
+                    game.team +
+
+                    '\n' +
+
+                    game.opponent +
+
+                    '\n' +
+
+                    game.scheduleDate
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            try {
+
+                const result =
+                    await sendDeleteAction(
+                        id
+                    );
+
+
+                if (
+                    !result ||
+                    result.success === false
+                ) {
+
+                    throw new Error(
+                        result?.message ||
+                        result?.error ||
+                        'Could not delete game.'
+                    );
+
+                }
+
+
+                showMessage(
+                    'Game deleted successfully!',
+                    'success'
+                );
+
+
+                loadGames();
+
+
+            } catch (error) {
+
+                showMessage(
+                    error.message,
+                    'error'
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SEND DELETE
+           ===================================================== */
+
+        function sendDeleteAction(
+            id
+        ) {
+
+            return new Promise(
+                function (resolve, reject) {
+
+                    const callbackName =
+                        'deleteCallback_' +
+                        Date.now();
+
+
+                    window[callbackName] =
+                        function (response) {
+
+                            resolve(
+                                response
+                            );
+
+
+                            cleanupCallback(
+                                callbackName
+                            );
+
+                        };
+
+
+                    const script =
+                        document.createElement(
+                            'script'
+                        );
+
+
+                    script.id =
+                        callbackName;
+
+
+                    script.src =
+                        API_URL +
+                        '?action=delete' +
+                        '&id=' +
+                        encodeURIComponent(
+                            id
+                        ) +
+                        '&callback=' +
+                        encodeURIComponent(
+                            callbackName
+                        ) +
+                        '&t=' +
+                        Date.now();
+
+
+                    script.onerror =
+                        function () {
+
+                            reject(
+                                new Error(
+                                    'Could not connect to Google Apps Script.'
+                                )
+                            );
+
+
+                            cleanupCallback(
+                                callbackName
+                            );
+
+                        };
+
+
+                    document.body.appendChild(
+                        script
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           RESET FORM
+           ===================================================== */
+
+        function resetForm() {
+
+            editingGameId =
+                null;
+
+
+            document
+                .getElementById('gameForm')
+                .reset();
+
+
+            document
+                .getElementById('gameId')
+                .value =
+                '';
+
+
+            document
+                .getElementById('formTitle')
+                .textContent =
+                'Add New Game';
+
+
+            document
+                .getElementById('submitButton')
+                .textContent =
+                '➕ Add Game';
+
+
+            document
+                .getElementById('cancelButton')
+                .style.display =
+                'none';
+
+        }
+
+
+        /* =====================================================
+           DATE PARSER
+           ===================================================== */
+
+        function parseSheetDate(
+            value
+        ) {
+
+            const text =
+                String(
+                    value || ''
+                ).trim();
+
+
+            let match =
+                text.match(
+                    /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+                );
+
+
+            if (match) {
+
+                return new Date(
+                    Number(match[3]),
+                    Number(match[1]) - 1,
+                    Number(match[2])
+                );
+
+            }
+
+
+            match =
+                text.match(
+                    /^(\d{4})-(\d{1,2})-(\d{1,2})$/
+                );
+
+
+            if (match) {
+
+                return new Date(
+                    Number(match[1]),
+                    Number(match[2]) - 1,
+                    Number(match[3])
+                );
+
+            }
+
+
+            return new Date(0);
+
+        }
+
+
+        /* =====================================================
+           DATE FOR INPUT
+           ===================================================== */
+
+        function convertDateForInput(
+            value
+        ) {
+
+            const date =
+                parseSheetDate(
+                    value
+                );
+
+
+            if (
+                date.getTime() === 0
+            ) {
+
+                return '';
+
+            }
+
+
+            return (
+
+                date.getFullYear() +
+
+                '-' +
+
+                String(
+                    date.getMonth() + 1
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+
+                '-' +
+
+                String(
+                    date.getDate()
+                ).padStart(
+                    2,
+                    '0'
+                )
+
+            );
+
+        }
+
+
+        /* =====================================================
+           FORMAT DATE
+           ===================================================== */
+
+        function formatDate(
+            value
+        ) {
+
+            const date =
+                parseSheetDate(
+                    value
+                );
+
+
+            if (
+                date.getTime() === 0
+            ) {
+
+                return value || '';
+
+            }
+
+
+            return date.toLocaleDateString(
+                undefined,
+                {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           TIME → SHEET FORMAT
+           ===================================================== */
+
+        function convertTimeToDisplay(
+            value
+        ) {
+
+            if (!value) {
+                return '';
+            }
+
+
+            const parts =
+                value.split(':');
+
+
+            let hours =
+                Number(
+                    parts[0]
+                );
+
+
+            const minutes =
+                parts[1];
+
+
+            const period =
+                hours >= 12
+                    ? 'PM'
+                    : 'AM';
+
+
+            hours =
+                hours % 12;
+
+
+            if (
+                hours === 0
+            ) {
+
+                hours = 12;
+
+            }
+
+
+            return (
+                hours +
+                ':' +
+                minutes +
+                ' ' +
+                period
+            );
+
+        }
+
+
+        /* =====================================================
+           SHEET TIME → INPUT
+           ===================================================== */
+
+        function convertTimeForInput(
+            value
+        ) {
+
+            const text =
+                String(
+                    value || ''
+                ).trim();
+
+
+            const match =
+                text.match(
+                    /^(\d{1,2}):(\d{2})\s*(AM|PM)?$/i
+                );
+
+
+            if (!match) {
+                return '';
+            }
+
+
+            let hours =
+                Number(
+                    match[1]
+                );
+
+
+            const minutes =
+                match[2];
+
+
+            const period =
+                match[3]
+                    ? match[3].toUpperCase()
+                    : '';
+
+
+            if (
+                period === 'PM' &&
+                hours < 12
+            ) {
+
+                hours += 12;
+
+            }
+
+
+            if (
+                period === 'AM' &&
+                hours === 12
+            ) {
+
+                hours = 0;
+
+            }
+
+
+            return (
+                String(
+                    hours
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                ':' +
+                minutes
+            );
+
+        }
+
+
+        /* =====================================================
+           STATUS CLASS
+           ===================================================== */
+
+        function getStatusClass(
+            status
+        ) {
+
+            const value =
+                String(
+                    status || ''
+                ).toLowerCase();
+
+
+            if (
+                value === 'live'
+            ) {
+
+                return 'status-live';
+
+            }
+
+
+            if (
+                value === 'completed'
+            ) {
+
+                return 'status-completed';
+
+            }
+
+
+            if (
+                value === 'cancelled' ||
+                value === 'canceled'
+            ) {
+
+                return 'status-cancelled';
+
+            }
+
+
+            return 'status-scheduled';
+
+        }
+
+
+        /* =====================================================
+           MESSAGE
+           ===================================================== */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            const element =
+                document.getElementById(
+                    'message'
+                );
+
+
+            element.textContent =
+                text;
+
+
+            element.className =
+                type;
+
+
+            setTimeout(
+                function () {
+
+                    element.className =
+                        '';
+
+                },
+                5000
+            );
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+           ===================================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value || ''
+            )
+                .replace(
+                    /&/g,
+                    '&amp;'
+                )
+                .replace(
+                    /</g,
+                    '&lt;'
+                )
+                .replace(
+                    />/g,
+                    '&gt;'
+                )
+                .replace(
+                    /"/g,
+                    '&quot;'
+                )
+                .replace(
+                    /'/g,
+                    '&#039;'
+                );
+
+        }
+
+
+        /* =====================================================
+           ESCAPE ATTRIBUTE
+           ===================================================== */
+
+        function escapeAttribute(
+            value
+        ) {
+
+            return String(
+                value || ''
+            )
+                .replace(
+                    /\\/g,
+                    '\\\\'
+                )
+                .replace(
+                    /'/g,
+                    "\\'"
+                );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

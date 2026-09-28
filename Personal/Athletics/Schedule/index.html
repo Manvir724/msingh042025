@@ -1,0 +1,2617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CHS Athletics | Sports Schedule</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            line-height: 1.5;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(135deg,
+                    #102a43,
+                    #163d5c,
+                    #1d5677);
+            color: white;
+            padding: 22px 20px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .12);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .22);
+            color: white;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, .18);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-logo {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .13);
+            border: 1px solid rgba(255, 255, 255, .2);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .brand-text h1 {
+            font-size: 1.35rem;
+            line-height: 1.1;
+        }
+
+        .brand-text p {
+            margin-top: 3px;
+            opacity: .8;
+            font-size: .9rem;
+        }
+
+        .refresh-button {
+            border: 1px solid rgba(255, 255, 255, .25);
+            background: rgba(255, 255, 255, .1);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .refresh-button:hover {
+            background: rgba(255, 255, 255, .18);
+        }
+
+        .refresh-button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        /* HERO */
+
+        .hero {
+            max-width: 1200px;
+            margin: auto;
+            padding: 42px 20px 28px;
+        }
+
+        .hero h2 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.05;
+            letter-spacing: -.04em;
+        }
+
+        .hero p {
+            margin-top: 12px;
+            color: #617086;
+            max-width: 720px;
+        }
+
+        /* STATS */
+
+        .stats {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px 28px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid #e4eaf1;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(18, 38, 63, .05);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 850;
+            color: #102a43;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: .88rem;
+        }
+
+        /* FILTERS */
+
+        .filters-wrapper {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px 32px;
+        }
+
+        .filters {
+            background: white;
+            border: 1px solid #e4eaf1;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(18, 38, 63, .05);
+        }
+
+        .filters-title {
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns:
+                2fr 1fr 1fr 1fr 1fr auto;
+            gap: 10px;
+        }
+
+        .input,
+        .select {
+            width: 100%;
+            min-height: 44px;
+
+            padding: 10px 12px;
+
+            border: 1px solid #d9e1ea;
+            border-radius: 10px;
+
+            background: white;
+            color: #172033;
+            outline: none;
+        }
+
+        .input:focus,
+        .select:focus {
+            border-color: #3478a8;
+            box-shadow: 0 0 0 3px rgba(52, 120, 168, .12);
+        }
+
+        .clear-button {
+            min-height: 44px;
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 10px;
+            background: #e9eef4;
+            color: #30445a;
+            font-weight: 700;
+        }
+
+        /* MAIN */
+
+        .main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px 60px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 1.55rem;
+            font-weight: 850;
+            color: #102a43;
+        }
+
+        .section-subtitle {
+            color: #718096;
+            font-size: .9rem;
+        }
+
+        .section-count {
+            background: #eaf1f7;
+            color: #315a77;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: .8rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        /* GAMES */
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .game-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 17px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(18, 38, 63, .05);
+        }
+
+        .game-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(18, 38, 63, .09);
+        }
+
+        .game-top {
+            padding: 15px 17px;
+            border-bottom: 1px solid #edf1f5;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .sport {
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            font-weight: 850;
+            color: #55718a;
+        }
+
+        .team {
+            margin-top: 3px;
+            font-size: 1.12rem;
+            font-weight: 850;
+            color: #15283b;
+        }
+
+        .level {
+            margin-top: 1px;
+            font-size: .84rem;
+            color: #718096;
+        }
+
+        /* STATUS */
+
+        .status {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+
+            padding: 6px 9px;
+            border-radius: 999px;
+
+            font-size: .7rem;
+            font-weight: 850;
+
+            text-transform: uppercase;
+        }
+
+        .status-scheduled {
+            background: #edf4fa;
+            color: #315f80;
+        }
+
+        .status-live {
+            background: #fff0f0;
+            color: #b4232f;
+        }
+
+        .status-completed,
+        .status-final {
+            background: #edf7ef;
+            color: #28733c;
+        }
+
+        .status-cancelled {
+            background: #fff2e9;
+            color: #a44b18;
+        }
+
+        .status-postponed {
+            background: #fff7d8;
+            color: #806500;
+        }
+
+        .status-default {
+            background: #eef1f4;
+            color: #526170;
+        }
+
+        /* GAME BODY */
+
+        .game-body {
+            padding: 17px;
+        }
+
+        .opponent-row {
+            margin-bottom: 16px;
+        }
+
+        .vs {
+            color: #9aa6b2;
+            font-size: .78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .opponent {
+            font-weight: 800;
+            color: #26384b;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 11px;
+        }
+
+        .detail {
+            padding: 10px;
+            background: #f7f9fb;
+            border-radius: 10px;
+        }
+
+        .detail-label {
+            font-size: .69rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: #82909f;
+            font-weight: 800;
+        }
+
+        .detail-value {
+            margin-top: 2px;
+            font-size: .88rem;
+            color: #26384b;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .score-box {
+            margin-top: 12px;
+            padding: 11px 12px;
+            border-radius: 10px;
+            background: #f3f7fa;
+        }
+
+        .score-label {
+            font-size: .68rem;
+            text-transform: uppercase;
+            color: #82909f;
+            font-weight: 800;
+        }
+
+        .score {
+            margin-top: 2px;
+            font-size: 1.15rem;
+            font-weight: 850;
+            color: #173b56;
+        }
+
+        .notes {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-left: 3px solid #8aa8bd;
+            background: #f8fafc;
+            border-radius: 0 8px 8px 0;
+            color: #5d6c7c;
+            font-size: .83rem;
+        }
+
+        /* MESSAGES */
+
+        .message {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 35px 20px;
+            text-align: center;
+            color: #6c7b8b;
+        }
+
+        .message-title {
+            color: #26384b;
+            font-weight: 850;
+            font-size: 1.05rem;
+        }
+
+        .message-text {
+            margin-top: 5px;
+            font-size: .88rem;
+        }
+
+        .error {
+            border-color: #f1cccc;
+            background: #fffafa;
+            margin-bottom: 25px;
+        }
+
+        .error .message-title {
+            color: #a72a35;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 40px 20px;
+            color: #64748b;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid #d9e2ea;
+            border-top-color: #356b8f;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 25px;
+            font-size: .78rem;
+            color: #84909d;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            padding: 30px 20px;
+            background: #102a43;
+            color: rgba(255, 255, 255, .7);
+            text-align: center;
+            font-size: .82rem;
+        }
+
+        .footer strong {
+            color: white;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1050px) {
+            .filter-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .filter-search {
+                grid-column: span 3;
+            }
+        }
+
+        @media(max-width:800px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .games {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-search {
+                grid-column: span 2;
+            }
+        }
+
+        @media(max-width:560px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .refresh-button {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-search {
+                grid-column: span 1;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="header-inner">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    CHS
+                </div>
+
+                <div class="brand-text">
+                    <h1>CHS Athletics</h1>
+                    <p>Coalinga High School Sports Schedule</p>
+                </div>
+
+            </div>
+
+            <div class="header-actions">
+                <a class="nav-link" href="manage.html">Manage</a>
+                <a class="nav-link" href="calender-export.html">Calendar Export</a>
+                <button id="refreshButton" class="refresh-button">
+                    ↻ Refresh Schedule
+                </button>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <h2>
+            Athletics Schedule
+        </h2>
+
+        <p>
+            View today's games, upcoming games, and previous results.
+            Schedule information is loaded directly from the CHS athletics schedule.
+        </p>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stat">
+            <div id="totalGames" class="stat-number">—</div>
+            <div class="stat-label">Total Games</div>
+        </div>
+
+        <div class="stat">
+            <div id="todayGamesStat" class="stat-number">—</div>
+            <div class="stat-label">Today's Games</div>
+        </div>
+
+        <div class="stat">
+            <div id="upcomingGamesStat" class="stat-number">—</div>
+            <div class="stat-label">Upcoming Games</div>
+        </div>
+
+        <div class="stat">
+            <div id="liveGamesStat" class="stat-number">—</div>
+            <div class="stat-label">Live Games</div>
+        </div>
+
+    </section>
+
+
+    <section class="filters-wrapper">
+
+        <div class="filters">
+
+            <div class="filters-title">
+                Find a Game
+            </div>
+
+            <div class="filter-grid">
+
+                <input id="searchInput" class="input filter-search" type="search"
+                    placeholder="Search team, opponent, sport, location...">
+
+                <select id="sportFilter" class="select">
+                    <option value="">All Sports</option>
+                </select>
+
+                <select id="levelFilter" class="select">
+                    <option value="">All Levels</option>
+                </select>
+
+                <select id="statusFilter" class="select">
+                    <option value="">All Statuses</option>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Live">Live</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Final">Final</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Postponed">Postponed</option>
+                </select>
+
+                <input id="dateFilter" class="input" type="date">
+
+                <button id="clearButton" class="clear-button">
+                    Clear
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <main class="main">
+
+        <div id="loadingMessage" class="loading">
+            <div class="spinner"></div>
+            <span>Loading schedule...</span>
+        </div>
+
+
+        <div id="errorMessage" class="message error" style="display:none;">
+
+            <div class="message-title">
+                Unable to Load Schedule
+            </div>
+
+            <div id="errorText" class="message-text">
+                Please try refreshing the schedule.
+            </div>
+
+        </div>
+
+
+        <!-- TODAY -->
+
+        <section id="todaySection" class="section" style="display:none;">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Today's Games
+                    </h2>
+
+                    <p id="todayDate" class="section-subtitle"></p>
+
+                </div>
+
+                <div id="todayCount" class="section-count">
+                    0 games
+                </div>
+
+            </div>
+
+            <div id="todayContainer"></div>
+
+        </section>
+
+
+        <!-- UPCOMING -->
+
+        <section id="upcomingSection" class="section" style="display:none;">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Upcoming Games
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Games scheduled after today
+                    </p>
+
+                </div>
+
+                <div id="upcomingCount" class="section-count">
+                    0 games
+                </div>
+
+            </div>
+
+            <div id="upcomingContainer"></div>
+
+        </section>
+
+
+        <!-- PAST -->
+
+        <section id="pastSection" class="section" style="display:none;">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Past Results
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Previous games from the schedule
+                    </p>
+
+                </div>
+
+                <div id="pastCount" class="section-count">
+                    0 games
+                </div>
+
+            </div>
+
+            <div id="pastContainer"></div>
+
+        </section>
+
+
+        <div id="lastUpdated" class="last-updated">
+            Schedule has not been loaded yet.
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <strong>CHS Athletics</strong>
+        <br>
+        Sports Schedule
+
+    </footer>
+
+
+    <script>
+
+        /* ======================================================
+           YOUR APPS SCRIPT URL
+           
+           PUT YOUR WORKING /EXEC URL HERE
+        ====================================================== */
+
+        const API_URL =
+            "https://script.google.com/macros/s/AKfycbzsI20u7yvWqhkP4pBqB7G5TKFKlt8-SjymChoMDei5bszbbCVvee4OWs-n1Jj1Vr2j/exec";
+
+
+        const REFRESH_INTERVAL =
+            5 * 60 * 1000;
+
+
+        let allGames = [];
+
+        let isLoading = false;
+
+
+        /* ======================================================
+           ELEMENTS
+        ====================================================== */
+
+        const loadingMessage =
+            document.getElementById("loadingMessage");
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const errorText =
+            document.getElementById("errorText");
+
+        const refreshButton =
+            document.getElementById("refreshButton");
+
+        const todaySection =
+            document.getElementById("todaySection");
+
+        const upcomingSection =
+            document.getElementById("upcomingSection");
+
+        const pastSection =
+            document.getElementById("pastSection");
+
+        const todayContainer =
+            document.getElementById("todayContainer");
+
+        const upcomingContainer =
+            document.getElementById("upcomingContainer");
+
+        const pastContainer =
+            document.getElementById("pastContainer");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const sportFilter =
+            document.getElementById("sportFilter");
+
+        const levelFilter =
+            document.getElementById("levelFilter");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+        const dateFilter =
+            document.getElementById("dateFilter");
+
+        const clearButton =
+            document.getElementById("clearButton");
+
+
+        /* ======================================================
+           START
+        ====================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                setupEvents();
+
+                loadSchedule();
+
+                setInterval(
+                    loadSchedule,
+                    REFRESH_INTERVAL
+                );
+
+            }
+        );
+
+
+        /* ======================================================
+           EVENTS
+        ====================================================== */
+
+        function setupEvents() {
+
+            searchInput.addEventListener(
+                "input",
+                renderGames
+            );
+
+            sportFilter.addEventListener(
+                "change",
+                renderGames
+            );
+
+            levelFilter.addEventListener(
+                "change",
+                renderGames
+            );
+
+            statusFilter.addEventListener(
+                "change",
+                renderGames
+            );
+
+            dateFilter.addEventListener(
+                "change",
+                renderGames
+            );
+
+            clearButton.addEventListener(
+                "click",
+                function () {
+
+                    searchInput.value = "";
+                    sportFilter.value = "";
+                    levelFilter.value = "";
+                    statusFilter.value = "";
+                    dateFilter.value = "";
+
+                    renderGames();
+
+                }
+            );
+
+            refreshButton.addEventListener(
+                "click",
+                loadSchedule
+            );
+
+        }
+
+
+        /* ======================================================
+           LOAD SCHEDULE
+      
+           THIS VERSION ACCEPTS:
+      
+           data.games
+           data.schedule
+           data.data
+           data.results
+           direct array
+        ====================================================== */
+
+        function loadSchedule() {
+
+            if (isLoading) {
+                return;
+            }
+
+            if (
+                API_URL.includes(
+                    "PASTE_YOUR_APPS_SCRIPT"
+                )
+            ) {
+
+                showError(
+                    "You need to paste your Apps Script Web App /exec URL into API_URL."
+                );
+
+                return;
+
+            }
+
+
+            isLoading = true;
+
+            refreshButton.disabled = true;
+
+            refreshButton.textContent =
+                "↻ Loading...";
+
+            loadingMessage.style.display =
+                "flex";
+
+            errorMessage.style.display =
+                "none";
+
+
+            const callbackName =
+                "scheduleCallback_" +
+                Date.now();
+
+
+            window[callbackName] =
+                function (response) {
+
+                    console.log(
+                        "Apps Script response:",
+                        response
+                    );
+
+
+                    try {
+
+                        const games =
+                            extractGamesFromResponse(
+                                response
+                            );
+
+
+                        if (
+                            !games ||
+                            !Array.isArray(games)
+                        ) {
+
+                            throw new Error(
+                                "The Apps Script responded, but the schedule list could not be found."
+                            );
+
+                        }
+
+
+                        allGames =
+                            games
+                                .map(normalizeGame)
+                                .filter(function (game) {
+
+                                    return (
+                                        game.scheduleDate ||
+                                        game.sport ||
+                                        game.team ||
+                                        game.opponent
+                                    );
+
+                                });
+
+
+                        console.log(
+                            "Games loaded:",
+                            allGames
+                        );
+
+
+                        if (
+                            allGames.length === 0
+                        ) {
+
+                            throw new Error(
+                                "The Apps Script responded successfully, but no schedule rows were found."
+                            );
+
+                        }
+
+
+                        populateFilters();
+
+                        updateStats();
+
+                        renderGames();
+
+                        updateLastUpdated();
+
+                        loadingMessage.style.display =
+                            "none";
+
+                        errorMessage.style.display =
+                            "none";
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Schedule error:",
+                            error
+                        );
+
+
+                        showError(
+                            error.message
+                        );
+
+                    }
+
+
+                    finishLoading();
+
+                    cleanupCallback(
+                        callbackName,
+                        script
+                    );
+
+                };
+
+
+            let script = null;
+
+
+            script =
+                document.createElement(
+                    "script"
+                );
+
+
+            script.src =
+                API_URL +
+                (
+                    API_URL.includes("?")
+                        ? "&"
+                        : "?"
+                ) +
+                "callback=" +
+                encodeURIComponent(
+                    callbackName
+                ) +
+                "&t=" +
+                Date.now();
+
+
+            script.onerror =
+                function () {
+
+                    showError(
+                        "Could not connect to Google Apps Script. Make sure your Web App URL ends with /exec and the deployment is accessible."
+                    );
+
+                    finishLoading();
+
+                    cleanupCallback(
+                        callbackName,
+                        script
+                    );
+
+                };
+
+
+            document.body.appendChild(
+                script
+            );
+
+
+            setTimeout(
+                function () {
+
+                    if (
+                        isLoading &&
+                        window[callbackName]
+                    ) {
+
+                        console.warn(
+                            "Apps Script request timed out."
+                        );
+
+                        showError(
+                            "The schedule request timed out. Check that your Apps Script deployment is working."
+                        );
+
+                        finishLoading();
+
+                        cleanupCallback(
+                            callbackName,
+                            script
+                        );
+
+                    }
+
+                },
+                15000
+            );
+
+        }
+
+
+        /* ======================================================
+           EXTRACT GAMES
+      
+           Handles multiple possible Apps Script formats.
+        ====================================================== */
+
+        function extractGamesFromResponse(
+            response
+        ) {
+
+            // Direct array
+            if (
+                Array.isArray(response)
+            ) {
+
+                return response;
+
+            }
+
+
+            if (
+                !response ||
+                typeof response !== "object"
+            ) {
+
+                return null;
+
+            }
+
+
+            // Most likely formats
+            const possibleKeys = [
+                "games",
+                "schedule",
+                "data",
+                "results",
+                "rows",
+                "items"
+            ];
+
+
+            for (
+                const key of possibleKeys
+            ) {
+
+                if (
+                    Array.isArray(
+                        response[key]
+                    )
+                ) {
+
+                    return response[key];
+
+                }
+
+            }
+
+
+            /*
+             * Sometimes an API returns:
+             *
+             * {
+             *   success: true,
+             *   data: {
+             *     games: [...]
+             *   }
+             * }
+             */
+
+            if (
+                response.data &&
+                typeof response.data === "object"
+            ) {
+
+                for (
+                    const key of possibleKeys
+                ) {
+
+                    if (
+                        Array.isArray(
+                            response.data[key]
+                        )
+                    ) {
+
+                        return response.data[key];
+
+                    }
+
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+        /* ======================================================
+           CLEAN CALLBACK
+        ====================================================== */
+
+        function cleanupCallback(
+            callbackName,
+            script
+        ) {
+
+            try {
+                delete window[callbackName];
+            } catch (e) { }
+
+
+            if (
+                script &&
+                script.parentNode
+            ) {
+
+                script.parentNode.removeChild(
+                    script
+                );
+
+            }
+
+        }
+
+
+        /* ======================================================
+           NORMALIZE GAME
+      
+           Supports your Apps Script field names.
+        ====================================================== */
+
+        function normalizeGame(
+            game
+        ) {
+
+            return {
+
+                id:
+                    clean(
+                        game.id ||
+                        game.ID
+                    ),
+
+                scheduleDate:
+                    clean(
+                        game.scheduleDate ||
+                        game.date ||
+                        game.Date ||
+                        game["Schedule Date"]
+                    ),
+
+                sport:
+                    clean(
+                        game.sport ||
+                        game.Sport
+                    ),
+
+                team:
+                    clean(
+                        game.team ||
+                        game.Team
+                    ),
+
+                level:
+                    clean(
+                        game.level ||
+                        game.Level
+                    ),
+
+                opponent:
+                    clean(
+                        game.opponent ||
+                        game.Opponent
+                    ),
+
+                time:
+                    clean(
+                        game.time ||
+                        game.Time
+                    ),
+
+                location:
+                    clean(
+                        game.location ||
+                        game.Location
+                    ),
+
+                homeAway:
+                    clean(
+                        game.homeAway ||
+                        game.HomeAway ||
+                        game["Home/Away"]
+                    ),
+
+                status:
+                    clean(
+                        game.status ||
+                        game.Status
+                    ),
+
+                score:
+                    clean(
+                        game.score ||
+                        game.Score
+                    ),
+
+                notes:
+                    clean(
+                        game.notes ||
+                        game.Notes
+                    )
+
+            };
+
+        }
+
+
+        /* ======================================================
+           CLEAN
+        ====================================================== */
+
+        function clean(
+            value
+        ) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+            return String(value).trim();
+
+        }
+
+
+        /* ======================================================
+           TODAY
+        ====================================================== */
+
+        function getTodayLocalDate() {
+
+            const date =
+                new Date();
+
+            const year =
+                date.getFullYear();
+
+            const month =
+                String(
+                    date.getMonth() + 1
+                ).padStart(2, "0");
+
+            const day =
+                String(
+                    date.getDate()
+                ).padStart(2, "0");
+
+            return (
+                year +
+                "-" +
+                month +
+                "-" +
+                day
+            );
+
+        }
+
+
+        /* ======================================================
+           DATE CONVERSION
+        ====================================================== */
+
+        function convertSheetDateToISO(
+            value
+        ) {
+
+            if (!value) {
+                return "";
+            }
+
+
+            const text =
+                String(value)
+                    .trim();
+
+
+            /*
+             * YYYY-MM-DD
+             */
+
+            let match =
+                text.match(
+                    /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/
+                );
+
+
+            if (match) {
+
+                return formatISO(
+                    Number(match[1]),
+                    Number(match[2]),
+                    Number(match[3])
+                );
+
+            }
+
+
+            /*
+             * M/D/YYYY
+             */
+
+            match =
+                text.match(
+                    /^(\d{1,2})[/-](\d{1,2})[/-](\d{4})$/
+                );
+
+
+            if (match) {
+
+                return formatISO(
+                    Number(match[3]),
+                    Number(match[1]),
+                    Number(match[2])
+                );
+
+            }
+
+
+            return "";
+
+        }
+
+
+        function formatISO(
+            year,
+            month,
+            day
+        ) {
+
+            return (
+                String(year).padStart(4, "0") +
+                "-" +
+                String(month).padStart(2, "0") +
+                "-" +
+                String(day).padStart(2, "0")
+            );
+
+        }
+
+
+        /* ======================================================
+           DISPLAY DATE
+        ====================================================== */
+
+        function formatDisplayDate(
+            value
+        ) {
+
+            const iso =
+                convertSheetDateToISO(
+                    value
+                );
+
+
+            if (!iso) {
+                return value || "";
+            }
+
+
+            const parts =
+                iso.split("-");
+
+
+            const date =
+                new Date(
+                    Number(parts[0]),
+                    Number(parts[1]) - 1,
+                    Number(parts[2])
+                );
+
+
+            return date.toLocaleDateString(
+                "en-US",
+                {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* ======================================================
+           FILTERS
+        ====================================================== */
+
+        function getFilteredGames() {
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+            const sport =
+                sportFilter.value
+                    .trim()
+                    .toLowerCase();
+
+            const level =
+                levelFilter.value
+                    .trim()
+                    .toLowerCase();
+
+            const status =
+                statusFilter.value
+                    .trim()
+                    .toLowerCase();
+
+            const selectedDate =
+                dateFilter.value;
+
+
+            return allGames.filter(
+                function (game) {
+
+                    if (search) {
+
+                        const searchable =
+                            [
+                                game.sport,
+                                game.team,
+                                game.level,
+                                game.opponent,
+                                game.time,
+                                game.location,
+                                game.homeAway,
+                                game.status,
+                                game.score,
+                                game.notes
+                            ]
+                                .join(" ")
+                                .toLowerCase();
+
+
+                        if (
+                            !searchable.includes(
+                                search
+                            )
+                        ) {
+
+                            return false;
+
+                        }
+
+                    }
+
+
+                    if (
+                        sport &&
+                        game.sport.toLowerCase() !== sport
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    if (
+                        level &&
+                        game.level.toLowerCase() !== level
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    if (
+                        status &&
+                        game.status.toLowerCase() !== status
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    if (selectedDate) {
+
+                        if (
+                            convertSheetDateToISO(
+                                game.scheduleDate
+                            ) !== selectedDate
+                        ) {
+
+                            return false;
+
+                        }
+
+                    }
+
+
+                    return true;
+
+                }
+            );
+
+        }
+
+
+        /* ======================================================
+           RENDER
+        ====================================================== */
+
+        function renderGames() {
+
+            const filtered =
+                getFilteredGames();
+
+            const today =
+                getTodayLocalDate();
+
+
+            const todayGames =
+                filtered.filter(
+                    function (game) {
+
+                        return (
+                            convertSheetDateToISO(
+                                game.scheduleDate
+                            ) === today
+                        );
+
+                    }
+                );
+
+
+            const upcomingGames =
+                filtered.filter(
+                    function (game) {
+
+                        const date =
+                            convertSheetDateToISO(
+                                game.scheduleDate
+                            );
+
+                        return (
+                            date &&
+                            date > today
+                        );
+
+                    }
+                );
+
+
+            const pastGames =
+                filtered.filter(
+                    function (game) {
+
+                        const date =
+                            convertSheetDateToISO(
+                                game.scheduleDate
+                            );
+
+                        return (
+                            date &&
+                            date < today
+                        );
+
+                    }
+                );
+
+
+            /*
+             * TODAY = TIME ORDER
+             */
+
+            todayGames.sort(
+                function (a, b) {
+
+                    return (
+                        parseTime(a.time) -
+                        parseTime(b.time)
+                    );
+
+                }
+            );
+
+
+            /*
+             * UPCOMING = DATE THEN TIME
+             */
+
+            upcomingGames.sort(
+                function (a, b) {
+
+                    const dateA =
+                        convertSheetDateToISO(
+                            a.scheduleDate
+                        );
+
+                    const dateB =
+                        convertSheetDateToISO(
+                            b.scheduleDate
+                        );
+
+
+                    if (
+                        dateA !== dateB
+                    ) {
+
+                        return dateA.localeCompare(
+                            dateB
+                        );
+
+                    }
+
+
+                    return (
+                        parseTime(a.time) -
+                        parseTime(b.time)
+                    );
+
+                }
+            );
+
+
+            /*
+             * PAST = NEWEST FIRST
+             */
+
+            pastGames.sort(
+                function (a, b) {
+
+                    const dateA =
+                        convertSheetDateToISO(
+                            a.scheduleDate
+                        );
+
+                    const dateB =
+                        convertSheetDateToISO(
+                            b.scheduleDate
+                        );
+
+
+                    return dateB.localeCompare(
+                        dateA
+                    );
+
+                }
+            );
+
+
+            /* COUNTS */
+
+            document.getElementById(
+                "todayCount"
+            ).textContent =
+                countText(
+                    todayGames.length
+                );
+
+
+            document.getElementById(
+                "upcomingCount"
+            ).textContent =
+                countText(
+                    upcomingGames.length
+                );
+
+
+            document.getElementById(
+                "pastCount"
+            ).textContent =
+                countText(
+                    pastGames.length
+                );
+
+
+            /* TODAY */
+
+            todaySection.style.display =
+                "block";
+
+
+            if (
+                todayGames.length
+            ) {
+
+                todayContainer.innerHTML =
+                    '<div class="games">' +
+                    todayGames
+                        .map(createGameCard)
+                        .join("") +
+                    "</div>";
+
+            } else {
+
+                todayContainer.innerHTML =
+                    emptyMessage(
+                        "No Games Today",
+                        "There are no games today matching your filters."
+                    );
+
+            }
+
+
+            /* UPCOMING */
+
+            upcomingSection.style.display =
+                "block";
+
+
+            if (
+                upcomingGames.length
+            ) {
+
+                upcomingContainer.innerHTML =
+                    '<div class="games">' +
+                    upcomingGames
+                        .map(createGameCard)
+                        .join("") +
+                    "</div>";
+
+            } else {
+
+                upcomingContainer.innerHTML =
+                    emptyMessage(
+                        "No Upcoming Games",
+                        "There are no future games matching your filters."
+                    );
+
+            }
+
+
+            /* PAST */
+
+            if (
+                pastGames.length
+            ) {
+
+                pastSection.style.display =
+                    "block";
+
+
+                pastContainer.innerHTML =
+                    '<div class="games">' +
+                    pastGames
+                        .map(createGameCard)
+                        .join("") +
+                    "</div>";
+
+            } else {
+
+                pastSection.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        /* ======================================================
+           TIME SORTING
+        ====================================================== */
+
+        function parseTime(
+            value
+        ) {
+
+            if (!value) {
+                return 999999;
+            }
+
+
+            const match =
+                String(value)
+                    .trim()
+                    .toUpperCase()
+                    .match(
+                        /^(\d{1,2}):(\d{2})\s*(AM|PM)$/
+                    );
+
+
+            if (!match) {
+                return 999999;
+            }
+
+
+            let hour =
+                Number(match[1]);
+
+
+            const minute =
+                Number(match[2]);
+
+
+            const period =
+                match[3];
+
+
+            if (
+                period === "AM" &&
+                hour === 12
+            ) {
+
+                hour = 0;
+
+            }
+
+
+            if (
+                period === "PM" &&
+                hour !== 12
+            ) {
+
+                hour += 12;
+
+            }
+
+
+            return (
+                hour * 60 +
+                minute
+            );
+
+        }
+
+
+        /* ======================================================
+           CREATE CARD
+        ====================================================== */
+
+        function createGameCard(
+            game
+        ) {
+
+            const statusClass =
+                getStatusClass(
+                    game.status
+                );
+
+
+            return `
+
+      <article class="game-card">
+
+        <div class="game-top">
+
+          <div>
+
+            <div class="sport">
+              ${escapeHTML(game.sport || "Sport")}
+            </div>
+
+            <div class="team">
+              ${escapeHTML(game.team || "CHS Athletics")}
+            </div>
+
+            ${game.level
+                    ? `
+                  <div class="level">
+                    ${escapeHTML(game.level)}
+                  </div>
+                `
+                    : ""
+                }
+
+          </div>
+
+          <span
+            class="status ${statusClass}"
+          >
+            ${escapeHTML(game.status || "Unknown")}
+          </span>
+
+        </div>
+
+
+        <div class="game-body">
+
+          <div class="opponent-row">
+
+            <div class="vs">
+              VS
+            </div>
+
+            <div class="opponent">
+              ${escapeHTML(
+                    game.opponent || "TBD"
+                )}
+            </div>
+
+          </div>
+
+
+          <div class="details">
+
+            <div class="detail">
+
+              <div class="detail-label">
+                Date
+              </div>
+
+              <div class="detail-value">
+                ${escapeHTML(
+                    formatDisplayDate(
+                        game.scheduleDate
+                    )
+                )}
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="detail-label">
+                Time
+              </div>
+
+              <div class="detail-value">
+                ${escapeHTML(
+                    game.time || "TBD"
+                )}
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="detail-label">
+                Location
+              </div>
+
+              <div class="detail-value">
+                ${escapeHTML(
+                    game.location || "TBD"
+                )}
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="detail-label">
+                Home / Away
+              </div>
+
+              <div class="detail-value">
+                ${escapeHTML(
+                    game.homeAway || "—"
+                )}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="score-box">
+
+            <div class="score-label">
+              Score
+            </div>
+
+            <div class="score">
+              ${escapeHTML(
+                    game.score || "—"
+                )}
+            </div>
+
+          </div>
+
+
+          ${game.notes
+                    ? `
+                <div class="notes">
+                  <strong>Notes:</strong>
+                  ${escapeHTML(game.notes)}
+                </div>
+              `
+                    : ""
+                }
+
+        </div>
+
+      </article>
+
+    `;
+
+        }
+
+
+        /* ======================================================
+           STATUS
+        ====================================================== */
+
+        function getStatusClass(
+            status
+        ) {
+
+            const value =
+                String(status || "")
+                    .trim()
+                    .toLowerCase();
+
+
+            if (
+                value === "scheduled"
+            ) {
+                return "status-scheduled";
+            }
+
+
+            if (
+                value === "live"
+            ) {
+                return "status-live";
+            }
+
+
+            if (
+                value === "completed"
+            ) {
+                return "status-completed";
+            }
+
+
+            if (
+                value === "final"
+            ) {
+                return "status-final";
+            }
+
+
+            if (
+                value === "cancelled" ||
+                value === "canceled"
+            ) {
+                return "status-cancelled";
+            }
+
+
+            if (
+                value === "postponed"
+            ) {
+                return "status-postponed";
+            }
+
+
+            return "status-default";
+
+        }
+
+
+        /* ======================================================
+           EMPTY
+        ====================================================== */
+
+        function emptyMessage(
+            title,
+            text
+        ) {
+
+            return `
+
+      <div class="message">
+
+        <div class="message-title">
+          ${escapeHTML(title)}
+        </div>
+
+        <div class="message-text">
+          ${escapeHTML(text)}
+        </div>
+
+      </div>
+
+    `;
+
+        }
+
+
+        /* ======================================================
+           FILTER OPTIONS
+        ====================================================== */
+
+        function populateFilters() {
+
+            const oldSport =
+                sportFilter.value;
+
+            const oldLevel =
+                levelFilter.value;
+
+
+            const sports =
+                [...new Set(
+                    allGames
+                        .map(
+                            game => game.sport
+                        )
+                        .filter(Boolean)
+                )]
+                    .sort();
+
+
+            const levels =
+                [...new Set(
+                    allGames
+                        .map(
+                            game => game.level
+                        )
+                        .filter(Boolean)
+                )]
+                    .sort();
+
+
+            sportFilter.innerHTML =
+                '<option value="">All Sports</option>';
+
+
+            sports.forEach(
+                function (sport) {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        sport;
+
+                    option.textContent =
+                        sport;
+
+                    sportFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            levelFilter.innerHTML =
+                '<option value="">All Levels</option>';
+
+
+            levels.forEach(
+                function (level) {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        level;
+
+                    option.textContent =
+                        level;
+
+                    levelFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            sportFilter.value =
+                oldSport;
+
+            levelFilter.value =
+                oldLevel;
+
+        }
+
+
+        /* ======================================================
+           STATS
+        ====================================================== */
+
+        function updateStats() {
+
+            const today =
+                getTodayLocalDate();
+
+
+            const todayGames =
+                allGames.filter(
+                    function (game) {
+
+                        return (
+                            convertSheetDateToISO(
+                                game.scheduleDate
+                            ) === today
+                        );
+
+                    }
+                );
+
+
+            const upcomingGames =
+                allGames.filter(
+                    function (game) {
+
+                        const date =
+                            convertSheetDateToISO(
+                                game.scheduleDate
+                            );
+
+
+                        return (
+                            date &&
+                            date > today
+                        );
+
+                    }
+                );
+
+
+            const liveGames =
+                allGames.filter(
+                    function (game) {
+
+                        return (
+                            game.status
+                                .toLowerCase()
+                                .trim() === "live"
+                        );
+
+                    }
+                );
+
+
+            document.getElementById(
+                "totalGames"
+            ).textContent =
+                allGames.length;
+
+
+            document.getElementById(
+                "todayGamesStat"
+            ).textContent =
+                todayGames.length;
+
+
+            document.getElementById(
+                "upcomingGamesStat"
+            ).textContent =
+                upcomingGames.length;
+
+
+            document.getElementById(
+                "liveGamesStat"
+            ).textContent =
+                liveGames.length;
+
+
+            document.getElementById(
+                "todayDate"
+            ).textContent =
+                formatDisplayDate(
+                    today
+                );
+
+        }
+
+
+        /* ======================================================
+           UPDATED
+        ====================================================== */
+
+        function updateLastUpdated() {
+
+            const now =
+                new Date();
+
+
+            document.getElementById(
+                "lastUpdated"
+            ).textContent =
+                "Last updated: " +
+                now.toLocaleString(
+                    "en-US",
+                    {
+                        dateStyle: "medium",
+                        timeStyle: "short"
+                    }
+                );
+
+        }
+
+
+        /* ======================================================
+           ERROR
+        ====================================================== */
+
+        function showError(
+            message
+        ) {
+
+            loadingMessage.style.display =
+                "none";
+
+
+            errorMessage.style.display =
+                "block";
+
+
+            errorText.textContent =
+                message;
+
+
+            todaySection.style.display =
+                "none";
+
+            upcomingSection.style.display =
+                "none";
+
+            pastSection.style.display =
+                "none";
+
+
+            document.getElementById(
+                "lastUpdated"
+            ).textContent =
+                "Schedule has not been loaded yet.";
+
+        }
+
+
+        /* ======================================================
+           FINISH
+        ====================================================== */
+
+        function finishLoading() {
+
+            isLoading = false;
+
+            refreshButton.disabled =
+                false;
+
+            refreshButton.textContent =
+                "↻ Refresh Schedule";
+
+        }
+
+
+        /* ======================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+        function countText(count) {
+            return count + (count === 1 ? " game" : " games");
+        }
+
+    </script>
+
+</body>
+
+</html>

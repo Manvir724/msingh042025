@@ -1,0 +1,475 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CHS Athletics//Athletics Schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:CHS Athletics Schedule
+BEGIN:VEVENT
+UID:2-10012026-Volleyball-CHSVolleyball-DosPalos-530PM-0@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261001T173000
+DTEND:20261001T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Dos Palos
+LOCATION:Dos Palos
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Dos Palos\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:3-10012026-Volleyball-CHSVolleyball-DosPalos-430PM-1@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261001T163000
+DTEND:20261001T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Dos Palos
+LOCATION:Dos Palos
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Dos Palos\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:4-10012026-Tennis-CHSGirlsTennis-Sierra-330PM-2@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261001T153000
+DTEND:20261001T173000
+SUMMARY:Tennis - CHS Girls Tennis vs. Sierra
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Sierra\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:5-10012026-GirlsTennis-CHSGirlsTennis-Sierra-330PM-3@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261001T153000
+DTEND:20261001T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Sierra
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: Sierra\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:6-10022026-Football-CHSFootball-Firebaugh-730PM-4@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261002T193000
+DTEND:20261002T213000
+SUMMARY:Football - CHS Football vs. Firebaugh
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Football\\nLevel: Varsity\\nOpponent: Firebaugh\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:7-10022026-Football-CHSFootball-Firebaugh-500PM-5@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261002T170000
+DTEND:20261002T190000
+SUMMARY:Football - CHS Football vs. Firebaugh
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Football\\nLevel: JV\\nOpponent: Firebaugh\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:8-10032026-CrossCountry-CHSCrossCountry-43rdAnnualGoldenWestInvitational-330PM-6@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261003T153000
+DTEND:20261003T173000
+SUMMARY:Cross Country - CHS Cross Country vs. 43rd Annual Golden West Invitational
+LOCATION:Golden West Invitational
+DESCRIPTION:Team: CHS Cross Country\\nLevel: Varsity/JV\\nOpponent: 43rd Annual Golden West Invitational\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:9-10062026-Volleyball-CHSVolleyball-Tranquility-530PM-7@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261006T173000
+DTEND:20261006T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Tranquility
+LOCATION:Tranquility
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Tranquility\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:10-10062026-Volleyball-CHSVolleyball-Tranquility-430PM-8@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261006T163000
+DTEND:20261006T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Tranquility
+LOCATION:Tranquility
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Tranquility\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:11-10062026-GirlsTennis-CHSGirlsTennis-DosPalos-330PM-9@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261006T153000
+DTEND:20261006T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Dos Palos
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Dos Palos\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:12-10062026-GirlsTennis-CHSGirlsTennis-DosPalos-330PM-10@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261006T153000
+DTEND:20261006T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Dos Palos
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: Dos Palos\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:13-10082026-Volleyball-CHSVolleyball-Avenal-530PM-11@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261008T173000
+DTEND:20261008T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Avenal
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Avenal\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:14-10082026-Volleyball-CHSVolleyball-Avenal-430PM-12@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261008T163000
+DTEND:20261008T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Avenal
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Avenal\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:15-10082026-GirlsTennis-CHSGirlsTennis-Yosemite-330PM-13@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261008T153000
+DTEND:20261008T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Yosemite
+LOCATION:Yosemite
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Yosemite\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:16-10082026-GirlsTennis-CHSGirlsTennis-Yosemite-330PM-14@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261008T153000
+DTEND:20261008T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Yosemite
+LOCATION:Yosemite
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: Yosemite\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:17-10092026-Football-CHSFootball-Liberty-730PM-15@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261009T193000
+DTEND:20261009T213000
+SUMMARY:Football - CHS Football vs. Liberty
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Football\\nLevel: Varsity\\nOpponent: Liberty\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:18-10092026-Football-CHSFootball-Liberty-500PM-16@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261009T170000
+DTEND:20261009T190000
+SUMMARY:Football - CHS Football vs. Liberty
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Football\\nLevel: JV\\nOpponent: Liberty\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:19-10092026-GirlsTennis-CHSGirlsTennis-FirebaughTourney-330PM-17@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261009T153000
+DTEND:20261009T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Firebaugh Tourney
+LOCATION:Firebaugh
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Firebaugh Tourney\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:20-10092026-CrossCountry-CHSCrossCountry-47thASICSClovisInvitational-330PM-18@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261009T153000
+DTEND:20261009T173000
+SUMMARY:Cross Country - CHS Cross Country vs. 47th ASICS Clovis Invitational
+LOCATION:Clovis
+DESCRIPTION:Team: CHS Cross Country\\nLevel: Varsity/JV\\nOpponent: 47th ASICS Clovis Invitational\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:21-10102026-GirlsTennis-CHSGirlsTennis-FirebaughTourney-330PM-19@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261010T153000
+DTEND:20261010T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Firebaugh Tourney
+LOCATION:Firebaugh
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Firebaugh Tourney\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:22-10102026-CrossCountry-CHSCrossCountry-47thASICSClovisInvitational-330PM-20@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261010T153000
+DTEND:20261010T173000
+SUMMARY:Cross Country - CHS Cross Country vs. 47th ASICS Clovis Invitational
+LOCATION:Clovis
+DESCRIPTION:Team: CHS Cross Country\\nLevel: Varsity/JV\\nOpponent: 47th ASICS Clovis Invitational\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:23-10132026-Volleyball-CHSVolleyball-Firebaugh-530PM-21@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261013T173000
+DTEND:20261013T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Firebaugh
+LOCATION:Firebaugh
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Firebaugh\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:24-10132026-Volleyball-CHSVolleyball-Firebaugh-430PM-22@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261013T163000
+DTEND:20261013T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Firebaugh
+LOCATION:Firebaugh
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Firebaugh\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:25-10132026-GirlsTennis-CHSGirlsTennis-Firebaugh-330PM-23@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261013T153000
+DTEND:20261013T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Firebaugh
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Firebaugh\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:26-10132026-GirlsTennis-CHSGirlsTennis-Firebaugh-330PM-24@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261013T153000
+DTEND:20261013T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Firebaugh
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: Firebaugh\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:27-10152026-Volleyball-CHSVolleyball-Mendota-530PM-25@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261015T173000
+DTEND:20261015T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Mendota
+LOCATION:Mendota
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Mendota\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:28-10152026-Volleyball-CHSVolleyball-Mendota-430PM-26@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261015T163000
+DTEND:20261015T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Mendota
+LOCATION:Mendota
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Mendota\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:29-10152026-GirlsTennis-CHSGirlsTennis-FresnoChristian-330PM-27@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261015T153000
+DTEND:20261015T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Fresno Christian
+LOCATION:Fresno Christian
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Fresno Christian\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:30-10152026-GirlsTennis-CHSGirlsTennis-FresnoChristian-330PM-28@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261015T153000
+DTEND:20261015T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Fresno Christian
+LOCATION:Fresno Christian
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: Fresno Christian\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:31-10152026-CrossCountry-CHSCrossCountry-3rdAnnualPortervilleInvitational-330PM-29@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261015T153000
+DTEND:20261015T173000
+SUMMARY:Cross Country - CHS Cross Country vs. 3rd Annual Porterville Invitational
+LOCATION:Porterville
+DESCRIPTION:Team: CHS Cross Country\\nLevel: Varsity/JV\\nOpponent: 3rd Annual Porterville Invitational\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:32-10162026-Football-CHSFootball-Mendota-730PM-30@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261016T193000
+DTEND:20261016T213000
+SUMMARY:Football - CHS Football vs. Mendota
+LOCATION:Mendota
+DESCRIPTION:Team: CHS Football\\nLevel: Varsity\\nOpponent: Mendota\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:33-10162026-Football-CHSFootball-Mendota-500PM-31@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261016T170000
+DTEND:20261016T190000
+SUMMARY:Football - CHS Football vs. Mendota
+LOCATION:Mendota
+DESCRIPTION:Team: CHS Football\\nLevel: JV\\nOpponent: Mendota\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:34-10192026-GirlsTennis-CHSGirlsTennis-Avenal-330PM-32@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261019T153000
+DTEND:20261019T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Avenal
+LOCATION:Avenal
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Avenal\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:35-10192026-GirlsTennis-CHSGirlsTennis-Avenal-330PM-33@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261019T153000
+DTEND:20261019T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Avenal
+LOCATION:Avenal
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: Avenal\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:36-10202026-Volleyball-CHSVolleyball-DosPalos-530PM-34@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261020T173000
+DTEND:20261020T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Dos Palos
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Dos Palos\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:37-10202026-Volleyball-CHSVolleyball-DosPalos-430PM-35@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261020T163000
+DTEND:20261020T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Dos Palos
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Dos Palos\\nHome/Away: Home\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:38-10212026-GirlsTennis-CHSGirlsTennis-NWACChampionship-330PM-36@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261021T153000
+DTEND:20261021T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. NWAC Championship
+LOCATION:TBD
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: NWAC Championship\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:39-10212026-GirlsTennis-CHSGirlsTennis-NWACChampionship-330PM-37@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261021T153000
+DTEND:20261021T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. NWAC Championship
+LOCATION:TBD
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: NWAC Championship\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:40-10222026-Volleyball-CHSVolleyball-Tranquility-530PM-38@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261022T173000
+DTEND:20261022T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Tranquility
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Tranquility\\nHome/Away: Home\\nStatus: Scheduled\\nNotes: Senior Night\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:41-10222026-Volleyball-CHSVolleyball-Tranquility-430PM-39@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261022T163000
+DTEND:20261022T183000
+SUMMARY:Volleyball - CHS Volleyball vs. Tranquility
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Volleyball\\nLevel: JV\\nOpponent: Tranquility\\nHome/Away: Home\\nStatus: Scheduled\\nNotes: Senior Night\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:42-10222026-GirlsTennis-CHSGirlsTennis-NWACChampionship-330PM-40@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261022T153000
+DTEND:20261022T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. NWAC Championship
+LOCATION:TBD
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: NWAC Championship\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:43-10222026-GirlsTennis-CHSGirlsTennis-NWACChampionship-330PM-41@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261022T153000
+DTEND:20261022T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. NWAC Championship
+LOCATION:TBD
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: JV\\nOpponent: NWAC Championship\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:44-10232026-Football-CHSFootball-Chowchilla-730PM-42@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261023T193000
+DTEND:20261023T213000
+SUMMARY:Football - CHS Football vs. Chowchilla
+LOCATION:Chowchilla
+DESCRIPTION:Team: CHS Football\\nLevel: Varsity\\nOpponent: Chowchilla\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:45-10232026-Football-CHSFootball-Chowchilla-500PM-43@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261023T170000
+DTEND:20261023T190000
+SUMMARY:Football - CHS Football vs. Chowchilla
+LOCATION:Chowchilla
+DESCRIPTION:Team: CHS Football\\nLevel: JV\\nOpponent: Chowchilla\\nHome/Away: Away\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:46-10232026-CrossCountry-CHSCrossCountry-ClovisNorthTwilightInvitational-330PM-44@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261023T153000
+DTEND:20261023T173000
+SUMMARY:Cross Country - CHS Cross Country vs. Clovis North Twilight Invitational
+LOCATION:Clovis North
+DESCRIPTION:Team: CHS Cross Country\\nLevel: Varsity/JV\\nOpponent: Clovis North Twilight Invitational\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:47-10272026-Volleyball-CHSVolleyball-PlayoffsFirstRound-530PM-45@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261027T173000
+DTEND:20261027T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Playoffs First Round
+LOCATION:TBD
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Playoffs First Round\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:48-10282026-GirlsTennis-CHSGirlsTennis-TeamPlayoffs-330PM-46@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261028T153000
+DTEND:20261028T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Team Playoffs
+LOCATION:TBD
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Team Playoffs\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:49-10292026-Volleyball-CHSVolleyball-QuarterFinals-530PM-47@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261029T173000
+DTEND:20261029T193000
+SUMMARY:Volleyball - CHS Volleyball vs. Quarter Finals
+LOCATION:TBD
+DESCRIPTION:Team: CHS Volleyball\\nLevel: Varsity\\nOpponent: Quarter Finals\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:50-10302026-Football-CHSFootball-DosPalos-730PM-48@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261030T193000
+DTEND:20261030T213000
+SUMMARY:Football - CHS Football vs. Dos Palos
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Football\\nLevel: Varsity\\nOpponent: Dos Palos\\nHome/Away: Home\\nStatus: Scheduled\\nNotes: Senior Night\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:51-10302026-Football-CHSFootball-DosPalos-500PM-49@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261030T170000
+DTEND:20261030T190000
+SUMMARY:Football - CHS Football vs. Dos Palos
+LOCATION:Coalinga High School
+DESCRIPTION:Team: CHS Football\\nLevel: JV\\nOpponent: Dos Palos\\nHome/Away: Home\\nStatus: Scheduled\\nNotes: Senior Night\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:52-10302026-GirlsTennis-CHSGirlsTennis-TeamPlayoffs-330PM-50@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261030T153000
+DTEND:20261030T173000
+SUMMARY:Girls Tennis - CHS Girls Tennis vs. Team Playoffs
+LOCATION:TBD
+DESCRIPTION:Team: CHS Girls Tennis\\nLevel: Varsity\\nOpponent: Team Playoffs\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+BEGIN:VEVENT
+UID:53-10302026-CrossCountry-CHSCrossCountry-WoodwardParkClassic-330PM-51@chs-athletics
+DTSTAMP:20260918T152831Z
+DTSTART:20261030T153000
+DTEND:20261030T173000
+SUMMARY:Cross Country - CHS Cross Country vs. Woodward Park Classic
+LOCATION:Woodward Park
+DESCRIPTION:Team: CHS Cross Country\\nLevel: Varsity/JV\\nOpponent: Woodward Park Classic\\nHome/Away: TBA\\nStatus: Scheduled\\nSource: CHS Athletics Schedule
+END:VEVENT
+END:VCALENDAR

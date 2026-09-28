@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CHS Athletics Calendar Export</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f6f8;
+
+            color: #1f2937;
+        }
+
+
+        /* ================================================
+       HEADER
+       ================================================ */
+
+        header {
+            background:
+                linear-gradient(135deg,
+                    #111827,
+                    #1f2937);
+
+            color: white;
+
+            padding: 35px 20px;
+
+            text-align: center;
+        }
+
+        .header-inner {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .header-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .header-link {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .20);
+            color: white;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .header-link:hover {
+            background: rgba(255, 255, 255, .17);
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+
+            font-size:
+                clamp(28px, 5vw, 42px);
+        }
+
+        header p {
+            margin: 0;
+
+            color: #d1d5db;
+
+            font-size: 15px;
+        }
+
+
+        /* ================================================
+       MAIN
+       ================================================ */
+
+        .container {
+            width: min(850px,
+                    calc(100% - 30px));
+
+            margin:
+                35px auto 50px;
+        }
+
+
+        /* ================================================
+       CARD
+       ================================================ */
+
+        .card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 4px 15px rgba(0,
+                    0,
+                    0,
+                    0.08);
+        }
+
+        .card h2 {
+            margin:
+                0 0 10px;
+
+            font-size: 22px;
+        }
+
+        .card p {
+            line-height: 1.6;
+
+            color: #4b5563;
+        }
+
+
+        /* ================================================
+       INFO
+       ================================================ */
+
+        .info-box {
+            background: #f9fafb;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 16px;
+
+            margin:
+                20px 0;
+        }
+
+        .info-row {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            padding:
+                7px 0;
+
+            font-size: 14px;
+        }
+
+        .info-label {
+            font-weight: bold;
+
+            color: #4b5563;
+        }
+
+
+        /* ================================================
+       CONTROLS
+       ================================================ */
+
+        .control-group {
+            margin:
+                18px 0;
+        }
+
+        label {
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+            color: #374151;
+        }
+
+        select {
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            background: white;
+
+            font-size: 14px;
+        }
+
+
+        /* ================================================
+       BUTTONS
+       ================================================ */
+
+        .button-row {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        button {
+            border: none;
+
+            border-radius: 9px;
+
+            padding:
+                12px 18px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .download-button {
+            background: #111827;
+
+            color: white;
+
+            flex: 1;
+        }
+
+        .refresh-button {
+            background: #e5e7eb;
+
+            color: #111827;
+        }
+
+        button:hover {
+            opacity: 0.88;
+        }
+
+
+        /* ================================================
+       STATUS
+       ================================================ */
+
+        .status-box {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: #ecfdf5;
+
+            color: #065f46;
+
+            border:
+                1px solid #a7f3d0;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+        .error-box {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: #fef2f2;
+
+            color: #991b1b;
+
+            border:
+                1px solid #fecaca;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================================================
+       INSTRUCTIONS
+       ================================================ */
+
+        .instructions {
+            counter-reset: steps;
+        }
+
+        .step {
+            position: relative;
+
+            padding:
+                15px 15px 15px 50px;
+
+            margin-bottom: 12px;
+
+            background: #f9fafb;
+
+            border-radius: 10px;
+
+            line-height: 1.5;
+        }
+
+        .step::before {
+            counter-increment: steps;
+
+            content: counter(steps);
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 15px;
+
+            width: 24px;
+
+            height: 24px;
+
+            border-radius: 50%;
+
+            background: #111827;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================================================
+       FOOTER
+       ================================================ */
+
+        footer {
+            text-align: center;
+
+            padding:
+                25px 15px;
+
+            color: #6b7280;
+
+            font-size: 12px;
+        }
+
+
+        /* ================================================
+       MOBILE
+       ================================================ */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width:
+                    calc(100% - 20px);
+
+                margin-top: 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .info-row {
+                flex-direction:
+                    column;
+
+                gap: 3px;
+            }
+
+            .download-button {
+                width: 100%;
+
+                flex: none;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================================================
+       HEADER
+       ================================================ -->
+
+    <header>
+
+        <h1>
+            CHS Athletics Calendar Export
+        </h1>
+
+        <p>
+            Teacher / Athletics Calendar Management
+        </p>
+
+        <div class="header-links">
+            <a class="header-link" href="index.html">View Schedule</a>
+            <a class="header-link" href="manage.html">Manage Schedule</a>
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- ================================================
+         EXPORT CARD
+         ================================================ -->
+
+        <div class="card">
+
+            <h2>
+                Export Athletics Calendar
+            </h2>
+
+            <p>
+                Use this page to generate an iCalendar
+                (.ics) file from the CHS Athletics
+                Google Sheet.
+            </p>
+
+            <p>
+                The exported calendar can then be
+                uploaded to Thrillshare.
+            </p>
+
+
+            <div class="info-box">
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Schedule Source
+                    </span>
+
+                    <span>
+                        CHS Athletics Google Sheet
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Calendar Format
+                    </span>
+
+                    <span>
+                        iCalendar (.ics)
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Schedule Status
+                    </span>
+
+                    <span id="scheduleStatus">
+                        Checking...
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Games Found
+                    </span>
+
+                    <span id="gameCount">
+                        —
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================================
+           FILTER
+           ============================================ -->
+
+            <div class="control-group">
+
+                <label for="exportType">
+                    What would you like to export?
+                </label>
+
+                <select id="exportType">
+
+                    <option value="all">
+                        All Games
+                    </option>
+
+                    <option value="upcoming">
+                        Upcoming Games Only
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ============================================
+           BUTTONS
+           ============================================ -->
+
+            <div class="button-row">
+
+                <button id="downloadButton" class="download-button">
+                    Download ICS Calendar
+                </button>
+
+
+                <button id="refreshButton" class="refresh-button">
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <!-- ============================================
+           STATUS
+           ============================================ -->
+
+            <div id="statusBox" class="status-box"></div>
+
+
+            <div id="errorBox" class="error-box"></div>
+
+        </div>
+
+
+        <!-- ================================================
+         THRILLSHARE INSTRUCTIONS
+         ================================================ -->
+
+        <div class="card">
+
+            <h2>
+                How to Upload to Thrillshare
+            </h2>
+
+            <p>
+                After downloading the calendar file,
+                use the Thrillshare calendar import
+                feature to upload the .ics file.
+            </p>
+
+
+            <div class="instructions">
+
+                <div class="step">
+                    Click
+                    <strong>
+                        Download ICS Calendar
+                    </strong>
+                    above.
+                </div>
+
+
+                <div class="step">
+                    Save the downloaded
+                    <strong>.ics</strong>
+                    file to your computer.
+                </div>
+
+
+                <div class="step">
+                    Open the school's
+                    <strong>Thrillshare Calendar</strong>.
+                </div>
+
+
+                <div class="step">
+                    Open the calendar's
+                    <strong>Import Events</strong>
+                    option.
+                </div>
+
+
+                <div class="step">
+                    Choose
+                    <strong>iCalendar</strong>
+                    as the import type.
+                </div>
+
+
+                <div class="step">
+                    Select the downloaded
+                    <strong>.ics</strong>
+                    file.
+                </div>
+
+
+                <div class="step">
+                    Complete the import and review
+                    the events.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================
+         IMPORTANT INFORMATION
+         ================================================ -->
+
+        <div class="card">
+
+            <h2>
+                Important
+            </h2>
+
+            <p>
+                Google Sheets is the source of truth
+                for the athletics schedule.
+            </p>
+
+            <p>
+                If a game changes in Google Sheets,
+                generate a new calendar export before
+                importing the updated schedule into
+                Thrillshare.
+            </p>
+
+            <p>
+                This export page does not change the
+                Google Sheet.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        CHS Athletics Schedule
+
+        <br>
+
+        Calendar Export Tool
+
+    </footer>
+
+
+    <script>
+
+        /* =================================================
+           APPS SCRIPT URL
+           =================================================
+    
+           USE THE SAME APPS SCRIPT URL AS YOUR
+           MAIN ATHLETICS WEBSITE.
+    
+           Example:
+    
+           https://script.google.com/macros/s/XXXXXXXX/exec
+    
+           ================================================= */
+
+        const API_URL =
+            'https://script.google.com/macros/s/AKfycbzsI20u7yvWqhkP4pBqB7G5TKFKlt8-SjymChoMDei5bszbbCVvee4OWs-n1Jj1Vr2j/exec';
+
+
+        /* =================================================
+           GLOBAL DATA
+           ================================================= */
+
+        let allGames = [];
+
+
+        /* =================================================
+           PAGE LOAD
+           ================================================= */
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                loadSchedule();
+
+            }
+        );
+
+
+        /* =================================================
+           LOAD SCHEDULE
+           ================================================= */
+
+        function loadSchedule() {
+
+            setScheduleStatus(
+                'Loading schedule...'
+            );
+
+
+            const callbackName =
+                'calendarExportCallback_' +
+                Date.now();
+
+
+            window[callbackName] =
+                function (response) {
+
+                    cleanupCallback(
+                        callbackName
+                    );
+
+
+                    if (
+                        !response ||
+                        response.success !== true
+                    ) {
+
+                        setScheduleStatus(
+                            'Unable to load schedule'
+                        );
+
+                        showError(
+                            response &&
+                                response.message
+                                ? response.message
+                                : 'Unable to load the athletics schedule.'
+                        );
+
+                        return;
+                    }
+
+
+                    try {
+
+                        allGames =
+                            extractGamesFromResponse(
+                                response
+                            );
+
+
+                        document.getElementById(
+                            'gameCount'
+                        ).textContent =
+                            allGames.length;
+
+
+                        setScheduleStatus(
+                            'Schedule loaded successfully'
+                        );
+
+
+                        hideError();
+
+                    } catch (error) {
+
+                        showError(
+                            error.message
+                        );
+
+                    }
+
+                };
+
+
+            const script =
+                document.createElement(
+                    'script'
+                );
+
+
+            script.src =
+                API_URL +
+                (
+                    API_URL.includes('?')
+                        ? '&'
+                        : '?'
+                ) +
+                'callback=' +
+                encodeURIComponent(
+                    callbackName
+                ) +
+                '&t=' +
+                Date.now();
+
+
+            script.onerror =
+                function () {
+
+                    cleanupCallback(
+                        callbackName
+                    );
+
+
+                    setScheduleStatus(
+                        'Connection error'
+                    );
+
+
+                    showError(
+                        'Could not connect to the Google Apps Script. Check the API URL.'
+                    );
+
+                };
+
+
+            document.body.appendChild(
+                script
+            );
+        }
+
+
+        /* =================================================
+           EXTRACT GAMES
+           ================================================= */
+
+        function extractGamesFromResponse(
+            response
+        ) {
+
+            if (
+                Array.isArray(response.data)
+            ) {
+                return response.data;
+            }
+
+
+            if (
+                response.data &&
+                Array.isArray(
+                    response.data.games
+                )
+            ) {
+                return response.data.games;
+            }
+
+
+            if (
+                Array.isArray(response.games)
+            ) {
+                return response.games;
+            }
+
+
+            return [];
+        }
+
+
+        /* =================================================
+           CLEAN CALLBACK
+           ================================================= */
+
+        function cleanupCallback(
+            callbackName
+        ) {
+
+            if (
+                window[callbackName]
+            ) {
+                delete window[callbackName];
+            }
+
+
+            const scripts =
+                document.querySelectorAll(
+                    'script'
+                );
+
+
+            scripts.forEach(
+                function (script) {
+
+                    if (
+                        script.src &&
+                        script.src.includes(
+                            encodeURIComponent(
+                                callbackName
+                            )
+                        )
+                    ) {
+
+                        script.remove();
+
+                    }
+
+                }
+            );
+        }
+
+
+        /* =================================================
+           DOWNLOAD ICS
+           ================================================= */
+
+        document.getElementById(
+            'downloadButton'
+        ).addEventListener(
+            'click',
+            downloadICS
+        );
+
+
+        function downloadICS() {
+
+            hideError();
+
+
+            if (
+                !allGames.length
+            ) {
+
+                showError(
+                    'There are no games available to export.'
+                );
+
+                return;
+            }
+
+
+            const exportType =
+                document.getElementById(
+                    'exportType'
+                ).value;
+
+
+            let games =
+                [...allGames];
+
+
+            if (
+                exportType ===
+                'upcoming'
+            ) {
+
+                const today =
+                    getTodayLocalDate();
+
+
+                games =
+                    games.filter(
+                        function (game) {
+
+                            const date =
+                                convertSheetDateToISO(
+                                    game.scheduleDate
+                                );
+
+
+                            return (
+                                date &&
+                                date >= today
+                            );
+
+                        }
+                    );
+
+            }
+
+
+            if (!games.length) {
+
+                showError(
+                    'There are no games matching the selected export option.'
+                );
+
+                return;
+            }
+
+
+            const ics =
+                buildICS(
+                    games
+                );
+
+
+            const blob =
+                new Blob(
+                    [ics],
+                    {
+                        type:
+                            'text/calendar;charset=utf-8'
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const link =
+                document.createElement(
+                    'a'
+                );
+
+
+            link.href =
+                url;
+
+
+            link.download =
+                'CHS-Athletics-Schedule.ics';
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+
+            showStatus(
+                'Calendar file created successfully. The .ics file has been downloaded and is ready to import into Thrillshare.'
+            );
+        }
+
+
+        /* =================================================
+           BUILD ICS
+           ================================================= */
+
+        function buildICS(
+            games
+        ) {
+
+            const lines = [];
+
+
+            lines.push(
+                'BEGIN:VCALENDAR'
+            );
+
+            lines.push(
+                'VERSION:2.0'
+            );
+
+            lines.push(
+                'PRODID:-//CHS Athletics//Athletics Schedule//EN'
+            );
+
+            lines.push(
+                'CALSCALE:GREGORIAN'
+            );
+
+            lines.push(
+                'METHOD:PUBLISH'
+            );
+
+            lines.push(
+                'X-WR-CALNAME:CHS Athletics Schedule'
+            );
+
+
+            games.forEach(
+                function (game, index) {
+
+                    const start =
+                        getCalendarStart(
+                            game
+                        );
+
+
+                    if (!start) {
+                        return;
+                    }
+
+
+                    const end =
+                        getCalendarEnd(
+                            start
+                        );
+
+
+                    const uid =
+                        createUID(
+                            game,
+                            index
+                        );
+
+
+                    const summary =
+                        buildEventTitle(
+                            game
+                        );
+
+
+                    const description =
+                        buildDescription(
+                            game
+                        );
+
+
+                    lines.push(
+                        'BEGIN:VEVENT'
+                    );
+
+
+                    lines.push(
+                        'UID:' +
+                        escapeICS(
+                            uid
+                        )
+                    );
+
+
+                    lines.push(
+                        'DTSTAMP:' +
+                        getUTCStamp()
+                    );
+
+
+                    lines.push(
+                        'DTSTART:' +
+                        start
+                    );
+
+
+                    lines.push(
+                        'DTEND:' +
+                        end
+                    );
+
+
+                    lines.push(
+                        'SUMMARY:' +
+                        escapeICS(
+                            summary
+                        )
+                    );
+
+
+                    if (
+                        game.location
+                    ) {
+
+                        lines.push(
+                            'LOCATION:' +
+                            escapeICS(
+                                game.location
+                            )
+                        );
+
+                    }
+
+
+                    lines.push(
+                        'DESCRIPTION:' +
+                        escapeICS(
+                            description
+                        )
+                    );
+
+
+                    lines.push(
+                        'END:VEVENT'
+                    );
+
+                }
+            );
+
+
+            lines.push(
+                'END:VCALENDAR'
+            );
+
+
+            return (
+                lines.join('\r\n') +
+                '\r\n'
+            );
+        }
+
+
+        /* =================================================
+           EVENT TITLE
+           ================================================= */
+
+        function buildEventTitle(
+            game
+        ) {
+
+            let title = '';
+
+
+            if (game.sport) {
+
+                title +=
+                    game.sport;
+
+            } else {
+
+                title +=
+                    'CHS Athletics';
+
+            }
+
+
+            if (game.team) {
+
+                title +=
+                    ' - ' +
+                    game.team;
+
+            }
+
+
+            if (game.opponent) {
+
+                title +=
+                    ' vs. ' +
+                    game.opponent;
+
+            }
+
+
+            return title;
+        }
+
+
+        /* =================================================
+           EVENT DESCRIPTION
+           ================================================= */
+
+        function buildDescription(
+            game
+        ) {
+
+            const parts = [];
+
+
+            if (game.team) {
+
+                parts.push(
+                    'Team: ' +
+                    game.team
+                );
+
+            }
+
+
+            if (game.level) {
+
+                parts.push(
+                    'Level: ' +
+                    game.level
+                );
+
+            }
+
+
+            if (game.opponent) {
+
+                parts.push(
+                    'Opponent: ' +
+                    game.opponent
+                );
+
+            }
+
+
+            if (game.homeAway) {
+
+                parts.push(
+                    'Home/Away: ' +
+                    game.homeAway
+                );
+
+            }
+
+
+            if (game.status) {
+
+                parts.push(
+                    'Status: ' +
+                    game.status
+                );
+
+            }
+
+
+            if (game.score) {
+
+                parts.push(
+                    'Score: ' +
+                    game.score
+                );
+
+            }
+
+
+            if (game.notes) {
+
+                parts.push(
+                    'Notes: ' +
+                    game.notes
+                );
+
+            }
+
+
+            parts.push(
+                'Source: CHS Athletics Schedule'
+            );
+
+
+            return parts.join(
+                '\\n'
+            );
+        }
+
+
+        /* =================================================
+           CALENDAR START
+           ================================================= */
+
+        function getCalendarStart(
+            game
+        ) {
+
+            const date =
+                convertSheetDateToISO(
+                    game.scheduleDate
+                );
+
+
+            if (!date) {
+                return '';
+            }
+
+
+            const time =
+                parseTimeParts(
+                    game.time
+                );
+
+
+            if (!time) {
+
+                // If there is no time, create an
+                // all-day event.
+                return (
+                    date.replace(
+                        /-/g,
+                        ''
+                    )
+                );
+            }
+
+
+            return (
+                date.replace(
+                    /-/g,
+                    ''
+                ) +
+                'T' +
+                String(
+                    time.hour
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                String(
+                    time.minute
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                '00'
+            );
+        }
+
+
+        /* =================================================
+           CALENDAR END
+           ================================================= */
+
+        function getCalendarEnd(
+            start
+        ) {
+
+            // If this is an all-day event.
+            if (
+                start.length === 8
+            ) {
+
+                const year =
+                    Number(
+                        start.substring(
+                            0,
+                            4
+                        )
+                    );
+
+                const month =
+                    Number(
+                        start.substring(
+                            4,
+                            6
+                        )
+                    ) - 1;
+
+                const day =
+                    Number(
+                        start.substring(
+                            6,
+                            8
+                        )
+                    );
+
+
+                const date =
+                    new Date(
+                        year,
+                        month,
+                        day + 1
+                    );
+
+
+                return (
+                    date.getFullYear() +
+                    String(
+                        date.getMonth() + 1
+                    ).padStart(
+                        2,
+                        '0'
+                    ) +
+                    String(
+                        date.getDate()
+                    ).padStart(
+                        2,
+                        '0'
+                    )
+                );
+            }
+
+
+            // Default game length:
+            // 2 hours.
+            const year =
+                Number(
+                    start.substring(
+                        0,
+                        4
+                    )
+                );
+
+            const month =
+                Number(
+                    start.substring(
+                        4,
+                        6
+                    )
+                ) - 1;
+
+            const day =
+                Number(
+                    start.substring(
+                        6,
+                        8
+                    )
+                );
+
+            const hour =
+                Number(
+                    start.substring(
+                        9,
+                        11
+                    )
+                );
+
+            const minute =
+                Number(
+                    start.substring(
+                        11,
+                        13
+                    )
+                );
+
+
+            const date =
+                new Date(
+                    year,
+                    month,
+                    day,
+                    hour,
+                    minute
+                );
+
+
+            date.setHours(
+                date.getHours() + 2
+            );
+
+
+            return (
+                date.getFullYear() +
+                String(
+                    date.getMonth() + 1
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                String(
+                    date.getDate()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                'T' +
+                String(
+                    date.getHours()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                String(
+                    date.getMinutes()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                '00'
+            );
+        }
+
+
+        /* =================================================
+           PARSE TIME
+           ================================================= */
+
+        function parseTimeParts(
+            value
+        ) {
+
+            const text =
+                String(
+                    value || ''
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            const match =
+                text.match(
+                    /(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/
+                );
+
+
+            if (!match) {
+                return null;
+            }
+
+
+            let hour =
+                Number(
+                    match[1]
+                );
+
+
+            const minute =
+                Number(
+                    match[2] || 0
+                );
+
+
+            const period =
+                match[3];
+
+
+            if (
+                period === 'pm' &&
+                hour !== 12
+            ) {
+
+                hour += 12;
+
+            }
+
+
+            if (
+                period === 'am' &&
+                hour === 12
+            ) {
+
+                hour = 0;
+
+            }
+
+
+            return {
+                hour:
+                    hour,
+
+                minute:
+                    minute
+            };
+        }
+
+
+        /* =================================================
+           CREATE UNIQUE ID
+           ================================================= */
+
+        function createUID(
+            game,
+            index
+        ) {
+
+            const text =
+                [
+                    game.id,
+                    game.scheduleDate,
+                    game.sport,
+                    game.team,
+                    game.opponent,
+                    game.time,
+                    index
+                ]
+                    .join(
+                        '-'
+                    )
+                    .replace(
+                        /[^a-zA-Z0-9-]/g,
+                        ''
+                    );
+
+
+            return (
+                text +
+                '@chs-athletics'
+            );
+        }
+
+
+        /* =================================================
+           UTC STAMP
+           ================================================= */
+
+        function getUTCStamp() {
+
+            const now =
+                new Date();
+
+
+            return (
+                now.getUTCFullYear() +
+                String(
+                    now.getUTCMonth() + 1
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                String(
+                    now.getUTCDate()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                'T' +
+                String(
+                    now.getUTCHours()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                String(
+                    now.getUTCMinutes()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                String(
+                    now.getUTCSeconds()
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                'Z'
+            );
+        }
+
+
+        /* =================================================
+           ESCAPE ICS
+           ================================================= */
+
+        function escapeICS(
+            value
+        ) {
+
+            return String(
+                value || ''
+            )
+                .replace(
+                    /\\/g,
+                    '\\\\'
+                )
+                .replace(
+                    /;/g,
+                    '\\;'
+                )
+                .replace(
+                    /,/g,
+                    '\\,'
+                )
+                .replace(
+                    /\r?\n/g,
+                    '\\n'
+                );
+        }
+
+
+        /* =================================================
+           DATE CONVERSION
+           ================================================= */
+
+        function convertSheetDateToISO(
+            value
+        ) {
+
+            const text =
+                String(
+                    value || ''
+                ).trim();
+
+
+            if (!text) {
+                return '';
+            }
+
+
+            if (
+                /^\d{4}-\d{2}-\d{2}$/.test(
+                    text
+                )
+            ) {
+
+                return text;
+
+            }
+
+
+            const match =
+                text.match(
+                    /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+                );
+
+
+            if (match) {
+
+                return (
+                    match[3] +
+                    '-' +
+                    String(
+                        match[1]
+                    ).padStart(
+                        2,
+                        '0'
+                    ) +
+                    '-' +
+                    String(
+                        match[2]
+                    ).padStart(
+                        2,
+                        '0'
+                    )
+                );
+
+            }
+
+
+            return '';
+        }
+
+
+        /* =================================================
+           TODAY
+           ================================================= */
+
+        function getTodayLocalDate() {
+
+            const now =
+                new Date();
+
+
+            return (
+                now.getFullYear() +
+                '-' +
+                String(
+                    now.getMonth() + 1
+                ).padStart(
+                    2,
+                    '0'
+                ) +
+                '-' +
+                String(
+                    now.getDate()
+                ).padStart(
+                    2,
+                    '0'
+                )
+            );
+        }
+
+
+        /* =================================================
+           STATUS
+           ================================================= */
+
+        function setScheduleStatus(
+            text
+        ) {
+
+            document.getElementById(
+                'scheduleStatus'
+            ).textContent =
+                text;
+        }
+
+
+        function showStatus(
+            text
+        ) {
+
+            const box =
+                document.getElementById(
+                    'statusBox'
+                );
+
+
+            box.style.display =
+                'block';
+
+
+            box.textContent =
+                text;
+        }
+
+
+        function showError(
+            text
+        ) {
+
+            const box =
+                document.getElementById(
+                    'errorBox'
+                );
+
+
+            box.style.display =
+                'block';
+
+
+            box.textContent =
+                text;
+        }
+
+
+        function hideError() {
+
+            const box =
+                document.getElementById(
+                    'errorBox'
+                );
+
+
+            box.style.display =
+                'none';
+
+
+            box.textContent =
+                '';
+        }
+
+
+        /* =================================================
+           REFRESH BUTTON
+           ================================================= */
+
+        document.getElementById(
+            'refreshButton'
+        ).addEventListener(
+            'click',
+            function () {
+
+                loadSchedule();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
