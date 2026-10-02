@@ -323,7 +323,8 @@
         [WHO IS MANVIR]: Manvir Singh is a senior at Coalinga High School and is interested in technology and web
         development.
         [EDUCATION]: Manvir is a senior at Coalinga High School.
-        [SKILLS]: Manvir learned C++ to program Arduino projects and is learning web design and development.
+        [SKILLS]: Manvir knows HTML and CSS and has intermediate JavaScript skills. He also learned C++ to program
+        Arduino projects and is learning web design and development.
         [THE BEGINNING]: Manvir's journey started with a fascination for how things work. Before web design, he dove
         into the
         world of hardware by learning C++ to program Arduinos. He loves the "hands-on" feel of coding.
@@ -445,24 +446,53 @@
         "dream", "favorite", "favourite", "food", "goal", "grade", "hobbies", "hobby", "inspiration", "interesting",
         "language", "lifestyle", "manvir", "napoleon", "outside", "passion", "programming", "project", "punjab",
         "quote", "robotics", "school", "senior", "skill", "sports", "start", "student", "subject", "theme", "weekend",
-        "app", "apps", "application", "applications", "built", "made", "stack", "technologies", "technology", "website", "websites"
+        "app", "apps", "application", "applications", "built", "made", "stack", "technologies", "technology",
+        "website", "websites", "html", "css", "javascript"
       ];
 
-      const intentSynonyms = {
+      const intents = {
         skills: [
           "skill", "skills", "coding", "code", "programming", "programming language", "programming languages",
           "language", "languages", "technology", "technologies", "tech stack", "what can he code",
-          "what does he know", "arduino"
+          "what does he know", "arduino", "html", "css", "javascript", "web development"
         ],
         projects: [
           "project", "projects", "website", "websites", "app", "apps", "application", "applications",
-          "things he built", "what has he made", "what did he build", "what has he built", "what has he created",
-          "what did he create", "store", "work samples"
-        ]
+          "things he built", "what things has he built", "what things has he made", "what has he made",
+          "what did he build", "what has he built", "what has he created", "what did he create",
+          "what has he done", "his work", "things he made", "work", "portfolio", "store", "custom shoes",
+          "work samples"
+        ],
+        whoIsManvir: ["who is manvir", "who are you", "tell me about manvir"],
+        favoriteClass: ["favorite class", "favourite class", "class he likes", "what class does he like"],
+        quote: ["quote", "what does he live by", "philosophy", "napoleon", "enemy", "mistake"],
+        funFact: ["fun fact", "interesting"],
+        design: ["theme", "design", "website look", "why this"],
+        beginning: ["begin", "start", "journey", "how did he"],
+        lifestyle: ["lifestyle", "hobby", "free time", "outside", "away from the keyboard"],
+        background: ["background", "born", "punjab", "india"],
+        hobbies: ["hobbies", "interests", "research", "robotics", "punjabi songs"],
+        favoriteFood: ["favorite food", "food", "samosa", "chole", "punjabi snack"],
+        sports: ["sports", "play sports", "follow teams"],
+        achievements: ["achievements", "awards", "career challenge", "2nd place"],
+        futureGoals: ["future goals", "career aspirations", "teacher", "business"],
+        favoriteSubject: ["favorite subject", "teacher assistant", "elementary mentor", "help beginners"],
+        weekendActivity: ["weekend", "weekends", "relax", "yard work"],
+        inspiration: ["inspiration", "inspires", "passion", "tech", "technology"],
+        biggestChallenge: ["challenge", "overcome", "avoid ai", "remembering code"],
+        dreamProject: ["dream project", "any project", "robot", "daily tasks"],
+        education: ["school", "grade", "senior", "what high school"]
       };
 
       function normalizeQuestion(text) {
         return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+
+      function matchesIntent(question, intent) {
+        const normalizedQuestion = ` ${normalizeQuestion(question)} `;
+        return intents[intent].some((phrase) =>
+          normalizedQuestion.includes(` ${normalizeQuestion(phrase)} `)
+        );
       }
 
       function editDistance(left, right) {
@@ -502,13 +532,7 @@
 
       function detectIntent(question) {
         if (question.toLowerCase().includes("c++")) return "skills";
-        const normalized = ` ${normalizeQuestion(question)} `;
-        for (const [intent, synonyms] of Object.entries(intentSynonyms)) {
-          if (synonyms.some((synonym) => normalized.includes(` ${normalizeQuestion(synonym)} `))) {
-            return intent;
-          }
-        }
-        return null;
+        return ["skills", "projects"].find((intent) => matchesIntent(question, intent)) || null;
       }
 
       function isContextualFollowUp(question) {
@@ -584,7 +608,7 @@
           return "Hello! I'm Manvir's portfolio assistant. I'd be happy to tell you about his background, experience, and aspirations. Feel free to ask anything!";
         }
 
-        if (q.includes("school") || q.includes("grade") || q.includes("senior") || q.includes("what high school")) {
+        if (matchesIntent(q, "education")) {
           return knowledge["education"];
         }
         if (currentMatchedIntent === "skills") {
@@ -599,61 +623,61 @@
         if (currentMatchedIntent === "projects") return knowledge["projects"];
 
         // Direct matches with keywords
-        if (q.includes("who is manvir") || q.includes("who are you") || q.includes("tell me about manvir")) {
+        if (matchesIntent(q, "whoIsManvir")) {
           return knowledge["whoismanvir"];
         }
-        if (q.includes("favorite class") || q.includes("favourite class") || q.includes("what class does he like")) {
+        if (matchesIntent(q, "favoriteClass")) {
           return knowledge["favoriteclass"] || "Manvir's academic focus is Webpage Design—a subject he first discovered as a freshman and has continued to pursue with genuine enthusiasm. This class has become his primary outlet for combining technical problem-solving with creative expression, allowing him to build meaningful digital experiences from the ground up.";
         }
-        if (q.includes("quote") || q.includes("favorite quote") || q.includes("favourite quote") || q.includes("what quote") || q.includes("what does he live by") || q.includes("philosophy") || q.includes("napoleon") || q.includes("enemy") || q.includes("mistake")) {
+        if (matchesIntent(q, "quote")) {
           return knowledge["thequote"] || "Manvir lives by Napoleon Bonaparte's principle: \"Never interfere with an enemy when he is making a mistake.\" This philosophy reflects his balanced approach to problem-solving and his understanding of the value of observation and strategic thinking.";
         }
-        if (q.includes("fun fact") || q.includes("interesting")) {
+        if (matchesIntent(q, "funFact")) {
           return knowledge["funfact"] || "Manvir views this portfolio website as his 'digital workshop'—a space where he actively experiments with new technologies, refines his skill set, and translates creative concepts into functional digital solutions. It's both a portfolio and a personal laboratory for innovation.";
         }
-        if (q.includes("theme") || q.includes("design") || q.includes("website look") || q.includes("why this")) {
+        if (matchesIntent(q, "design")) {
           return knowledge["thedesign"] || "The portfolio's warm, inviting aesthetic was intentionally designed to reflect Manvir's values and working style. Rather than adopting a sterile corporate design, he chose a personal, approachable theme that conveys creativity, accessibility, and a genuine passion for web design—positioning this site as a creative workspace rather than a formal resume.";
         }
-        if (q.includes("begin") || q.includes("start") || q.includes("journey") || q.includes("how did he")) {
+        if (matchesIntent(q, "beginning")) {
           return knowledge["thebeginning"] || "Manvir's journey in technology began with a fundamental curiosity about how things work. Before discovering web design, he explored the hardware side of development by learning C++ to program Arduino-based projects. This hands-on experience with embedded systems provided a solid technical foundation that he now applies to web development.";
         }
-        if (q.includes("lifestyle") || q.includes("hobby") || q.includes("free time") || q.includes("outside") || q.includes("away from the keyboard")) {
+        if (matchesIntent(q, "lifestyle")) {
           return knowledge["lifestyle"] || "Manvir values spending time with family and friends and tries to balance school, work, and personal time.";
         }
-        if (q.includes("background") || q.includes("born") || q.includes("punjab") || q.includes("india")) {
+        if (matchesIntent(q, "background")) {
           return knowledge["background"] || "Manvir was born in Punjab, India, and his cultural background significantly influences his work ethic, creativity, and values. He brings an international perspective to his projects and is proud to integrate his heritage into both his professional and creative endeavors.";
         }
-        if (q.includes("project") || q.includes("work") || q.includes("portfolio") || q.includes("store") || q.includes("custom shoes")) {
+        if (matchesIntent(q, "projects")) {
           return knowledge["projects"] || "Manvir has developed multiple significant projects, including this responsive portfolio website and a custom e-commerce platform showcasing bespoke shoe designs. These projects demonstrate his ability to manage full-stack development, from design conception through implementation and deployment.";
         }
-        if (q.includes("hobbies") || q.includes("interests") || q.includes("research") || q.includes("robotics") || q.includes("punjabi songs")) {
+        if (matchesIntent(q, "hobbies")) {
           return knowledge["hobbies"] || "Outside of formal coursework, Manvir actively pursues continuous learning in emerging technologies, robotics, and automation. He's passionate about exploring how technology can solve real-world problems, and he finds inspiration in both technical innovation and cultural expression, including Punjabi music.";
         }
-        if (q.includes("favorite food") || q.includes("food") || q.includes("samosa") || q.includes("chole") || q.includes("punjabi snack")) {
+        if (matchesIntent(q, "favoriteFood")) {
           return knowledge["favoritefood"] || "Manvir's favorite foods are samosas and chole—traditional Punjabi dishes that reflect his cultural roots and his appreciation for authentic flavors and culinary traditions.";
         }
-        if (q.includes("sports") || q.includes("play sports") || q.includes("follow teams")) {
+        if (matchesIntent(q, "sports")) {
           return knowledge["sports"] || "Manvir currently does not participate in organized sports or follow professional sports teams. He prefers to focus his energy on technology projects and creative endeavors.";
         }
-        if (q.includes("achievements") || q.includes("awards") || q.includes("career challenge") || q.includes("2nd place")) {
+        if (matchesIntent(q, "achievements")) {
           return knowledge["achievements"] || "Manvir achieved second place in the Fresno County Career Challenge by successfully designing and developing a complete webpage in just 1 hour and 30 minutes—a testament to his technical proficiency, creative thinking, and ability to perform under pressure.";
         }
-        if (q.includes("future goals") || q.includes("career aspirations") || q.includes("teacher") || q.includes("business")) {
+        if (matchesIntent(q, "futureGoals")) {
           return knowledge["futuregoals"] || "Manvir aspires to either pursue a career in education—leveraging his experience mentoring younger students—or launch his own technology-focused business. Both paths reflect his commitment to either sharing knowledge or creating innovative solutions in the tech industry.";
         }
-        if (q.includes("favorite subject") || q.includes("teacher assistant") || q.includes("elementary mentor") || q.includes("help beginners")) {
+        if (matchesIntent(q, "favoriteSubject")) {
           return knowledge["favoritesubject"] || "In addition to Webpage Design, Manvir is deeply engaged in his Teacher Assistant role and serves as an Elementary Mentor. He's passionate about helping beginners understand web design fundamentals and mentors younger students one-on-one, demonstrating his commitment to education and community support.";
         }
-        if (q.includes("weekend") || q.includes("weekends") || q.includes("relax") || q.includes("yard work")) {
+        if (matchesIntent(q, "weekendActivity")) {
           return knowledge["weekendactivity"] || "Manvir uses his weekends to balance work and personal responsibilities. He may work part-time employment, assist with home and yard maintenance, or dedicate time to personal projects and relaxation—maintaining a healthy work-life balance.";
         }
-        if (q.includes("inspiration") || q.includes("inspires") || q.includes("passion") || q.includes("tech") || q.includes("robotics")) {
+        if (matchesIntent(q, "inspiration")) {
           return knowledge["inspiration"] || "Manvir is fundamentally driven by his passion for technology and robotics. He's inspired by the potential of these fields to solve complex problems and improve quality of life, which motivates his continuous learning and innovation.";
         }
-        if (q.includes("challenge") || q.includes("biggest challenge") || q.includes("overcome") || q.includes("avoid ai") || q.includes("remembering code")) {
+        if (matchesIntent(q, "biggestChallenge")) {
           return knowledge["biggestchallenge"] || "Manvir's greatest challenge has been resisting the temptation to rely on AI-generated code and instead reinforcing his own coding skills and memory. By deliberately practicing hand-coded solutions, he's committed to building genuine mastery rather than shortcuts—an important discipline in professional development.";
         }
-        if (q.includes("dream project") || q.includes("any project") || q.includes("robot") || q.includes("daily tasks")) {
+        if (matchesIntent(q, "dreamProject")) {
           return knowledge["dreamproject"] || "If given the opportunity, Manvir would love to develop a sophisticated robotic system designed to assist with everyday tasks. This project would combine his interests in robotics, automation, and problem-solving into a tangible solution that could improve daily life.";
         }
 
